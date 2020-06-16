@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {NavbarComponent} from './navbar.component';
-import {FlexLayoutModule} from '@angular/flex-layout';
-import {MatListModule} from '@angular/material/list';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {AppRoutingModule} from '../app-routing.module';
-
+import { NavbarComponent } from './navbar.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { AppRoutingModule } from '../app-routing.module';
 
 
 @NgModule({
@@ -25,4 +24,5 @@ import {AppRoutingModule} from '../app-routing.module';
     NavbarComponent,
   ]
 })
-export class NavbarModule { }
+export class NavbarModule {
+}

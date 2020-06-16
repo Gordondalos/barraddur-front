@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {SidenavService} from '../services/sidenav.service';
-import {animateText, onSideNavChange} from '../animations/animations';
+import { Component } from '@angular/core';
+import { SidenavService } from '../services/sidenav.service';
+import { animateText, onSideNavChange } from '../animations/animations';
 
 
 @Component({
@@ -9,12 +9,12 @@ import {animateText, onSideNavChange} from '../animations/animations';
   styleUrls: ['./navbar.component.scss'],
   animations: [onSideNavChange, animateText]
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   public sideNavState: boolean = false;
   public linkText: boolean = false;
-  constructor(private sidenavService: SidenavService) {}
 
-  ngOnInit() {}
+  constructor(private sidenavService: SidenavService) {
+  }
 
   onSidenavToggle() {
     this.sideNavState = !this.sideNavState;

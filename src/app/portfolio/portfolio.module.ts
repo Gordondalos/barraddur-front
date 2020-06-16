@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {PortfolioComponent} from './portfolio.component';
-import {RouterModule, Routes} from '@angular/router';
+import { PortfolioComponent } from './portfolio.component';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
