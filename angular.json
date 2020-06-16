@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "tinkoff-front"
+  "defaultProject": "tinkoff-front",
+  "cli": {
+    "analytics": "5559763f-13e3-44eb-a377-5aaeb2de59ea"
+  }
 }
