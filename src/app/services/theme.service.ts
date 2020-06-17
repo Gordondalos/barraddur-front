@@ -1,13 +1,9 @@
-import {Injectable} from '@angular/core';
-import {Theme, light, dark} from '../styles/theme-default';
-
-// const defaultTheme = require('../styles/theme-default.ts');
-// const lightTheme = require('../styles/theme-light.scss');
-// const darkTheme = require('../styles/theme-dark.scss');
-// import * as defaultTheme from '../styles/theme-default';
+import { Injectable } from '@angular/core';
+import { Theme, light, dark } from '../styles/theme-default';
+import * as _ from 'lodash';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ThemeService {
 
@@ -15,30 +11,38 @@ export class ThemeService {
 
   constructor() {
     this.createStyle();
+    this.applyTheme('light');
   }
 
 
-  applyDefaultTheme() {
-    this.injectStylesheet(light);
+  applyTheme(themeName: string) {
+    this.injectStylesheet(themeName);
   }
 
-  applyLightTheme() {
-    this.injectStylesheet(dark);
-  }
-
-  // applyDarkTheme() {
-  //   this.injectStylesheet(darkTheme);
-  // }
 
   private createStyle() {
-    const head = document.head || document.getElementsByTagName('head')[0];
+    const head = document.head || document.getElementsByTagName('head')[ 0 ];
     this.styleTag = document.createElement('style');
     this.styleTag.type = 'text/css';
     this.styleTag.id = 'theme';
     head.appendChild(this.styleTag);
   }
 
-  injectStylesheet(theme: Theme) {
-    this.styleTag.innerHTML = theme.properties;
+  injectStylesheet(themeName: string) {
+    let styles = ':root {';
+    let th: Theme;
+    switch (themeName) {
+      case 'dark': th = dark; break;
+      case 'light': th = light; break;
+    }
+
+    _.each(th.properties, (color, index) => {
+      styles += `${index}: ${color};`;
+    });
+    styles += '}';
+    console.log(styles);
+    this.styleTag.innerHTML = styles;
   }
+
+
 }

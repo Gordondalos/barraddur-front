@@ -5,16 +5,18 @@ import { ThemeService } from '../services/theme.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   @Input() sidenav: MatSidenav;
+
   constructor(public themeService: ThemeService) {
   }
+
   ngOnInit(): void {
   }
 
-  changeThemeColor() {
-    this.themeService.applyDefaultTheme();
+  changeThemeColor(theme) {
+    this.themeService.applyTheme(theme);
   }
 }

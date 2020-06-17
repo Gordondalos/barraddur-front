@@ -6,7 +6,8 @@ export interface Theme {
 export const light: Theme = {
   name: 'light',
   properties: {
-    '--foreground-default': '#08090A',
+    '--primary': '#3b36f6',
+    '--foreground-default': '#25ff2d',
     '--foreground-secondary': '#41474D',
     '--foreground-tertiary': '#797C80',
     '--foreground-quaternary': '#F4FAFF',
@@ -32,7 +33,7 @@ export const light: Theme = {
 export const dark: Theme = {
   name: 'dark',
   properties: {
-    '--foreground-default': '#5C7D99',
+    '--foreground-default': '#76352c',
     '--foreground-secondary': '#A3B9CC',
     '--foreground-tertiary': '#F4FAFF',
     '--foreground-quaternary': '#E5E5E5',

@@ -6,7 +6,11 @@
   <span>Inbox</span>
   <span class="spacer"></span>
 
-  <button mat-fab color="primary" (click)="changeThemeColor()" id="theme">
-    Theme
+  <button mat-raised-button  color="primary" (click)="changeThemeColor('dark')" >
+    Theme dark
+  </button>
+
+  <button mat-raised-button color="primary" (click)="changeThemeColor('light')" >
+    Theme light
   </button>
 </div>
