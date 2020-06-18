@@ -6,52 +6,48 @@ export interface Theme {
 export const light: Theme = {
   name: 'light',
   properties: {
-    '--primary': '#3b36f6',
-    '--foreground-default': '#25ff2d',
-    '--foreground-secondary': '#41474D',
-    '--foreground-tertiary': '#797C80',
-    '--foreground-quaternary': '#F4FAFF',
-    '--foreground-light': '#41474D',
+    '--text-primary': '#1e88e5',
+    '--bg-primary': '#1e88e5',
+    '--text-secondary': '#607d8b',
+    '--bg-secondary': '#607d8b',
+    '--text-success': '#4caf50',
+    '--bg-success': '#4caf50',
+    '--text-warning': '#ff9800',
+    '--bg-warning': '#ff9800',
+    '--text-info': '#039be5',
+    '--bg-info': '#039be5',
+    '--text-danger': '#f44336',
+    '--bg-danger': '#f44336',
+    '--navbar-bg-color': '#ffffff',
+    '--navbar-text-color': 'rgba(0,0,0,.87)',
+    '--sidebar-bg-color': '#1e2129',
+    '--sidebar-text-color': '#ffffff',
+    '--bg-content': '#f5f5f5',
+    '--text-content': 'rgba(0,0,0,.54)'
 
-    '--background-default': '#F4FAFF',
-    '--background-secondary': '#A3B9CC',
-    '--background-tertiary': '#5C7D99',
-    '--background-light': '#FFFFFF',
-
-    '--primary-default': '#5DFDCB',
-    '--primary-dark': '#24B286',
-    '--primary-light': '#B2FFE7',
-
-    '--error-default': '#EF3E36',
-    '--error-dark': '#800600',
-    '--error-light': '#FFCECC',
-
-    '--background-tertiary-shadow': '0 1px 3px 0 rgba(92, 125, 153, 0.5)'
   }
 };
 
 export const dark: Theme = {
   name: 'dark',
   properties: {
-    '--foreground-default': '#76352c',
-    '--foreground-secondary': '#A3B9CC',
-    '--foreground-tertiary': '#F4FAFF',
-    '--foreground-quaternary': '#E5E5E5',
-    '--foreground-light': '#FFFFFF',
-
-    '--background-default': '#797C80',
-    '--background-secondary': '#41474D',
-    '--background-tertiary': '#08090A',
-    '--background-light': '#41474D',
-
-    '--primary-default': '#5DFDCB',
-    '--primary-dark': '#24B286',
-    '--primary-light': '#B2FFE7',
-
-    '--error-default': '#EF3E36',
-    '--error-dark': '#800600',
-    '--error-light': '#FFCECC',
-
-    '--background-tertiary-shadow': '0 1px 3px 0 rgba(8, 9, 10, 0.5)'
+    '--text-primary': '#1e2146',
+    '--bg-primary': '#1e2146',
+    '--text-secondary': '#607d8b',
+    '--bg-secondary': '#607d8b',
+    '--text-success': '#4caf50',
+    '--bg-success': '#4caf50',
+    '--text-warning': '#ff9800',
+    '--bg-warning': '#ff9800',
+    '--text-info': '#039be5',
+    '--bg-info': '#039be5',
+    '--text-danger': '#f44336',
+    '--bg-danger': '#f44336',
+    '--navbar-bg-color': '#212121',
+    '--navbar-text-color': '#ffffff',
+    '--sidebar-bg-color': '#303030',
+    '--sidebar-text-color': '#ffffff',
+    '--bg-content': '#424242',
+    '--text-content': '#f5f5f5'
   }
 };

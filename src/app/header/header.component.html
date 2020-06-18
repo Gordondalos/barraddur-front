@@ -1,16 +1,20 @@
 <div class="header">
-  <button mat-icon-button (click)="sidenav.toggle()">
-    <mat-icon>menu</mat-icon>
-  </button>
+  <div>
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
 
-  <span>Inbox</span>
-  <span class="spacer"></span>
+    <span>TINKOFF</span>
+  </div>
 
-  <button mat-raised-button  color="primary" (click)="changeThemeColor('dark')" >
-    Theme dark
-  </button>
+  <div class="theme">
+    <button mat-raised-button (click)="changeThemeColor('dark')" [ngClass]="'btn'">
+      Theme dark
+    </button>
 
-  <button mat-raised-button color="primary" (click)="changeThemeColor('light')" >
-    Theme light
-  </button>
+    <button mat-raised-button (click)="changeThemeColor('light')" [ngClass]="'btn'">
+      Theme light
+    </button>
+
+</div>
 </div>
