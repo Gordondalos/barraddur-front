@@ -11,6 +11,32 @@ body {
   color: var(--text-color);
 }
 
+.w-30 {
+  width: 30%;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.w-70 {
+  width: 70%;
+}
+
+.pl32 {
+  padding-left: 32px;
+}
+
+.mb16 {
+  margin-bottom: 16px;
+}
+
+
+.mat-row:nth-child(odd) {
+  background-color: var(--bg-secondary);
+}
+
+
 p {
   font-family: Lato, sans-serif;
 }
