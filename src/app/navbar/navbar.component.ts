@@ -17,9 +17,9 @@ export class NavbarComponent {
   currentLink = '';
   links = [
     {id: 1, title: 'Home', routerLink: '/home', icon: 'home'},
-    {id: 2, title: 'Portfolio', routerLink: '/portfolio',  icon: 'sort'},
+    {id: 2, title: 'Portfolio', routerLink: '/portfolio',  icon: 'person'},
     {id: 3, title: 'Favorites', routerLink: '/favorites',  icon: 'star'},
-    {id: 4, title: 'Statistic', routerLink: '/statistics',  icon: 'send'}
+    {id: 4, title: 'Statistic', routerLink: '/statistics',  icon: 'insert_chart_outlined'}
   ];
   constructor(
     private sidenavService: SidenavService,
