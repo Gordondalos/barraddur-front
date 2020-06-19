@@ -10,7 +10,28 @@
   border-radius: 50%;
 }
 
-.active {
-  color: #d42a5d;
+a.active {
+  background-color: var(--bg-secondary)!important;
   font-weight: bold;
+  &:hover{
+    background-color: var(--bg-secondary);
+  }
 }
+a.link{
+  &:hover{
+    background-color: var(--bg-secondary);
+  }
+}
+.sp-text{
+  color: var(--sidebar-text-color);
+  font-size: 14px;
+  padding-left: 10px;
+}
+
+.mat-icon{
+  color: var(--sidebar-text-color);
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+}
+

@@ -1,6 +1,32 @@
 .header {
   padding: 10px 20px;
   padding-left: 7px;
-  background: rgb(212, 42, 93);
-  color: #fff;
+  background: var(--navbar-bg-color);
+  color: var(--navbar-text-color);
+  display: flex;
 }
+.btn{
+  margin: 5px;
+  background-color: var(--bg-info);
+}
+.theme{
+  margin-left: auto;
+  ::ng-deep{
+    .mat-select-placeholder{
+      color: var(--navbar-text-color);
+    }
+    .mat-select-arrow{
+      color: var(--navbar-text-color);
+    }
+    .mat-select-value-text{
+      color: var(--navbar-text-color);
+    }
+  }
+}
+
+.mat-select {
+  min-width: 150px;
+  margin-left: 16px;
+}
+
+
