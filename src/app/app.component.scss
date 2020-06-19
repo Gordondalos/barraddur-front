@@ -1,7 +1,8 @@
 .main_content {
   width:100%;
-  height: calc(100vh - 100px);
-  background: var(--bg-content);
+  height: calc(100vh - 66px);
+  background: var(--bg-color);
+  color: var(--text-color);
 }
 mat-sidenav{
   background: var(--sidebar-bg-color);

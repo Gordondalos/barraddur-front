@@ -7,6 +7,8 @@ html, body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 p {
@@ -15,6 +17,18 @@ p {
 
 .text-primary {
   color: var(--primary);
+}
+
+.d-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+button {
+  min-width: auto !important;
 }
 
 

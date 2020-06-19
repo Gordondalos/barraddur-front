@@ -13,6 +13,9 @@
   margin-left: auto;
 }
 
-mat-select {
+.mat-select {
+  min-width: 150px;
+  margin-left: 16px;
   color: var(--navbar-text-color);
 }
+
