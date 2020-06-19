@@ -17,4 +17,16 @@ p {
   color: var(--primary);
 }
 
+.d-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+button {
+  min-width: auto !important;
+}
+
 

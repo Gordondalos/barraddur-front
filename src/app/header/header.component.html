@@ -7,7 +7,7 @@
     <span>TINKOFF</span>
   </div>
 
-  <div class="theme">
+  <div class="theme d-flex align-items-center">
     <button mat-raised-button (click)="changeThemeColor('dark')" [ngClass]="'btn'">
       Theme dark
     </button>
@@ -16,7 +16,10 @@
       Theme light
     </button>
 
-    <mat-select name="themeSelect" [(ngModel)]="themeSelect"  (ngModelChange)="changeThemeColor($event)">
+    <mat-select name="themeSelect"
+                placeholder="Select color"
+                [(ngModel)]="themeSelect"
+                (ngModelChange)="changeThemeColor($event)">
       <mat-option value="light">Light Theme</mat-option>
       <mat-option value="dark">Dark Theme</mat-option>
     </mat-select>
