@@ -23,7 +23,9 @@ export const light: Theme = {
     '--sidebar-bg-color':  '#3c4252',
     '--sidebar-text-color': '#ffffff',
     '--bg-content': '#f5f5f5',
-    '--text-content': 'rgba(0,0,0,.54)'
+    '--text-content': 'rgba(0,0,0,.54)',
+    '--bg-color': '#ffffff',
+    '--text-color': 'rgba(0,0,0,.87)',
 
   }
 };
@@ -48,6 +50,8 @@ export const dark: Theme = {
     '--sidebar-bg-color': '#303030',
     '--sidebar-text-color': '#ffffff',
     '--bg-content': '#f5f5f5',
-    '--text-content': '#f5f5f5'
+    '--text-content': '#f5f5f5',
+    '--bg-color': 'rgba(0,0,0,.87)',
+    '--text-color': '#ffffff',
   }
 };
