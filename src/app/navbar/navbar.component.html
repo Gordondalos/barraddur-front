@@ -15,7 +15,8 @@
       <mat-nav-list>
         <ng-container *ngFor="let link of links">
           <a mat-list-item [routerLink]="[link.routerLink]" [ngClass]="{'active': currentLink === link.routerLink}"
-             class="link">
+             class="link"> <!-- чтобы присвоился класс active текущая ссылка (currentLink) должна быть ровна ссылки
+             элемента в которой лежит link.routerLink-->
             <mat-icon aria-hidden="false" style="padding-right:5px">{{link.icon}}</mat-icon>
             <span [@animateText]="linkText ? 'show' : 'hide'" class="sp-text">{{link.title}}</span>
           </a>

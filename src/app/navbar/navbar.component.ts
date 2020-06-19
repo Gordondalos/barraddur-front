@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { SidenavService } from '../services/sidenav.service';
 import { animateText, onSideNavChange } from '../animations/animations';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter, map, switchMap } from 'rxjs/operators';
+import { NavigationEnd, Router } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 
 @Component({
@@ -17,23 +17,20 @@ export class NavbarComponent {
   currentLink = '';
   links = [
     {id: 1, title: 'Home', routerLink: '/home', icon: 'home'},
-    {id: 2, title: 'Portfolio', routerLink: '/portfolio',  icon: 'home'},
-    {id: 3, title: 'Favorites', routerLink: '/favorites',  icon: 'home'},
-    {id: 4, title: 'Statistic', routerLink: '/statistics',  icon: 'home'}
+    {id: 2, title: 'Portfolio', routerLink: '/portfolio',  icon: 'sort'},
+    {id: 3, title: 'Favorites', routerLink: '/favorites',  icon: 'star'},
+    {id: 4, title: 'Statistic', routerLink: '/statistics',  icon: 'send'}
   ];
   constructor(
     private sidenavService: SidenavService,
     public router: Router,
-    private activatedRoute: ActivatedRoute
   ) {
-
-    this.router.events.pipe(
-      filter(routeEvent => routeEvent instanceof NavigationEnd),
-
-    ).subscribe(() => {
+    this.router.events //  событие роутера
+      .pipe(
+      filter(routeEvent => routeEvent instanceof NavigationEnd), // фильтрую события, если навигация
+                                                                          // завершена присвоить класс NavigationEnd
+    ).subscribe(() => { // подписываюсь на событие
       this.currentLink = router.url;
-      console.log(this.currentLink);
-      console.log(router.url);
     });
   }
 
