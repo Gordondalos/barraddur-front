@@ -40,7 +40,6 @@ export class ThemeService {
       styles += `${index}: ${color};`;
     });
     styles += '}';
-    console.log(styles);
     this.styleTag.innerHTML = styles;
   }
 
