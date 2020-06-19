@@ -20,7 +20,7 @@ export const light: Theme = {
     '--bg-danger': '#f44336',
     '--navbar-bg-color': '#ffffff',
     '--navbar-text-color': 'rgba(0,0,0,.87)',
-    '--sidebar-bg-color':  '#1e2146',
+    '--sidebar-bg-color':  '#3c4252',
     '--sidebar-text-color': '#ffffff',
     '--bg-content': '#f5f5f5',
     '--text-content': 'rgba(0,0,0,.54)'

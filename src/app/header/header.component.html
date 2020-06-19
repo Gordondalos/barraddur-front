@@ -16,5 +16,11 @@
       Theme light
     </button>
 
+    <mat-select name="themeSelect" [(ngModel)]="themeSelect"  (ngModelChange)="changeThemeColor($event)">
+      <mat-option value="light">Light Theme</mat-option>
+      <mat-option value="dark">Dark Theme</mat-option>
+    </mat-select>
+
 </div>
+
 </div>

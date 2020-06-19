@@ -9,7 +9,7 @@ import { ThemeService } from '../services/theme.service';
 })
 export class HeaderComponent implements OnInit {
   @Input() sidenav: MatSidenav;
-
+  themeSelect: string;
 
   constructor(public themeService: ThemeService) {
   }
