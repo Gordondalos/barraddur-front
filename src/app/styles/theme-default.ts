@@ -19,7 +19,7 @@ export const light: Theme = {
     '--text-danger': '#f44336',
     '--bg-danger': '#f44336',
     '--navbar-bg-color': '#1E2146',
-    '--navbar-text-color': 'rgba(250,250,250,.5)',
+    '--navbar-text-color': '#ffffff',
     '--sidebar-bg-color':  '#3c4252',
     '--sidebar-text-color': '#ffffff',
     '--bg-content': '#f5f5f5',

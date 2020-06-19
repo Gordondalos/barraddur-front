@@ -11,11 +11,22 @@
 }
 .theme{
   margin-left: auto;
+  ::ng-deep{
+    .mat-select-placeholder{
+      color: var(--navbar-text-color);
+    }
+    .mat-select-arrow{
+      color: var(--navbar-text-color);
+    }
+    .mat-select-value-text{
+      color: var(--navbar-text-color);
+    }
+  }
 }
 
 .mat-select {
   min-width: 150px;
   margin-left: 16px;
-  color: var(--navbar-text-color);
 }
+
 

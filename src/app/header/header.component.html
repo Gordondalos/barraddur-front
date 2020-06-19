@@ -8,14 +8,6 @@
   </div>
 
   <div class="theme d-flex align-items-center">
-    <button mat-raised-button (click)="changeThemeColor('dark')" [ngClass]="'btn'">
-      Theme dark
-    </button>
-
-    <button mat-raised-button (click)="changeThemeColor('light')" [ngClass]="'btn'">
-      Theme light
-    </button>
-
     <mat-select name="themeSelect"
                 placeholder="Select color"
                 [(ngModel)]="themeSelect"
