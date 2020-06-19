@@ -8,6 +8,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { AgGridModule } from 'ag-grid-angular';
+import { MatButtonModule } from '@angular/material/button';
 
 const routes: Routes = [
   {
@@ -28,7 +29,8 @@ const routes: Routes = [
     MatTableModule,
     MatInputModule,
     MatSortModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+    MatButtonModule,
   ],
   exports: [
     PortfolioComponent,

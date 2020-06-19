@@ -1,11 +1,18 @@
 
-<h2>Portfolio items</h2>
+<div class="d-flex vertical-center mb16">
+  <h2>Portfolio items</h2>
+  <div class="f-gr-1"></div>
+</div>
 
 <ag-grid-angular
   style="width: 100%; height: calc(100vh - 150px);"
   class="ag-theme-alpine"
   [rowData]="portfolio"
   [columnDefs]="columnDefs"
+  (gridReady)="onGridReady($event)"
   (firstDataRendered)="onFirstDataRendered($event)"
+  (columnMoved)="columnMoved()"
+  (columnResized)="columnMoved()"
+  (columnPinned)="columnMoved()"
 >
 </ag-grid-angular>
