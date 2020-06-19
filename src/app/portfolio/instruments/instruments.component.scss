@@ -6,3 +6,9 @@ table {
   font-size: 14px;
   width: 100%;
 }
+
+::ng-deep {
+  .ag-center-cols-container, .ag-header-row, .ag-header-container {
+    width: 100% !important;
+  }
+}

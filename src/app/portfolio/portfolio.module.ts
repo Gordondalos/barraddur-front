@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
+import { AgGridModule } from 'ag-grid-angular';
 
 const routes: Routes = [
   {
@@ -27,6 +28,7 @@ const routes: Routes = [
     MatTableModule,
     MatInputModule,
     MatSortModule,
+    AgGridModule.withComponents([])
   ],
   exports: [
     PortfolioComponent,

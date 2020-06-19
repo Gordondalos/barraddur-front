@@ -1,48 +1,11 @@
 
 <h2>Portfolio items</h2>
 
-<mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Search">
-</mat-form-field>
-
-
-<table mat-table [dataSource]="dataSource" matSort>
-
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> №</th>
-    <td mat-cell *matCellDef="let row; let i = index"> {{i + 1}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
-    <td mat-cell *matCellDef="let row"> {{row.name}}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="blocked">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Blocked</th>
-    <td mat-cell *matCellDef="let row"> {{row.blocked}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="balance">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Balance</th>
-    <td mat-cell *matCellDef="let row"> {{row.balance}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="ticker">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Ticker</th>
-    <td mat-cell *matCellDef="let row"> {{row.ticker}} </td>
-  </ng-container>
-
-  <ng-container matColumnDef="lots">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Lots</th>
-    <td mat-cell *matCellDef="let row"> {{row.lots}} </td>
-  </ng-container>
-
-
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-  </tr>
-</table>
-
+<ag-grid-angular
+  style="width: 100%; height: calc(100vh - 150px);"
+  class="ag-theme-alpine"
+  [rowData]="portfolio"
+  [columnDefs]="columnDefs"
+  (firstDataRendered)="onFirstDataRendered($event)"
+>
+</ag-grid-angular>
