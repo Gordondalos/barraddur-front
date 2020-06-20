@@ -68,5 +68,9 @@ export class InstrumentsComponent implements OnInit {
       this.saveSettings();
     }, 1000);
   }
+
+  rowClick($event: any) {
+    console.log($event);
+  }
 }
 
