@@ -1,0 +1,19 @@
+<!--<p *ngFor="let stock of stocks">-->
+<!--  {{stock.name}}-->
+<!--  {{stock.figi}}-->
+<!--</p>-->
+
+  <mat-form-field>
+    <input type="text"
+           placeholder="Pick one"
+           aria-label="Number"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{option.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
