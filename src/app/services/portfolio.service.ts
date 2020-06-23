@@ -26,4 +26,10 @@ export class PortfolioService extends FatherService {
     return data;
   }
 
+  // По умолчанию обновит все на 30 дней
+  async updateData(countDay = 30): Promise<any> {
+    const data = await this.post('/api/historyByAllTicker', { countDay });
+    return data;
+  }
+
 }

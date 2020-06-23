@@ -1,8 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatSort } from '@angular/material/sort';
 import { InstrumentInterfase } from '../../interfaces/instrument.interfase';
 import { LocalstorageService } from '../../services/localstorage.service';
+import { PortfolioService } from '../../services/portfolio.service';
 
 @Component({
   selector: 'app-instruments',
@@ -35,6 +34,7 @@ export class InstrumentsComponent implements OnInit {
 
 
   constructor(
+    private portfolioService: PortfolioService,
     public localStorageService: LocalstorageService,
   ) {
 
@@ -71,6 +71,10 @@ export class InstrumentsComponent implements OnInit {
 
   rowClick($event: any) {
     console.log($event);
+  }
+
+  updateData() {
+    this.portfolioService.updateData(30);
   }
 }
 
