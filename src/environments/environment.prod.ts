@@ -1,3 +1,7 @@
 export const environment = {
-  production: true
+  production: false,
+  hmr: false,
+  baseHref: '',
+  API_REST_URL: '',
+  API_REST_PORT: ''
 };

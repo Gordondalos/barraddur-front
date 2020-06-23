@@ -1,8 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/ag-grid-community/src/styles/ag-grid.scss";
+@import "../node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin.scss";
 @import "node_modules/iiko-styles/main";
+.ag-theme-alpine {
+  @include ag-theme-alpine();
+}
+/* You can add global styles to this file, and also import other style files */
+
 
 html, body {
   height: 100%;
+}
+
+.f-gr-1 {
+  flex-grow: 1;
+}
+
+.vertical-center {
+  align-items: center;
 }
 
 body {
@@ -11,6 +25,32 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
 }
+
+.w-30 {
+  width: 30%;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.w-70 {
+  width: 70%;
+}
+
+.pl32 {
+  padding-left: 32px;
+}
+
+.mb16 {
+  margin-bottom: 16px;
+}
+
+
+.mat-row:nth-child(odd) {
+  background-color: var(--bg-secondary);
+}
+
 
 p {
   font-family: Lato, sans-serif;
