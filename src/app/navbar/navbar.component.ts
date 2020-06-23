@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { SidenavService } from '../services/sidenav.service';
 import { animateText, onSideNavChange } from '../animations/animations';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import {LocalstorageService} from '../services/localstorage.service';
 
 
 @Component({
@@ -11,9 +12,9 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./navbar.component.scss'],
   animations: [onSideNavChange, animateText]
 })
-export class NavbarComponent {
-  public sideNavState: boolean = false;
-  public linkText: boolean = false;
+export class NavbarComponent implements OnInit{
+  public sideNavState = false;
+  public linkText = false;
   currentLink = '';
   links = [
     {id: 1, title: 'Home', routerLink: '/home', icon: 'home'},
@@ -21,9 +22,11 @@ export class NavbarComponent {
     {id: 3, title: 'Favorites', routerLink: '/favorites',  icon: 'star'},
     {id: 4, title: 'Statistic', routerLink: '/statistics',  icon: 'insert_chart_outlined'}
   ];
+
   constructor(
     private sidenavService: SidenavService,
     public router: Router,
+    public localstorageService: LocalstorageService
   ) {
     this.router.events //  событие роутера
       .pipe(
@@ -34,13 +37,17 @@ export class NavbarComponent {
     });
   }
 
+  ngOnInit() {
+    this.sideNavState = this.localstorageService.get('sideNavState');
+  }
+
   onSidenavToggle() {
     this.sideNavState = !this.sideNavState;
-
     setTimeout(() => {
       this.linkText = this.sideNavState;
     }, 200);
     this.sidenavService.sideNavState$.next(this.sideNavState);
+    this.localstorageService.set('sideNavState', this.sideNavState);
   }
 
 }
