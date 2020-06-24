@@ -74,7 +74,7 @@ export class InstrumentsComponent implements OnInit {
   }
 
   updateData() {
-    this.portfolioService.updateData(30);
+    this.portfolioService.updateData(365);
   }
 }
 
