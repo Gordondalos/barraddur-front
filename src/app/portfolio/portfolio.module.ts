@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { AgGridModule } from 'ag-grid-angular';
 import { MatButtonModule } from '@angular/material/button';
+import { GroupKreatorComponent } from './group-kreator/group-kreator.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
   declarations: [
     PortfolioComponent,
     InstrumentsComponent,
+    GroupKreatorComponent,
   ],
   imports: [
     CommonModule,
