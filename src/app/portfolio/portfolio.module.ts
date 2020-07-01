@@ -10,6 +10,9 @@ import { MatSortModule } from '@angular/material/sort';
 import { AgGridModule } from 'ag-grid-angular';
 import { MatButtonModule } from '@angular/material/button';
 import { GroupKreatorComponent } from './group-kreator/group-kreator.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {FormsModule} from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
 
 const routes: Routes = [
   {
@@ -33,6 +36,9 @@ const routes: Routes = [
     MatSortModule,
     AgGridModule.withComponents([]),
     MatButtonModule,
+    MatAutocompleteModule,
+    FormsModule,
+    MatIconModule,
   ],
   exports: [
     PortfolioComponent,
