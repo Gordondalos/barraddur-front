@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ThemeService } from '../services/theme.service';
+import {PortfolioService} from "../services/portfolio.service";
 
 @Component({
   selector: 'app-header',
@@ -10,11 +11,15 @@ import { ThemeService } from '../services/theme.service';
 export class HeaderComponent implements OnInit {
   @Input() sidenav: MatSidenav;
   themeSelect: string;
+  balance: Array<{ currency: string, balance: number }>;
 
-  constructor(public themeService: ThemeService) {
+  constructor(public themeService: ThemeService,
+              private portfolioService: PortfolioService
+  ) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<any> {
+    this.balance = await this.portfolioService.getBalance();
   }
 
   changeThemeColor(theme) {

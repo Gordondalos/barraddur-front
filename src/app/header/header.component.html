@@ -1,11 +1,17 @@
 <div class="header">
-  <div>
+  <div class="mr-auto">
     <button mat-icon-button (click)="sidenav.toggle()">
       <mat-icon>menu</mat-icon>
     </button>
 
     <span>CUSTOM TERMINAL</span>
   </div>
+
+  <ng-container *ngFor="let item of balance">
+    <div class="d-flex align-items-center balance-padding">
+      <span>{{item.currency}}: {{item.balance}}</span>
+    </div>
+  </ng-container>
 
   <div class="theme d-flex align-items-center">
     <mat-select name="themeSelect"
