@@ -1,0 +1,34 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Group Name</mat-label>
+    <input type="text" name="group-name" matInput [(ngModel)]="groupName">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input type="text"
+           placeholder="Pick one"
+           aria-label="Number"
+           matInput
+           [(ngModel)]="groupSelecyted"
+           (ngModelChange)="filterOptions()"
+           [matAutocomplete]="auto" name="stock">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let option of options" [value]="option">
+        {{option.name}}
+<!--        ({{option.ticker}})-->
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+<button mat-raised-button color="primary" (click)="addGroup()">Add Group</button>
+
+<div *ngFor="let item of group; let i = index">
+  <span>
+    {{item.name}}
+    {{item.ticker}}
+  </span>
+  <mat-icon (click)="delete(item, i)">delete</mat-icon>
+</div>
+
+<button mat-raised-button color="primary" (click)="saveGroup()">Save</button>
