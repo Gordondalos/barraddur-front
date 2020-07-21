@@ -1,0 +1,9 @@
+<mat-list>
+  <div mat-subheader>News</div>
+  <mat-list-item *ngFor="let folder of folders">
+    <div mat-line> {{folder.updated | date}} </div>
+    <mat-divider></mat-divider>
+    <div mat-line>{{folder.name}}</div>
+  </mat-list-item>
+</mat-list>
+

@@ -1,0 +1,11 @@
+.wrapper{
+  display: flex;
+  flex-direction: row;
+}
+.news-bar{
+  flex: 30%;
+}
+
+.news-detail{
+  flex: 70%;
+}
