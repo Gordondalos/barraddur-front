@@ -1,7 +1,7 @@
 export interface News {
-  newsId: number;
+  id?: number;
   data: Date;
   title: string;
-  imageUrl: string;
+  img: string;
   text: string;
 }

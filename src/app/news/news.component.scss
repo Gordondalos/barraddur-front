@@ -3,9 +3,11 @@
   flex-direction: row;
 }
 .news-bar{
-  flex: 30%;
+  max-width: 100%;
+  width: 400px;
+  padding-right: 20px;
 }
 
 .news-detail{
-  flex: 70%;
+  flex-grow: 1;
 }
