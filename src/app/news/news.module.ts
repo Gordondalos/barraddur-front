@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+
 
 import { NewsComponent } from './news.component';
 import { NewsBarComponent } from './news-bar/news-bar.component';
@@ -23,7 +25,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    MatListModule
+    MatListModule,
+    MatCardModule
   ],
   exports: [
     NewsComponent
