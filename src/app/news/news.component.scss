@@ -1,0 +1,13 @@
+.wrapper{
+  display: flex;
+  flex-direction: row;
+}
+.news-bar{
+  max-width: 100%;
+  width: 400px;
+  padding-right: 20px;
+}
+
+.news-detail{
+  flex-grow: 1;
+}

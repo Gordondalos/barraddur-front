@@ -1,0 +1,9 @@
+<mat-list>
+  <div mat-subheader>News</div>
+  <mat-list-item *ngFor="let nw of news" (click)='openNewsDetail(nw.id)'>
+    <div mat-line> {{nw.data | date}} </div>
+    <mat-divider></mat-divider>
+    <div mat-line>{{nw.title}}</div>
+  </mat-list-item>
+</mat-list>
+

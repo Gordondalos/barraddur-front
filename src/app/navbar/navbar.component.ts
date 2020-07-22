@@ -20,7 +20,8 @@ export class NavbarComponent implements OnInit{
     {id: 1, title: 'Home', routerLink: '/home', icon: 'home'},
     {id: 2, title: 'Portfolio', routerLink: '/portfolio',  icon: 'person'},
     {id: 3, title: 'Favorites', routerLink: '/favorites',  icon: 'star'},
-    {id: 4, title: 'Statistic', routerLink: '/statistics',  icon: 'insert_chart_outlined'}
+    {id: 4, title: 'Statistic', routerLink: '/statistics',  icon: 'insert_chart_outlined'},
+    {id: 5, title: 'News', routerLink: '/news', icon: 'rss_feed'}
   ];
 
   constructor(
