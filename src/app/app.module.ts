@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { HeaderModule } from './header/header.module';
 import { NavbarModule } from './navbar/navbar.module';
 import { HttpClientModule } from '@angular/common/http';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     HeaderModule,
     NavbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

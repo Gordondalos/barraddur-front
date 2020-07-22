@@ -1,7 +1,10 @@
 export interface News {
   id?: number;
-  data: Date;
   title: string;
-  img: string;
-  text: string;
+  img?: string;
+  description: string;
+  date_create: string;
+  external_id?: string;
+  link_news?: string;
+  read: boolean;
 }

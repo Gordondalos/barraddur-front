@@ -24,7 +24,6 @@ export class NewsDetailComponent implements OnInit, OnDestroy {
     .subscribe((event) => {
         if(event instanceof NavigationEnd){
           const id = route.snapshot.params.id;
-          console.log(id);
           if(id){
             this.loadNews(id);
           }
@@ -33,8 +32,7 @@ export class NewsDetailComponent implements OnInit, OnDestroy {
     }
 
  async ngOnInit() {
-    this.news = await this.feedService.getNews();
-    this.nw = this.news[0];
+  
   }
   ngOnDestroy(): void {
     this.unsubscribeAll.next();
