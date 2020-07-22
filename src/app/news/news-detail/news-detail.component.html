@@ -1,8 +1,7 @@
-<mat-card>
-  <h1>Photos</h1>
-  <small>Title description, Dec 7, 2017</small>
+<mat-card *ngFor="let nw of news">
+  <h1>{{nw.title}}</h1>
+  <small>{{nw.data | date}}</small>
   <div class="fakeimg" style="height:200px;">Image</div>
-  <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
-    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+  <p>{{nw.text}}</p>
 </mat-card>
 
