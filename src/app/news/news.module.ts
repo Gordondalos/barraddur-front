@@ -30,7 +30,7 @@ const routes: Routes = [
       }
     ]
   },
-  
+
 ]
 
 @NgModule({
@@ -51,8 +51,9 @@ const routes: Routes = [
     MatIconModule,
     MatButtonModule
   ],
-  exports: [
-    NewsComponent
-  ]
+    exports: [
+        NewsComponent,
+        NewsBarComponent,
+    ],
 })
 export class NewsModule { }

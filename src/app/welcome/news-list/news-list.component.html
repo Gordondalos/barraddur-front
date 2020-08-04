@@ -1,0 +1,10 @@
+<mat-list>
+  <ng-container *ngFor="let nw of news">
+    <mat-list-item class="pointer" (click)="openNews(nw)">
+      <div mat-line> {{nw.date_create | date: 'dd-MM-yyyy HH:mm'}} </div>
+      <mat-divider></mat-divider>
+      <div mat-line>{{nw.title}}</div>
+    </mat-list-item>
+</ng-container>
+
+</mat-list>

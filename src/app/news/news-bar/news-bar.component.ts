@@ -7,26 +7,30 @@ import * as moment from 'moment';
 @Component({
   selector: 'app-news-bar',
   templateUrl: './news-bar.component.html',
-  styleUrls: ['./news-bar.component.scss']
+  styleUrls: ['./news-bar.component.scss'],
 })
 
 export class NewsBarComponent implements OnInit {
-  from: any = moment().subtract(15,'day').format('YYYY-MM-DD');
+  from: any = moment().subtract(15, 'day').format('YYYY-MM-DD');
   to: any = moment().format('YYYY-MM-DD');
   news: News[] = [];
+
   constructor(
     private feedService: FeedService,
-    public router: Router
-    ) { }
+    public router: Router,
+  ) {
+  }
 
- async ngOnInit() {
-   this.loadNews();
+  async ngOnInit() {
+    this.loadNews();
   }
-  openNewsDetail(id){
-    this.router.navigateByUrl(`/news/${id}`);
+
+  openNewsDetail(id) {
+    this.router.navigateByUrl(`/news/${ id }`);
   }
- async loadNews(){
-  //  debugger;
+
+  async loadNews() {
+    //  debugger;
     this.news = await this.feedService.getNews(this.from, this.to);
   }
 

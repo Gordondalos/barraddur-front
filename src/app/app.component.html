@@ -1,19 +1,26 @@
-<div>
-  <app-header
-    [sidenav]="leftSidenav">
+<ng-container *ngIf="isWelcome">
+  <router-outlet></router-outlet>
+</ng-container>
 
-  </app-header>
+<ng-container *ngIf="!isWelcome">
+  <div>
+    <app-header
+      [sidenav]="leftSidenav">
 
-  <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #leftSidenav mode="side" opened>
-      <app-navbar></app-navbar>
-    </mat-sidenav>
-    <mat-sidenav-content [@onMainContentChange]="onSideNavChange ? 'open': 'close'">
-      <div class="main_content">
-        <div style="padding: 20px">
-          <router-outlet></router-outlet>
+    </app-header>
+
+    <mat-sidenav-container class="sidenav-container">
+      <mat-sidenav #leftSidenav mode="side" opened>
+        <app-navbar></app-navbar>
+      </mat-sidenav>
+      <mat-sidenav-content [@onMainContentChange]="onSideNavChange ? 'open': 'close'">
+        <div class="main_content">
+          <div class="p20">
+            <router-outlet></router-outlet>
+          </div>
         </div>
-      </div>
-    </mat-sidenav-content>
-  </mat-sidenav-container>
-</div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>
+
+</ng-container>

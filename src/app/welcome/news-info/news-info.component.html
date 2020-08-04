@@ -1,0 +1,10 @@
+<mat-card class="p32" *ngIf='news'>
+  <small>{{news.date_create | date}}</small>
+  <h1>{{news.title}}</h1>
+  <img *ngIf='news.img' mat-card-image [src]="news.img" [alt]="news.title">
+  <p>{{news.description}}</p>
+</mat-card>
+
+<div *ngIf='!news'>
+  <h1>Выберите новость в списке слева</h1>
+</div>
