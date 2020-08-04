@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import {FormsModule} from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -12,13 +13,14 @@ import {FormsModule} from '@angular/forms';
   declarations: [
     HeaderComponent,
   ],
-  imports: [
-    CommonModule,
-    MatIconModule,
-    MatButtonModule,
-    MatSelectModule,
-    FormsModule
-  ],
+    imports: [
+        CommonModule,
+        MatIconModule,
+        MatButtonModule,
+        MatSelectModule,
+        FormsModule,
+        RouterModule,
+    ],
   exports: [
     HeaderComponent,
   ]

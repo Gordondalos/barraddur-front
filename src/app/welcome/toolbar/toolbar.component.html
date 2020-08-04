@@ -1,13 +1,16 @@
-<mat-toolbar color="primary">
+<mat-toolbar id="toolbar">
   <button mat-icon-button>
     <mat-icon>menu</mat-icon>
   </button>
   <span>Добро пожаловать на Бараддур</span>
 
   <div class="f-gr-1"></div>
-  <mat-form-field style="font-size: 12px; width: 300px" class="" appearance="outline">
-    <mat-label>Поиск</mat-label>
-    <input matInput>
-    <mat-icon matSuffix>search</mat-icon>
-  </mat-form-field>
+<!--  <mat-form-field style="font-size: 12px; width: 300px" class="" appearance="outline">-->
+<!--    <mat-label>Поиск</mat-label>-->
+<!--    <input matInput>-->
+<!--    <mat-icon matSuffix>search</mat-icon>-->
+<!--  </mat-form-field>-->
+
+  <button mat-raised-button class="mx16" (click)="goToLogin()" >Войти</button>
+  <button mat-raised-button (click)="goToRegistration()">Регистрация</button>
 </mat-toolbar>

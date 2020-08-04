@@ -1,15 +1,33 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
   templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.scss']
+  styleUrls: ['./toolbar.component.scss'],
 })
 export class ToolbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router,
+  ) {
+  }
 
   ngOnInit(): void {
+  }
+
+  goToRegistration() {
+    this.router.navigate(['auth/registration']).then();
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
+  }
+
+  goToLogin() {
+    this.router.navigate(['auth/login']).then();
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   }
 
 }

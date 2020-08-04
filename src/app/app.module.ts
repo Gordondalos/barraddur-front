@@ -9,10 +9,12 @@ import { HeaderModule } from './header/header.module';
 import { NavbarModule } from './navbar/navbar.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CommonComponentModule } from './auth/error-dialog/common-component.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     HttpClientModule,
@@ -22,7 +24,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     HeaderModule,
     NavbarModule,
     MatSidenavModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    CommonComponentModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

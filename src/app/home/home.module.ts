@@ -4,17 +4,22 @@ import { HomeComponent } from './home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ShareListComponent } from './share-list/share-list.component';
 import { HttpClientModule } from '@angular/common/http';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {ReactiveFormsModule} from '@angular/forms';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 const routes: Routes = [
   {
-  path: '',
-  component: HomeComponent
-  }
+    path: '',
+    redirectTo: 'main',
+    pathMatch: 'full',
+  },
+  {
+    path: 'main',
+    component: HomeComponent,
+  },
 ];
 
 @NgModule({
@@ -33,6 +38,7 @@ const routes: Routes = [
   ],
   exports: [
     HomeComponent,
-  ]
+  ],
 })
-export class HomeModule { }
+export class HomeModule {
+}

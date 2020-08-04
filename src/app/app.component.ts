@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   isWelcome = false;
 
 
+
   constructor(
     private sidenavService: SidenavService,
     public portfolioService: PortfolioService,
@@ -26,13 +27,18 @@ export class AppComponent implements OnInit {
     this.sidenavService.sideNavState$.subscribe(res => {
       this.onSideNavChange = res;
     });
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        if (this.router.url.indexOf('welcome') !== -1) {
-          this.isWelcome = true;
+    this.router.events
+      .subscribe((event) => {
+
+        if (event instanceof NavigationEnd) {
+          if (this.router.url.indexOf('welcome') > 0 || this.router.url.indexOf('auth') > 0) {
+            this.isWelcome = true;
+          } else {
+            this.isWelcome = false;
+          }
         }
-      }
-    });
+
+      });
 
   }
 

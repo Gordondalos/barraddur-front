@@ -1,0 +1,14 @@
+@import "~iiko-styles/style/variables";
+:host{
+  display: block;
+}
+
+.card-color {
+  background-color: rgba($success, 0.3);
+}
+
+mat-icon {
+  position: absolute;
+  right: 0;
+  top: 0
+}

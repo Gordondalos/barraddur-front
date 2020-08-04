@@ -12,6 +12,8 @@ import { MatListModule } from '@angular/material/list';
 import { NewsListComponent } from './news-list/news-list.component';
 import { NewsInfoComponent } from './news-info/news-info.component';
 import { MatCardModule } from '@angular/material/card';
+import { InfoBlockComponent } from './info-block/info-block.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const routes = [
   {
@@ -31,6 +33,7 @@ const routes = [
     ToolbarComponent,
     NewsListComponent,
     NewsInfoComponent,
+    InfoBlockComponent,
   ],
   imports: [
     CommonModule,
@@ -42,6 +45,7 @@ const routes = [
     MatInputModule,
     MatListModule,
     MatCardModule,
+    MatDialogModule
   ],
   exports: [
     WelcomeComponent,

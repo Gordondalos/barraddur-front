@@ -1,14 +1,22 @@
-::ng-deep {
-  .mat-form-field-wrapper {
-    padding-bottom: 0;
-  }
+mat-toolbar {
+  background: var(--navbar-bg-color);
+  color: white;
+}
 
-  .mat-form-field-appearance-outline .mat-form-field-outline {
-    color: white;
-  }
-  mat-form-field {
-    .mat-hint, input, ::placeholder, .mat-form-field-label {
+#toolbar {
+  ::ng-deep {
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+    }
+
+    .mat-form-field-appearance-outline .mat-form-field-outline {
       color: white;
+    }
+
+    mat-form-field {
+      .mat-hint, input, ::placeholder, .mat-form-field-label {
+        color: white;
+      }
     }
   }
 }

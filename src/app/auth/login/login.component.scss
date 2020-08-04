@@ -1,0 +1,27 @@
+@import "~iiko-styles/style/variables";
+
+#login {
+  width: 100%;
+  height: 100%;
+  background-image: url('/assets/bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  #login-form-wrapper {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $white;
+    padding: 30px;
+    border-radius: 4px;
+  }
+
+}
+
+
+
+
+
+
