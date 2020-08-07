@@ -16,8 +16,6 @@ export class AppComponent implements OnInit {
   onSideNavChange: boolean;
   isWelcome = false;
 
-
-
   constructor(
     private sidenavService: SidenavService,
     public portfolioService: PortfolioService,
