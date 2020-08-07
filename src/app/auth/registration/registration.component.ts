@@ -34,9 +34,9 @@ export class RegistrationComponent implements OnInit {
     });
     if (res && res.user) {
       this.authService.getAuth(res);
-      this.router.navigateByUrl('/news');
+      this.router.navigateByUrl('/welcome/main');
     } else {
-      this.router.navigateByUrl('/news');
+      this.router.navigateByUrl('/welcome/main');
     }
 
   }

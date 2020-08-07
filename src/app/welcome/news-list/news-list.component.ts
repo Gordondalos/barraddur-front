@@ -18,7 +18,9 @@ export class NewsListComponent implements OnInit {
     private feedService: FeedService,
   ) {
     this.feedService.getFirstNews.subscribe(() => {
-      this.feedService.openNewsEvent.next(this.news[0]);
+      if (this.news && this.news.length > 0) {
+        this.feedService.openNewsEvent.next(this.news[ 0 ]);
+      }
     });
   }
 
@@ -29,6 +31,7 @@ export class NewsListComponent implements OnInit {
   async loadNews() {
     //  debugger;
     this.news = await this.feedService.getNews(this.from, this.to);
+    this.feedService.openNewsEvent.next(this.news[ 0 ]);
   }
 
   openNews(nw: News) {

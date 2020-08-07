@@ -38,9 +38,9 @@ export class LoginComponent implements OnInit {
     });
     if (res && res.user) {
       this.authService.getAuth(res);
-      this.router.navigateByUrl('/news');
+      this.router.navigateByUrl('/welcome/main');
     } else {
-      this.router.navigateByUrl('/news');
+      this.router.navigateByUrl('/welcome/main');
     }
 
   }

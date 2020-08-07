@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { FatherService } from './father.service';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class GroupService {
+export class GroupService extends FatherService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    super(http);
+  }
 
   async getData(): Promise<any> {
-    return await this.http.get('/api/stocks').toPromise();
+    return await this.get('/api/stocks');
   }
+
   async saveGroup(data): Promise<any> {
-    return await this.http.post('/api/group/create', data).toPromise();
+    return await this.post('/api/group/create', data);
   }
 }

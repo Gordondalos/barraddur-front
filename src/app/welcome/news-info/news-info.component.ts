@@ -20,11 +20,11 @@ export class NewsInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      if (!this.news) {
-        this.feedService.getFirstNews.next();
-      }
-    }, 1000);
+    // setTimeout(() => {
+    //   if (!this.news) {
+    //     this.feedService.getFirstNews.next();
+    //   }
+    // }, 1000);
 
   }
 
