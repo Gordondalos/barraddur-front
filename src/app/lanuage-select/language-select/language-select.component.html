@@ -1,0 +1,17 @@
+<a mat-menu-item class="language-button pointer" [matMenuTriggerFor]="menuLang">
+  <span fxLayout="row" fxLayoutAlign="center center">
+    <img class="flag mr8" [src]="'assets/icons/flags/'+selectedLanguage.flag+'.png'" alt="">
+    <span class="text-white text-uppercase">{{selectedLanguage.shortTitle}}</span>
+  </span>
+</a>
+
+<mat-menu #menuLang="matMenu">
+
+  <button mat-menu-item *ngFor="let lang of languages" (click)="setLanguage(lang)">
+                    <span fxLayout="row" fxLayoutAlign="start center">
+                        <img class="flag mr16" [src]="'assets/icons/flags/'+lang.flag+'.png'">
+                        <span class="iso">{{lang.title}}</span>
+                    </span>
+  </button>
+
+</mat-menu>

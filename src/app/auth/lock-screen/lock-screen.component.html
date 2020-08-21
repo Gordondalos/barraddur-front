@@ -1,0 +1,43 @@
+<div mat-dialog-content>
+  <div id="login" fxLayout="column">
+
+    <div id="login-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
+
+      <div id="login-form">
+
+        <p class="text-center">
+          <span i18n="greeting">Hey</span>&nbsp;{{firstName}}, &nbsp;
+          <span i18n="login question">still there</span>
+        </p>
+
+        <form name="loginForm" [formGroup]="loginForm" novalidate>
+
+          <mat-form-field appearance="outline">
+            <input matInput type="password"
+                   formControlName="password"
+                   i18n-placeholder="password field placeholder"
+                   placeholder="Str0ngPa55word">
+            <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
+          </mat-form-field>
+
+          <p class="text-center">
+            <button mat-raised-button color="accent" class="submit-button" aria-label="LOG IN" (click)="tryLogin()"
+                    [ngStyle]="{'width' : '100%'}">
+              <span i18n="authorization">Log in</span>
+            </button>
+          </p>
+
+          <p class="text-center"><a href="#/login" (click)="close()"><span
+            i18n="accounts text">Switch accounts</span></a></p>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+

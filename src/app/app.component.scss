@@ -1,12 +1,17 @@
 @import "node_modules/iiko-styles/style/variables";
 
+.sidenav-container {
+  height: calc(100vh - 60px);
+}
+
 .main_content {
-  width:100%;
+  width: 100%;
   height: calc(100vh - 66px);
   background: var(--bg-color);
   color: var(--text-color);
 }
-mat-sidenav{
+
+mat-sidenav {
   background: var(--sidebar-bg-color);
 }
 

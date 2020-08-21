@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SidenavService } from './services/sidenav.service';
 import { onMainContentChange } from './animations/animations';
 import { PortfolioService } from './services/portfolio.service';
 import { LocalstorageService } from './services/localstorage.service';
 import { NavigationEnd, Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +13,13 @@ import { NavigationEnd, Router } from '@angular/router';
   styleUrls: ['./app.component.scss'],
   animations: [onMainContentChange],
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'tinkoff-front';
   onSideNavChange: boolean;
   isWelcome = false;
+  userName = '';
+
+  private unsubscribeAll: Subject<any> = new Subject<any>();
 
   constructor(
     private sidenavService: SidenavService,
@@ -25,20 +30,38 @@ export class AppComponent implements OnInit {
     this.sidenavService.sideNavState$.subscribe(res => {
       this.onSideNavChange = res;
     });
+
+    // this.welcome();
+
     this.router.events
+      .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((event) => {
-
         if (event instanceof NavigationEnd) {
-          if (this.router.url.indexOf('welcome') > 0 || this.router.url.indexOf('auth') > 0) {
-            this.isWelcome = true;
-          } else {
-            this.isWelcome = false;
-          }
+          this.isWelcome = window.location.hash === '#/auth/login';
+          this.getUserName();
         }
-
       });
 
   }
+
+  ngOnDestroy(): void {
+    this.unsubscribeAll.next();
+    this.unsubscribeAll.complete();
+  }
+
+
+  getUserName() {
+    const userName: any = this.localstorageService.get('user');
+    if (userName && userName.name) {
+      this.userName = userName.name;
+    } else {
+      setTimeout(() => {
+        this.getUserName();
+      }, 100);
+    }
+
+  }
+
 
   async ngOnInit() {
     const data = await this.portfolioService.checkApi();

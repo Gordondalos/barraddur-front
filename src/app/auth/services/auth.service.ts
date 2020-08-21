@@ -6,12 +6,18 @@ import { User } from '../interfaces/user.model';
 import { Subject } from 'rxjs';
 
 import { Router } from '@angular/router';
-import { LocalstorageService } from './localstorage.service';
+import { environment } from '../../../environments/environment';
+import { LocalstorageService } from '../../services/localstorage.service';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+
+  apiUrl = environment.API_REST_URL;
+  apiPort = environment.API_REST_PORT;
+  host = environment.production ? `${ this.apiUrl }:${ this.apiPort }` : '';
 
   userChange = new Subject();
 
@@ -60,7 +66,14 @@ export class AuthService {
   async tryLogin(authData: any): Promise<Auth | boolean> {
     const headers = new HttpHeaders();
     headers[ 'disableCache' ] = 'true';
-    const url = `/api/auth/login`;
+
+    const url = `${this.host}/api/auth/login`;
+
+    console.log('this.apiPort', this.apiPort);
+    console.log('environment', environment);
+    console.log('host', this.host);
+    console.log('url', url);
+
     return this.http.post(url, authData, { headers }).toPromise()
       .then((response: any) => {
         if (response.error) {
@@ -81,7 +94,6 @@ export class AuthService {
   async logOut(): Promise<any> {
     // const response = await this.http.get<Response>('/api/auth/logout').toPromise();
     localStorage.clear();
-    // this.router.navigateByUrl('/');
-    window.location.reload()
+    this.router.navigateByUrl('/');
   }
 }

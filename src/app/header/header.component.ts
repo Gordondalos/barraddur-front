@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ThemeService } from '../services/theme.service';
-import {PortfolioService} from "../services/portfolio.service";
+import { PortfolioService } from '../services/portfolio.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -13,8 +14,10 @@ export class HeaderComponent implements OnInit {
   themeSelect: string;
   balance: Array<{ currency: string, balance: number }>;
 
-  constructor(public themeService: ThemeService,
-              private portfolioService: PortfolioService
+  constructor(
+    public themeService: ThemeService,
+    private portfolioService: PortfolioService,
+    private authService: AuthService,
   ) {
   }
 
@@ -24,5 +27,9 @@ export class HeaderComponent implements OnInit {
 
   changeThemeColor(theme) {
     this.themeService.applyTheme(theme);
+  }
+
+  logout() {
+    this.authService.logOut().then();
   }
 }

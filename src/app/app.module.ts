@@ -7,10 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { HeaderModule } from './header/header.module';
 import { NavbarModule } from './navbar/navbar.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
 import { CommonComponentModule } from './auth/error-dialog/common-component.module';
 import { MatDialogModule } from '@angular/material/dialog';
+import { AuthInterceptor } from './auth/auth.interceptor';
+import { LockScreenModule } from './auth/lock-screen/lock-screen.module';
 
 @NgModule({
   declarations: [
@@ -26,9 +28,17 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatSidenavModule,
     MatNativeDateModule,
     CommonComponentModule,
-    MatDialogModule
+    MatDialogModule,
+    LockScreenModule
   ],
-  providers: [],
+  providers: [
+    HttpClient,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

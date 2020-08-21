@@ -20,7 +20,7 @@ export class GroupKreatorComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     const res = await this.groupService.getData();
-    this.options = res.data.result.instruments;
+    this.options = res.result.instruments;
     this.copyOptions = _.cloneDeep(this.options);
   }
 

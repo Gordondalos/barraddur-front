@@ -6,25 +6,23 @@ import { environment } from '../../environments/environment';
   providedIn: 'root',
 })
 export class FatherService {
-
-
   apiUrl = environment.API_REST_URL;
   apiPort = environment.API_REST_PORT;
   host = environment.production ? `${ this.apiUrl }:${ this.apiPort }` : '';
 
   constructor(
     public httpClient: HttpClient) {
-
   }
 
   get(url: string): Promise<any> {
-    console.log(this.host, this.host);
-    return this.httpClient.get(`${this.host}${url}`).toPromise()
+    const address = `${this.host}${url}`;
+    console.log('address', address);
+    return this.httpClient.get(address).toPromise()
       .then((res: any) => {
         return res.data;
       })
       .catch((error) => {
-        alert(error.message);
+        console.log(error);
       });
   }
 
