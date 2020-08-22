@@ -16,7 +16,6 @@ export class FatherService {
 
   get(url: string): Promise<any> {
     const address = `${this.host}${url}`;
-    console.log('address', address);
     return this.httpClient.get(address).toPromise()
       .then((res: any) => {
         return res.data;
