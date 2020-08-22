@@ -1,10 +1,9 @@
 <div class="header">
   <div class="mr-auto">
     <button mat-icon-button (click)="sidenav.toggle()">
-      <mat-icon>menu</mat-icon>
+      <img class="logo" src="assets/images/logos/logo.png" alt="logo">
     </button>
-
-    <span>CUSTOM TERMINAL</span>
+    <span class="pl8 d-inline-block">baraddur.ru</span>
   </div>
 
   <ng-container *ngFor="let item of balance">
@@ -22,7 +21,7 @@
       <mat-option value="dark">Dark Theme</mat-option>
     </mat-select>
 
-    <button class="ml16" (click)="logout()" mat-raised-button>Logout</button>
+    <button class="ml16" (click)="logout()" mat-raised-button>Выход</button>
 
 </div>
 

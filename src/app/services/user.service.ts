@@ -13,6 +13,6 @@ export class UserService extends FatherService {
   }
 
   saveUser(user: User): void {
-    this.post('update/user', user);
+    this.post('/api/update/user', {data: user});
   }
 }

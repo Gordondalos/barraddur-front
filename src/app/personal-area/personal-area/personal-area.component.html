@@ -9,38 +9,38 @@
 
   <mat-form-field class="w100" appearance="outline">
     <mat-label>Фамилия</mat-label>
-    <input matInput placeholder="name" [(ngModel)]="user.surename">
+    <input matInput placeholder="surename" [(ngModel)]="user.surename">
   </mat-form-field>
 
   <mat-form-field class="w100" appearance="outline">
     <mat-label>Отчетсво</mat-label>
-    <input matInput placeholder="name" [(ngModel)]="user.fathers_name">
+    <input matInput placeholder="fathers_name" [(ngModel)]="user.fathers_name">
   </mat-form-field>
 
   <mat-form-field class="w100" appearance="outline">
     <mat-label>Паспорт</mat-label>
-    <input matInput placeholder="name" [(ngModel)]="user.passport">
+    <input matInput placeholder="passport" [(ngModel)]="user.passport">
   </mat-form-field>
 
   <mat-form-field class="w100" appearance="outline">
     <mat-label>Login</mat-label>
-    <input matInput placeholder="token" [(ngModel)]="user.login">
+    <input matInput placeholder="login" [(ngModel)]="user.login">
   </mat-form-field>
 
   <mat-form-field class="w100" appearance="outline">
     <mat-label>Телефон</mat-label>
-    <input matInput placeholder="token" [(ngModel)]="user.phone">
+    <input matInput placeholder="phone" [(ngModel)]="user.phone">
   </mat-form-field>
 
   <mat-form-field class="w100" appearance="outline">
     <mat-label>Email</mat-label>
-    <input matInput placeholder="token" [(ngModel)]="user.email">
+    <input matInput placeholder="email" [(ngModel)]="user.email">
   </mat-form-field>
 
   <p>Введите сюда токен доступа к Тинькофф банку</p>
   <mat-form-field class="w100" appearance="outline">
     <mat-label>Токена доступа</mat-label>
-    <input matInput placeholder="token" [(ngModel)]="user.tToken">
+    <input matInput placeholder="tToken" [(ngModel)]="user.tToken">
   </mat-form-field>
   <button mat-raised-button color="primary" (click)="save()">Сохранить</button>
 
