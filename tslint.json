@@ -3,6 +3,7 @@
   "rules": {
     "array-type": false,
     "no-trailing-whitespace": false,
+    "variable-name": false,
     "arrow-parens": false,
     "deprecation": {
       "severity": "warning"

@@ -25,6 +25,10 @@ const routes: Routes = [
     loadChildren: () => import('./portfolio/portfolio.module').then(m => m.PortfolioModule),
   },
   {
+    path: 'lk',
+    loadChildren: () => import('./personal-area/personal-area.module').then(m => m.PersonalAreaModule),
+  },
+  {
     path: 'favorites',
     loadChildren: () => import('./favorites/favorites.module').then(m => m.FavoritesModule),
   },

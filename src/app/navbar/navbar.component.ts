@@ -4,6 +4,7 @@ import { animateText, onSideNavChange } from '../animations/animations';
 import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import {LocalstorageService} from '../services/localstorage.service';
+import { User } from '../interfaces/user.model';
 
 
 @Component({
@@ -14,7 +15,7 @@ import {LocalstorageService} from '../services/localstorage.service';
 })
 export class NavbarComponent implements OnInit{
   public sideNavState = false;
-  public linkText = false;
+  public linkText = true;
   currentLink = '';
   links = [
     {id: 1, title: 'Home', routerLink: '/home', icon: 'home'},
@@ -23,6 +24,8 @@ export class NavbarComponent implements OnInit{
     {id: 4, title: 'Statistic', routerLink: '/statistics',  icon: 'insert_chart_outlined'},
     {id: 5, title: 'News', routerLink: '/news', icon: 'rss_feed'}
   ];
+
+  user: User;
 
   constructor(
     private sidenavService: SidenavService,
@@ -40,6 +43,7 @@ export class NavbarComponent implements OnInit{
 
   ngOnInit() {
     this.sideNavState = this.localstorageService.get('sideNavState');
+    this.user = this.localstorageService.get('user');
   }
 
   onSidenavToggle() {

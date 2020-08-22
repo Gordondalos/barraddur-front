@@ -3,9 +3,9 @@
 
     <div class="user_menu">
       <mat-nav-list>
-        <a mat-list-item>
-          <img class="jim" src="/assets/img/jim.jpg" alt="">
-          <span [@animateText]="linkText ? 'show' : 'hide'" class="sp-text">Jim Kerry</span>
+        <a mat-list-item [routerLink]="'/lk'" >
+          <img class="jim" src="/assets/user.png" alt="">
+          <span [@animateText]="linkText ? 'show' : 'hide'" class="sp-text">{{user.name}}</span>
         </a>
       </mat-nav-list>
       <mat-divider></mat-divider>
@@ -15,8 +15,7 @@
       <mat-nav-list>
         <ng-container *ngFor="let link of links">
           <a mat-list-item [routerLink]="[link.routerLink]" [ngClass]="{'active': currentLink === link.routerLink}"
-             class="link"> <!-- чтобы присвоился класс active текущая ссылка (currentLink) должна быть ровна ссылки
-             элемента в которой лежит link.routerLink-->
+             class="link">
             <mat-icon aria-hidden="false" style="padding-right:5px">{{link.icon}}</mat-icon>
             <span [@animateText]="linkText ? 'show' : 'hide'" class="sp-text">{{link.title}}</span>
           </a>
