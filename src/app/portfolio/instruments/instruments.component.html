@@ -2,11 +2,12 @@
 <div class="d-flex vertical-center mb16">
   <h2>Portfolio items</h2>
   <div class="f-gr-1"></div>
-  <button mat-raised-button color="primary" (click)="updateData()">FixMeData</button>
+  <button mat-raised-button color="primary" (click)="updateData()">Обновить данные по акциям</button>
 </div>
 
 <ag-grid-angular
-  style="width: 100%; height: calc(100vh - 150px);"
+  style="width: 100%;"
+  domLayout='autoHeight'
   class="ag-theme-alpine"
   [rowData]="portfolio"
   [columnDefs]="columnDefs"

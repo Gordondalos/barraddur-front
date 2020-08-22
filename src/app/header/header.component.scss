@@ -6,6 +6,7 @@
   display: flex;
 }
 
+
 .btn {
   margin: 5px;
   background-color: var(--bg-info);
@@ -46,6 +47,12 @@
 
 .mr-auto {
   margin-right: auto;
+}
+
+::ng-deep {
+  .mat-select-value {
+    text-align: right !important;
+  }
 }
 
 
