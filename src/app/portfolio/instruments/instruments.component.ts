@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { InstrumentInterfase } from '../../interfaces/instrument.interfase';
 import { LocalstorageService } from '../../services/localstorage.service';
 import { PortfolioService } from '../../services/portfolio.service';
+import { StockService } from '../../services/stock.service';
 
 @Component({
   selector: 'app-instruments',
@@ -20,8 +21,8 @@ export class InstrumentsComponent implements OnInit {
 
 
   columnDefs = [
-    { headerName: 'name', field: 'name', sortable: true, filter: true, resizable: false },
-    { headerName: 'balance', field: 'balance', sortable: true, filter: true, resizable: true },
+    { headerName: 'name', field: 'name', sortable: true, filter: true, resizable: true },
+    // { headerName: 'balance', field: 'balance', sortable: true, filter: true, resizable: true },
     { headerName: 'lots', field: 'lots', sortable: true, filter: true, resizable: true },
     { headerName: 'blocked', field: 'blocked', sortable: true, filter: true, resizable: true },
     { headerName: 'ticker', field: 'ticker', sortable: true, filter: true, resizable: true },
@@ -35,8 +36,12 @@ export class InstrumentsComponent implements OnInit {
 
   constructor(
     private portfolioService: PortfolioService,
+    private stockService: StockService,
     public localStorageService: LocalstorageService,
   ) {
+    this.stockService.updateInstrumentsList.subscribe(() => {
+      this.uploadPortfolio();
+    });
 
   }
 
@@ -75,6 +80,10 @@ export class InstrumentsComponent implements OnInit {
 
   updateData() {
     this.portfolioService.updateData(365);
+  }
+
+  async uploadPortfolio() {
+    this.portfolio = await this.portfolioService.getPortfolio();
   }
 }
 

@@ -14,6 +14,10 @@ html, body {
   height: 100%;
 }
 
+.bg-primary {
+  background-color: var(--navbar-bg-color);
+}
+
 .bold {
   font-weight: bold !important;
 }
@@ -28,6 +32,18 @@ html, body {
 
 .vertical-center {
   align-items: center;
+}
+
+.bg-success {
+  background-color: $success;
+}
+
+.text-white {
+  color: white;
+}
+
+.bg-danger {
+  background-color: $danger;
 }
 
 body {

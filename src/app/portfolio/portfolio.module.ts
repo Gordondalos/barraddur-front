@@ -13,6 +13,7 @@ import { GroupKreatorComponent } from './group-kreator/group-kreator.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {FormsModule} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
+import { BuySellModule } from '../buy-sell/buy-sell.module';
 
 const routes: Routes = [
   {
@@ -39,6 +40,7 @@ const routes: Routes = [
     MatAutocompleteModule,
     FormsModule,
     MatIconModule,
+    BuySellModule,
   ],
   exports: [
     PortfolioComponent,

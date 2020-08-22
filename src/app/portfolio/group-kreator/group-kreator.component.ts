@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { GroupService } from '../../services/group.service';
 import { Stock } from '../../interfaces/stock.interface';
 import * as _ from 'lodash';
@@ -6,9 +6,11 @@ import * as _ from 'lodash';
 @Component({
   selector: 'app-group-kreator',
   templateUrl: './group-kreator.component.html',
-  styleUrls: ['./group-kreator.component.scss']
+  styleUrls: ['./group-kreator.component.scss'],
 })
 export class GroupKreatorComponent implements OnInit {
+  @Input() instruments: Stock[];
+
   group: Stock[] = [];
   groupSelecyted: Stock | any;
   options: Stock[] = [];
@@ -16,11 +18,11 @@ export class GroupKreatorComponent implements OnInit {
   groupName: string;
   currentGroup: any;
 
-  constructor(private groupService: GroupService) { }
+  constructor(private groupService: GroupService) {
+  }
 
   async ngOnInit(): Promise<void> {
-    const res = await this.groupService.getData();
-    this.options = res.result.instruments;
+    this.options = this.instruments;
     this.copyOptions = _.cloneDeep(this.options);
   }
 
@@ -52,12 +54,12 @@ export class GroupKreatorComponent implements OnInit {
 
   delete(item: Stock, index) {
     // this.group.splice(index, 1);
-     this.group.forEach((it, ind) => {
-       if (it.figi === item.figi) {
-         this.group.splice(ind, 1);
-       }
-     });
-     this.createCurrentGroup();
+    this.group.forEach((it, ind) => {
+      if (it.figi === item.figi) {
+        this.group.splice(ind, 1);
+      }
+    });
+    this.createCurrentGroup();
   }
 
   filterOptions() {
@@ -74,7 +76,7 @@ export class GroupKreatorComponent implements OnInit {
   createCurrentGroup() {
     this.currentGroup = {
       name: this.groupName,
-      children: this.group
+      children: this.group,
     };
     console.log(this.currentGroup);
   }

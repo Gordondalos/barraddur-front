@@ -1,1 +1,47 @@
-<p>buy-sell works!</p>
+<section>
+  <mat-form-field class="w100" appearance="outline">
+    <mat-label>Инструмент</mat-label>
+    <input type="text"
+           aria-label="Number"
+           matInput
+           [(ngModel)]="buySell.instrument"
+           (ngModelChange)="filterOptions()"
+           [matAutocomplete]="auto" name="stock">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+      <mat-option *ngFor="let option of options" [value]="option">
+        {{option.name}} ({{option.ticker}})
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+
+  <div class="d-flex">
+
+    <mat-form-field class="mr8" appearance="outline">
+      <mat-label>Цена</mat-label>
+      <input [(ngModel)]="buySell.price" type="number" matInput>
+    </mat-form-field>
+
+    <mat-form-field class="ml8" appearance="outline">
+      <mat-label>Лоты</mat-label>
+      <input [(ngModel)]="buySell.count" type="number" matInput>
+    </mat-form-field>
+
+  </div>
+
+  <div class="d-flex">
+    <button
+      [disabled]="!buySell.price || !buySell.count || !buySell.instrument"
+      (click)="deal('Buy')"
+      mat-raised-button
+      class="f-gr-1 mr8 bg-success text-white py8">Купить</button>
+    <button
+      [disabled]="!buySell.price || !buySell.count || !buySell.instrument"
+      (click)="deal('Sell')"
+      mat-raised-button
+      class="f-gr-1 ml8 bg-danger text-white py8">Продать</button>
+  </div>
+
+
+</section>
+
