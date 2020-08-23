@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PortfolioService } from '../services/portfolio.service';
-import { InstrumentInterfase } from '../interfaces/instrument.interfase';
-import * as _ from 'lodash';
+import { InstrumentInterface } from '../interfaces/instrumentInterface';
 import { GroupService } from '../services/group.service';
 import { Stock } from '../interfaces/stock.interface';
 import { SocketService } from '../services/socket.service';
@@ -13,7 +12,7 @@ import { SocketService } from '../services/socket.service';
 })
 export class PortfolioComponent implements OnInit {
 
-  portfolio: Array<InstrumentInterfase>;
+  portfolio: Array<InstrumentInterface>;
   instruments: Stock[];
 
   balance: Array<{ currency: string, balance: number }>;

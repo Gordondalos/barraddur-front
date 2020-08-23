@@ -1,4 +1,4 @@
-export interface InstrumentInterfase {
+export interface InstrumentInterface {
   balance: number;
   blocked: number;
   figi: string;
@@ -7,4 +7,5 @@ export interface InstrumentInterfase {
   lots: number;
   name: string;
   ticker: string;
+  price: number;
 }

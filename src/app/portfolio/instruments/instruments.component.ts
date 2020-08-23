@@ -1,8 +1,11 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { InstrumentInterfase } from '../../interfaces/instrument.interfase';
+import { InstrumentInterface } from '../../interfaces/instrumentInterface';
 import { LocalstorageService } from '../../services/localstorage.service';
 import { PortfolioService } from '../../services/portfolio.service';
 import { StockService } from '../../services/stock.service';
+import { SocketService } from '../../services/socket.service';
+import { SocketEventInterface } from '../../interfaces/socketEvent.interface';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-instruments',
@@ -12,7 +15,7 @@ import { StockService } from '../../services/stock.service';
 export class InstrumentsComponent implements OnInit {
 
 
-  @Input() portfolio: Array<InstrumentInterfase>;
+  @Input() portfolio: Array<InstrumentInterface>;
 
   gridColumnApi: any;
   gridApi: any;
@@ -23,14 +26,15 @@ export class InstrumentsComponent implements OnInit {
   columnDefs = [
     { headerName: 'name', field: 'name', sortable: true, filter: true, resizable: true },
     // { headerName: 'balance', field: 'balance', sortable: true, filter: true, resizable: true },
-    { headerName: 'lots', field: 'lots', sortable: true, filter: true, resizable: true },
-    { headerName: 'blocked', field: 'blocked', sortable: true, filter: true, resizable: true },
+    // { headerName: 'lots', field: 'lots', sortable: true, filter: true, resizable: true },
     { headerName: 'ticker', field: 'ticker', sortable: true, filter: true, resizable: true },
-    { headerName: 'average', field: 'average', sortable: true, filter: true, resizable: true },
-    { headerName: 'Income', field: 'income_total', sortable: true, filter: true, resizable: true },
-    { headerName: 'Inc %', field: 'income_percent_total', sortable: true, filter: true, resizable: true },
-    { headerName: 'Inc day', field: 'income_day', sortable: true, filter: true, resizable: true },
-    { headerName: 'Inc day %', field: 'income-day_percent', sortable: true, filter: true, resizable: true },
+    { headerName: 'price', field: 'price', sortable: true, filter: true, resizable: true },
+    { headerName: 'blocked', field: 'blocked', sortable: true, filter: true, resizable: true },
+    // { headerName: 'average', field: 'average', sortable: true, filter: true, resizable: true },
+    // { headerName: 'Income', field: 'income_total', sortable: true, filter: true, resizable: true },
+    // { headerName: 'Inc %', field: 'income_percent_total', sortable: true, filter: true, resizable: true },
+    // { headerName: 'Inc day', field: 'income_day', sortable: true, filter: true, resizable: true },
+    // { headerName: 'Inc day %', field: 'income-day_percent', sortable: true, filter: true, resizable: true },
   ];
 
 
@@ -38,16 +42,33 @@ export class InstrumentsComponent implements OnInit {
     private portfolioService: PortfolioService,
     private stockService: StockService,
     public localStorageService: LocalstorageService,
+    public socketService: SocketService,
   ) {
     this.stockService.updateInstrumentsList.subscribe(() => {
       this.uploadPortfolio();
+    });
+    this.socketService.eventSocketUpdate.subscribe((event: SocketEventInterface) => {
+      console.log(event);
+      this.updateDataInPortfolio(event);
+
     });
 
   }
 
   ngOnInit() {
     this.settings = this.localStorageService.get('gridPortfoloSettings');
+  }
 
+  updateDataInPortfolio(event: SocketEventInterface) {
+    const portfolio = _.cloneDeep(this.portfolio);
+    for (const item of portfolio) {
+      if (item.figi === event.payload.figi) {
+        item.price = event.payload.c;
+      }
+    }
+    this.portfolio = _.cloneDeep(portfolio);
+
+    console.log(this.portfolio);
   }
 
   onFirstDataRendered(params) {

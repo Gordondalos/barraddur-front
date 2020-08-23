@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { FatherService } from './father.service';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Observer, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SocketService extends FatherService {
 
-  eventSocketUpdate: Subject<any>;
+  eventSocketUpdate: Subject<any> = new Subject();
   ws: WebSocket;
 
   constructor(
@@ -35,6 +35,16 @@ export class SocketService extends FatherService {
     };
     this.ws.onmessage = (message) => {
       console.log('получено сообщение', message);
+      if (message.data && typeof message.data === 'string') {
+        try {
+          const m = JSON.parse(message.data);
+          this.eventSocketUpdate.next(m);
+        } catch (e) {
+          console.log(e);
+          console.log(message.data);
+        }
+      }
+
     };
 
 
