@@ -27,7 +27,6 @@ export class FatherService {
 
 
   post(url: string, data): Promise<any> {
-    console.log(this.host, this.host);
     return this.httpClient.post(`${this.host}${url}`, data).toPromise()
       .then((res: any) => {
         return res.data;

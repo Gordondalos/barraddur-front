@@ -4,6 +4,7 @@ import { InstrumentInterfase } from '../interfaces/instrument.interfase';
 import * as _ from 'lodash';
 import { GroupService } from '../services/group.service';
 import { Stock } from '../interfaces/stock.interface';
+import { SocketService } from '../services/socket.service';
 
 @Component({
   selector: 'app-portfolio',
@@ -17,9 +18,12 @@ export class PortfolioComponent implements OnInit {
 
   balance: Array<{ currency: string, balance: number }>;
 
+  instr: any;
+
   constructor(
     public portfolioService: PortfolioService,
-    private groupService: GroupService
+    private groupService: GroupService,
+    private socketService: SocketService,
   ) {
   }
 
@@ -30,6 +34,8 @@ export class PortfolioComponent implements OnInit {
     const res = await this.groupService.getData();
     this.instruments = res.result.instruments;
 
+    this.socketService.startSubscribtion(this.portfolio);
+    this.socketService.connect();
   }
 
 }
