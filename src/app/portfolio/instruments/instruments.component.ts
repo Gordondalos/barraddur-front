@@ -18,16 +18,18 @@ export class InstrumentsComponent implements OnInit {
   @Input() portfolio: Array<InstrumentInterface>;
 
   gridColumnApi: any;
+  gridOptionsApi: any;
   gridApi: any;
 
   settings: any;
 
 
   columnDefs = [
+    { headerName: 'id', field: 'figi', sortable: true, filter: true, resizable: true },
     { headerName: 'name', field: 'name', sortable: true, filter: true, resizable: true },
     // { headerName: 'balance', field: 'balance', sortable: true, filter: true, resizable: true },
-    // { headerName: 'lots', field: 'lots', sortable: true, filter: true, resizable: true },
     { headerName: 'ticker', field: 'ticker', sortable: true, filter: true, resizable: true },
+    { headerName: 'lots', field: 'lots', sortable: true, filter: true, resizable: true },
     { headerName: 'price', field: 'price', sortable: true, filter: true, resizable: true },
     { headerName: 'blocked', field: 'blocked', sortable: true, filter: true, resizable: true },
     // { headerName: 'average', field: 'average', sortable: true, filter: true, resizable: true },
@@ -48,7 +50,7 @@ export class InstrumentsComponent implements OnInit {
       this.uploadPortfolio();
     });
     this.socketService.eventSocketUpdate.subscribe((event: SocketEventInterface) => {
-      console.log(event);
+      // console.log(event.payload.figi);
       this.updateDataInPortfolio(event);
 
     });
@@ -60,15 +62,25 @@ export class InstrumentsComponent implements OnInit {
   }
 
   updateDataInPortfolio(event: SocketEventInterface) {
-    const portfolio = _.cloneDeep(this.portfolio);
-    for (const item of portfolio) {
-      if (item.figi === event.payload.figi) {
-        item.price = event.payload.c;
-      }
-    }
-    this.portfolio = _.cloneDeep(portfolio);
+    // console.log(event)
+    // const portfolio = _.cloneDeep(this.portfolio);
+    // for (const item of portfolio) {
+    //   if (item.figi === event.payload.figi) {
+    //     item.price = event.payload.c;
+    //   }
+    // }
+    // this.portfolio = _.cloneDeep(portfolio);
 
-    console.log(this.portfolio);
+    this.gridApi.forEachNode((node) => {
+      if (node.id === event.payload.figi) {
+        const data = node.data;
+        data.price = event.payload.c;
+        node.setData(data);
+        console.log(data.name, data.price);
+      }
+    });
+
+
   }
 
   onFirstDataRendered(params) {
@@ -78,6 +90,15 @@ export class InstrumentsComponent implements OnInit {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+    this.gridOptionsApi = this.gridApi.gridCore.gridOptions.api;
+
+    this.gridApi.forEachNode((rowNode, index) => {
+      rowNode.id = this.portfolio[ index ].figi;
+      // this.gridApi.redrawRows({rowNode});
+    });
+    // this.gridApi.redrawRows({rowNode})
+
+    // debugger
     if (this.settings) {
       this.gridColumnApi.setColumnState(this.settings);
     }
