@@ -27,6 +27,7 @@ export class PortfolioComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<any> {
+
     const portfolio = await this.portfolioService.getPortfolio();
     for (const item of portfolio) {
       item.id = item.figi;

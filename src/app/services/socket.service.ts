@@ -30,20 +30,27 @@ export class SocketService extends FatherService {
   subsOnMessage() {
     this.ws.onopen = () => {
       console.log('Соединение утановлено');
+      this.ws.send(JSON.stringify({ myId: 'qweqweqwe' }));
     };
     this.ws.onclose = () => {
       console.log('соединение отвалилось');
     };
-    this.ws.onmessage = (message ) => {
+    this.ws.onmessage = (message) => {
       // console.log('получено сообщение', message);
       if (message.data && typeof message.data === 'string') {
-        try {
-          const m: SocketEventInterface = JSON.parse(message.data);
-          this.eventSocketUpdate.next(m);
-        } catch (e) {
-          console.log(e);
-          console.log(message.data);
+        if (message.data === 'isExist') {
+          this.ws.send('exit');
+          this.ws.close();
+        } else {
+          try {
+            const m: SocketEventInterface = JSON.parse(message.data);
+            this.eventSocketUpdate.next(m);
+          } catch (e) {
+            console.log(e);
+            console.log(message.data);
+          }
         }
+
       }
 
     };

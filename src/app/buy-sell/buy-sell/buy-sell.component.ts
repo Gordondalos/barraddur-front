@@ -36,10 +36,11 @@ export class BuySellComponent implements OnInit {
   }
 
   filterOptions(): void {
-    if (typeof this.itemSelecyted === 'string') {
+    // debugger
+    if (typeof this.buySell.instrument === 'string') {
       this.options = _.filter(this.copyOptions, (item) => {
-        return item.name.toLowerCase().indexOf(this.itemSelecyted.toLowerCase()) !== -1 ||
-          item.ticker.toLowerCase().indexOf(this.itemSelecyted.toLowerCase()) !== -1;
+        return item.name.toLowerCase().indexOf(this.buySell.instrument.toLowerCase()) !== -1 ||
+          item.ticker.toLowerCase().indexOf(this.buySell.instrument.toLowerCase()) !== -1;
       });
     } else {
       this.options = _.cloneDeep(this.copyOptions);
@@ -49,7 +50,11 @@ export class BuySellComponent implements OnInit {
   deal(operation: string) {
     this.buySell.operation = operation;
     console.log(this.buySell);
-    this.stockService.deal(this.buySell).then()
+    this.stockService.deal(this.buySell).then(() => {
+      this.buySell.instrument = '';
+      this.buySell.price = 0;
+      this.buySell.count = 0;
+    });
 
   }
 }
