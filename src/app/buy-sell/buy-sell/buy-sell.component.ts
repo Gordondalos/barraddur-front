@@ -18,7 +18,9 @@ export class BuySellComponent implements OnInit {
   groupName: string;
   currentGroup: any;
 
-  buySell: any = {};
+  buySell: any = {
+    showTrailingStop: false
+  };
 
   constructor(
     private stockService: StockService,
@@ -54,6 +56,8 @@ export class BuySellComponent implements OnInit {
       this.buySell.instrument = '';
       this.buySell.price = 0;
       this.buySell.count = 0;
+      this.buySell.lags = 0;
+      this.buySell.showTrailingStop = false;
     });
 
   }

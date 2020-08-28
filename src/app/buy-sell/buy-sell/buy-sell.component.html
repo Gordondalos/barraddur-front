@@ -29,6 +29,20 @@
 
   </div>
 
+  <mat-checkbox
+    color="primary"
+    class="my16 d-block"
+    [(ngModel)]="buySell.showTrailingStop">Запустить как трейлинг стоп</mat-checkbox>
+
+  <ng-container *ngIf="buySell.showTrailingStop">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Процент отставания</mat-label>
+      <input [(ngModel)]="buySell.lags" type="number" matInput>
+    </mat-form-field>
+
+  </ng-container>
+
   <div class="d-flex">
     <button
       [disabled]="!buySell.price || !buySell.count || !buySell.instrument"

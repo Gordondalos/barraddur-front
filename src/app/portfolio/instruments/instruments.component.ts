@@ -6,6 +6,7 @@ import { StockService } from '../../services/stock.service';
 import { SocketService } from '../../services/socket.service';
 import { SocketEventInterface } from '../../interfaces/socketEvent.interface';
 import * as _ from 'lodash';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-instruments',
@@ -45,7 +46,16 @@ export class InstrumentsComponent implements OnInit {
     private stockService: StockService,
     public localStorageService: LocalstorageService,
     public socketService: SocketService,
+    private router: Router,
   ) {
+    this.router.events.subscribe((res) => {
+      if (res instanceof NavigationEnd) {
+        if (this.router.url.indexOf('portfolio') === -1) {
+          this.socketService.disconnect();
+        }
+      }
+    });
+
     this.stockService.updateInstrumentsList.subscribe(() => {
       this.uploadPortfolio();
     });

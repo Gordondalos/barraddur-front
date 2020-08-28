@@ -3,6 +3,7 @@ import { FatherService } from './father.service';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { SocketEventInterface } from '../interfaces/socketEvent.interface';
+import { StockService } from './stock.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,7 @@ export class SocketService extends FatherService {
 
   constructor(
     public httpClient: HttpClient,
+    public stockService: StockService,
   ) {
     super(httpClient);
   }
@@ -25,6 +27,11 @@ export class SocketService extends FatherService {
   connect() {
     this.ws = new WebSocket('ws://localhost:5000');
     this.subsOnMessage();
+  }
+
+  disconnect() {
+    this.ws.send('exit');
+    this.ws.close();
   }
 
   subsOnMessage() {
@@ -43,19 +50,23 @@ export class SocketService extends FatherService {
           this.ws.close();
         } else {
           try {
-            const m: SocketEventInterface = JSON.parse(message.data);
-            this.eventSocketUpdate.next(m);
+            const m: SocketEventInterface | string = JSON.parse(message.data);
+            switch (m) {
+              case 'updatePortfolio':
+                console.log('updatePortfolio');
+                this.stockService.updateInstrumentsList.next();
+                break;
+              default:
+                this.eventSocketUpdate.next(m);
+            }
+
           } catch (e) {
             console.log(e);
             console.log(message.data);
           }
         }
-
       }
-
     };
-
-
   }
 
 

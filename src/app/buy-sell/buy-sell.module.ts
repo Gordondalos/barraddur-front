@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -21,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     MatAutocompleteModule,
     MatButtonModule,
+    MatCheckboxModule,
   ],
 })
 export class BuySellModule { }
