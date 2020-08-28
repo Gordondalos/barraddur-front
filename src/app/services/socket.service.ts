@@ -50,14 +50,14 @@ export class SocketService extends FatherService {
           this.ws.close();
         } else {
           try {
-            const m: SocketEventInterface | string = JSON.parse(message.data);
+            const m: SocketEventInterface | string = message.data;
             switch (m) {
               case 'updatePortfolio':
                 console.log('updatePortfolio');
                 this.stockService.updateInstrumentsList.next();
                 break;
               default:
-                this.eventSocketUpdate.next(m);
+                this.eventSocketUpdate.next(JSON.parse(m));
             }
 
           } catch (e) {
