@@ -4,6 +4,9 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { SocketEventInterface } from '../interfaces/socketEvent.interface';
 import { StockService } from './stock.service';
+import { Socket } from 'ngx-socket-io';
+import { map } from 'rxjs/operators';
+import { LocalstorageService } from './localstorage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,18 +19,58 @@ export class SocketService extends FatherService {
   constructor(
     public httpClient: HttpClient,
     public stockService: StockService,
+    private socket: Socket,
+    public localstorageService: LocalstorageService,
   ) {
     super(httpClient);
   }
+
+  sendMessage(msg: string) {
+    this.socket.emit('message', msg);
+  }
+
+  connect() {
+    this.sendMessage('getId');
+
+    this.socket
+      .fromEvent('message')
+      .pipe(map((data: any) => {
+        return data;
+      })).subscribe((message) => {
+
+      try {
+        let m: any = message;
+        let id = '';
+        if (typeof m === 'object' && m.clientId) {
+          id = m.clientId;
+          m = 'clientId';
+        }
+
+        switch (m) {
+          case 'clientId':
+            console.log(id);
+            this.localstorageService.set('socketId', id);
+            break;
+          case 'updatePortfolio':
+            console.log('updatePortfolio');
+            this.stockService.updateInstrumentsList.next();
+            break;
+          default:
+            this.eventSocketUpdate.next(JSON.parse(m));
+        }
+
+      } catch (e) {
+        console.log(e);
+        console.log(message.data);
+      }
+    });
+  }
+
 
   startSubscribtion(data) {
     return this.post('/api/socketFire', { data });
   }
 
-  connect() {
-    this.ws = new WebSocket('ws://localhost:5000');
-    this.subsOnMessage();
-  }
 
   disconnect() {
     this.ws.send('exit');

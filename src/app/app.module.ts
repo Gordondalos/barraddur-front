@@ -14,6 +14,12 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { LockScreenModule } from './auth/lock-screen/lock-screen.module';
 
+
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +35,8 @@ import { LockScreenModule } from './auth/lock-screen/lock-screen.module';
     MatNativeDateModule,
     CommonComponentModule,
     MatDialogModule,
-    LockScreenModule
+    LockScreenModule,
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     HttpClient,
