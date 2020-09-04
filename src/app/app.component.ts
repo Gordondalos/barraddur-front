@@ -6,6 +6,7 @@ import { LocalstorageService } from './services/localstorage.service';
 import { NavigationEnd, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { SocketService } from './services/socket.service';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit, OnDestroy {
   onSideNavChange: boolean;
   isWelcome = false;
   userName = '';
+  portfolio: any;
 
   private unsubscribeAll: Subject<any> = new Subject<any>();
 
@@ -26,6 +28,7 @@ export class AppComponent implements OnInit, OnDestroy {
     public portfolioService: PortfolioService,
     public localstorageService: LocalstorageService,
     public router: Router,
+    private socketService: SocketService,
   ) {
     this.sidenavService.sideNavState$.subscribe(res => {
       this.onSideNavChange = res;
@@ -64,7 +67,15 @@ export class AppComponent implements OnInit, OnDestroy {
 
 
   async ngOnInit() {
-    const data = await this.portfolioService.checkApi();
-    this.localstorageService.set('api', data);
+    // const data = await this.portfolioService.checkApi();
+    // this.localstorageService.set('api', data);
+    // const portfolio = await this.portfolioService.getPortfolio();
+    // for (const item of portfolio) {
+    //   item.id = item.figi;
+    // }
+    // this.portfolio = portfolio;
+    //
+    // await this.socketService.startSubscribtion(this.portfolio);
+     this.socketService.connect();
   }
 }
