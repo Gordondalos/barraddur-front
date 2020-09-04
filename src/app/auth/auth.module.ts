@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { LoginModule } from './login/login.module';
 
 
 const routes = [
@@ -29,7 +30,6 @@ const routes = [
 @NgModule({
   declarations: [
     RegistrationComponent,
-    LoginComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +39,7 @@ const routes = [
     MatInputModule,
     ReactiveFormsModule,
     MatButtonModule,
+    LoginModule
   ],
 })
 export class AuthModule {

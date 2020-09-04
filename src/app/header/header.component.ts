@@ -3,6 +3,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { ThemeService } from '../services/theme.service';
 import { PortfolioService } from '../services/portfolio.service';
 import { AuthService } from '../services/auth.service';
+import { LocalstorageService } from '../services/localstorage.service';
 
 @Component({
   selector: 'app-header',
@@ -18,11 +19,15 @@ export class HeaderComponent implements OnInit {
     public themeService: ThemeService,
     private portfolioService: PortfolioService,
     private authService: AuthService,
+    private localstorageService: LocalstorageService,
   ) {
   }
 
   async ngOnInit(): Promise<any> {
-    this.balance = await this.portfolioService.getBalance();
+    const user = this.localstorageService.get('user');
+    if (user) {
+      this.balance = await this.portfolioService.getBalance();
+    }
   }
 
   changeThemeColor(theme) {

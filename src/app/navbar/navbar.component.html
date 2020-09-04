@@ -1,4 +1,4 @@
-<div class="sidenav_container" [@onSideNavChange]="sideNavState ? 'open' : 'close'">
+<div *ngIf="user" class="sidenav_container" [@onSideNavChange]="sideNavState ? 'open' : 'close'">
   <div fxLayout="column" fxLayoutGap="10px" style="height: 100%;">
 
     <div class="user_menu">
