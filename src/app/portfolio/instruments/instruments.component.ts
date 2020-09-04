@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { InstrumentInterface } from '../../interfaces/instrumentInterface';
 import { LocalstorageService } from '../../services/localstorage.service';
 import { PortfolioService } from '../../services/portfolio.service';
@@ -7,13 +7,15 @@ import { SocketService } from '../../services/socket.service';
 import { SocketEventInterface } from '../../interfaces/socketEvent.interface';
 import * as _ from 'lodash';
 import { NavigationEnd, Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-instruments',
   templateUrl: './instruments.component.html',
   styleUrls: ['./instruments.component.scss'],
 })
-export class InstrumentsComponent implements OnInit {
+export class InstrumentsComponent implements OnInit, OnDestroy {
 
 
   @Input() portfolio: Array<InstrumentInterface>;
@@ -40,6 +42,7 @@ export class InstrumentsComponent implements OnInit {
     // { headerName: 'Inc day %', field: 'income-day_percent', sortable: true, filter: true, resizable: true },
   ];
 
+  private unsubscribeAll: Subject<any> = new Subject<any>();
 
   constructor(
     private portfolioService: PortfolioService,
@@ -48,22 +51,29 @@ export class InstrumentsComponent implements OnInit {
     public socketService: SocketService,
     private router: Router,
   ) {
-    this.router.events.subscribe((res) => {
-      if (res instanceof NavigationEnd) {
-        if (this.router.url.indexOf('portfolio') === -1) {
-          this.socketService.disconnect();
+    this.router.events
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe((res) => {
+        if (res instanceof NavigationEnd) {
+          if (this.router.url.indexOf('portfolio') === -1) {
+            this.socketService.disconnect();
+          }
         }
-      }
-    });
+      });
 
-    this.stockService.updateInstrumentsList.subscribe(() => {
-      this.uploadPortfolio();
-    });
-    this.socketService.eventSocketUpdate.subscribe((event: SocketEventInterface) => {
-      // console.log(event.payload.figi);
-      this.updateDataInPortfolio(event);
+    this.stockService.updateInstrumentsList
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe(() => {
+        this.uploadPortfolio();
+      });
 
-    });
+    this.socketService.eventSocketUpdate
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe((event: SocketEventInterface) => {
+        // console.log(event.payload.figi);
+        this.updateDataInPortfolio(event);
+
+      });
 
   }
 
@@ -71,24 +81,22 @@ export class InstrumentsComponent implements OnInit {
     this.settings = this.localStorageService.get('gridPortfoloSettings');
   }
 
-  updateDataInPortfolio(event: SocketEventInterface) {
-    // console.log(event)
-    // const portfolio = _.cloneDeep(this.portfolio);
-    // for (const item of portfolio) {
-    //   if (item.figi === event.payload.figi) {
-    //     item.price = event.payload.c;
-    //   }
-    // }
-    // this.portfolio = _.cloneDeep(portfolio);
+  ngOnDestroy(): void {
+    this.unsubscribeAll.next();
+    this.unsubscribeAll.complete();
+  }
 
-    this.gridApi.forEachNode((node) => {
-      if (node.id === event.payload.figi) {
-        const data = node.data;
-        data.price = event.payload.c;
-        node.setData(data);
-        console.log(data.name, data.price);
-      }
-    });
+  updateDataInPortfolio(event: SocketEventInterface) {
+    if (this.gridApi) {
+      this.gridApi.forEachNode((node) => {
+        if (node.id === event.payload.figi) {
+          const data = node.data;
+          data.price = event.payload.c;
+          node.setData(data);
+          console.log(data.name, data.price);
+        }
+      });
+    }
 
 
   }

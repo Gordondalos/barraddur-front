@@ -38,9 +38,8 @@ export class PortfolioComponent implements OnInit {
     console.log(this.portfolio);
     const res = await this.groupService.getData();
     this.instruments = res.result.instruments;
-
-    this.socketService.startSubscribtion(this.portfolio);
-    this.socketService.connect();
+    await this.socketService.startSubscribtion(this.portfolio);
+    // this.socketService.connect();
   }
 
 }
