@@ -25,6 +25,7 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
   gridApi: any;
 
   settings: any;
+  show = true;
 
 
   columnDefs = [
@@ -43,6 +44,7 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
   ];
 
   private unsubscribeAll: Subject<any> = new Subject<any>();
+
 
   constructor(
     private portfolioService: PortfolioService,
@@ -64,7 +66,9 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
     this.stockService.updateInstrumentsList
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(() => {
+        this.show = false;
         this.uploadPortfolio();
+        this.show = true;
       });
 
     this.socketService.eventSocketUpdate
@@ -72,7 +76,6 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
       .subscribe((event: SocketEventInterface) => {
         // console.log(event.payload.figi);
         this.updateDataInPortfolio(event);
-
       });
 
   }
@@ -87,6 +90,7 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
   }
 
   updateDataInPortfolio(event: SocketEventInterface) {
+    // console.log(event);
     if (this.gridApi) {
       this.gridApi.forEachNode((node) => {
         if (node.id === event.payload.figi) {
@@ -94,8 +98,16 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
           data.price = event.payload.c;
           node.setData(data);
           console.log(data.name, data.price);
+        } else {
+          if (+node.id === 0) {
+            this.gridApi.forEachNode((rowNode, index) => {
+              rowNode.id = this.portfolio[ index ].figi;
+            });
+          }
         }
       });
+    } else {
+      console.log('this.gridApi не найден');
     }
 
 
@@ -143,7 +155,11 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
   }
 
   async uploadPortfolio() {
-    this.portfolio = await this.portfolioService.getPortfolio();
+    const portfolio = await this.portfolioService.getPortfolio();
+    for (const item of portfolio) {
+      item.id = item.figi;
+    }
+    this.portfolio = portfolio;
   }
 }
 
