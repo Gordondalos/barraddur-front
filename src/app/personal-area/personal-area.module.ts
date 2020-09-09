@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSelectModule } from '@angular/material/select';
 
 
 const routes: Routes = [
@@ -18,13 +19,14 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [PersonalAreaComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatButtonModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        MatButtonModule,
+        MatSelectModule,
+    ],
 })
 export class PersonalAreaModule { }

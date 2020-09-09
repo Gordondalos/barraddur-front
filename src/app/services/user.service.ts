@@ -13,6 +13,10 @@ export class UserService extends FatherService {
   }
 
   saveUser(user: User): void {
-    this.post('/api/update/user', {data: user});
+    this.post('/api/update/user', { data: user });
+  }
+
+  async addSumToSandbox(sum, currency) {
+    return await this.post('/api/add-sum-sandbox', { sum, currency });
   }
 }

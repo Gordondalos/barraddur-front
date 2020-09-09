@@ -1,47 +1,80 @@
-<section>
+<div class="d-flex flex-wrap">
+  <section>
 
-  <h1 class="bold">Персональные данные</h1>
+    <h1 class="bold">Персональные данные</h1>
 
-  <mat-form-field class="w100" appearance="outline">
-    <mat-label>Имя</mat-label>
-    <input matInput placeholder="name" [(ngModel)]="user.name">
-  </mat-form-field>
+    <mat-form-field class="w100" appearance="outline">
+      <mat-label>Имя</mat-label>
+      <input matInput placeholder="name" [(ngModel)]="user.name">
+    </mat-form-field>
 
-  <mat-form-field class="w100" appearance="outline">
-    <mat-label>Фамилия</mat-label>
-    <input matInput placeholder="surename" [(ngModel)]="user.surename">
-  </mat-form-field>
+    <mat-form-field class="w100" appearance="outline">
+      <mat-label>Фамилия</mat-label>
+      <input matInput placeholder="surename" [(ngModel)]="user.surename">
+    </mat-form-field>
 
-  <mat-form-field class="w100" appearance="outline">
-    <mat-label>Отчетсво</mat-label>
-    <input matInput placeholder="fathers_name" [(ngModel)]="user.fathers_name">
-  </mat-form-field>
+    <mat-form-field class="w100" appearance="outline">
+      <mat-label>Отчетсво</mat-label>
+      <input matInput placeholder="fathers_name" [(ngModel)]="user.fathers_name">
+    </mat-form-field>
 
-  <mat-form-field class="w100" appearance="outline">
-    <mat-label>Паспорт</mat-label>
-    <input matInput placeholder="passport" [(ngModel)]="user.passport">
-  </mat-form-field>
+    <mat-form-field class="w100" appearance="outline">
+      <mat-label>Паспорт</mat-label>
+      <input matInput placeholder="passport" [(ngModel)]="user.passport">
+    </mat-form-field>
 
-  <mat-form-field class="w100" appearance="outline">
-    <mat-label>Login</mat-label>
-    <input matInput placeholder="login" [(ngModel)]="user.login">
-  </mat-form-field>
+    <mat-form-field class="w100" appearance="outline">
+      <mat-label>Login</mat-label>
+      <input matInput placeholder="login" [(ngModel)]="user.login">
+    </mat-form-field>
 
-  <mat-form-field class="w100" appearance="outline">
-    <mat-label>Телефон</mat-label>
-    <input matInput placeholder="phone" [(ngModel)]="user.phone">
-  </mat-form-field>
+    <mat-form-field class="w100" appearance="outline">
+      <mat-label>Телефон</mat-label>
+      <input matInput placeholder="phone" [(ngModel)]="user.phone">
+    </mat-form-field>
 
-  <mat-form-field class="w100" appearance="outline">
-    <mat-label>Email</mat-label>
-    <input matInput placeholder="email" [(ngModel)]="user.email">
-  </mat-form-field>
+    <mat-form-field class="w100" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="email" [(ngModel)]="user.email">
+    </mat-form-field>
 
-  <p>Введите сюда токен доступа к Тинькофф банку</p>
-  <mat-form-field class="w100" appearance="outline">
-    <mat-label>Токена доступа</mat-label>
-    <input matInput placeholder="tToken" [(ngModel)]="user.tToken">
-  </mat-form-field>
-  <button mat-raised-button color="primary" (click)="save()">Сохранить</button>
+    <p>Введите сюда токен доступа к Тинькофф банку</p>
+    <mat-form-field class="w100" appearance="outline">
+      <mat-label>Токен доступа</mat-label>
+      <input matInput placeholder="tToken" [(ngModel)]="user.tToken">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="save()">Сохранить</button>
 
-</section>
+  </section>
+
+  <section class="mx16">
+    <h1 class="bold">Добавить деньги в песочницу</h1>
+<!--    <mat-form-field class="w100" appearance="outline">-->
+<!--      <mat-label>Валюта</mat-label>-->
+<!--      <input matInput placeholder="USD" [(ngModel)]="currency">-->
+<!--    </mat-form-field>-->
+
+    <mat-form-field class="w100" appearance="outline">
+      <mat-label>Валюта</mat-label>
+      <mat-select [(ngModel)]="currency">
+        <mat-option value="RUB">RUB</mat-option>
+        <mat-option value="USD">USD</mat-option>
+        <mat-option value="EUR">EUR</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="w100" appearance="outline">
+      <mat-label>Сумма</mat-label>
+      <input matInput placeholder="50000" [(ngModel)]="sum">
+    </mat-form-field>
+
+    <button (click)="addSumToSandbox()"  mat-raised-button color="primary">Добавить</button>
+
+    <p class="py16">
+      Примечание - валюта может быть только одна из этих
+      "RUB" | "USD" | "EUR" | "GBP" | "HKD" | "CHF" | "JPY" | "CNY" | "TRY"
+    </p>
+
+  </section>
+</div>
+

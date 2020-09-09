@@ -21,13 +21,20 @@ export class HeaderComponent implements OnInit {
     private authService: AuthService,
     private localstorageService: LocalstorageService,
   ) {
+    this.portfolioService.updateBalanceEvent.subscribe((res) => {
+      this.getBalance().then();
+    });
   }
 
   async ngOnInit(): Promise<any> {
     const user = this.localstorageService.get('user');
     if (user) {
-      this.balance = await this.portfolioService.getBalance();
+      this.getBalance().then();
     }
+  }
+
+  async getBalance(): Promise<void> {
+    this.balance = await this.portfolioService.getBalance();
   }
 
   changeThemeColor(theme) {

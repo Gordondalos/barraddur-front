@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { FatherService } from './father.service';
 import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PortfolioService extends FatherService {
+
+  updateBalanceEvent = new Subject();
 
   constructor(public httpClient: HttpClient) {
     super(httpClient);
