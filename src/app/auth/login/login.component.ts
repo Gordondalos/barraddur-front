@@ -14,6 +14,8 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
+  reg = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -26,14 +28,16 @@ export class LoginComponent implements OnInit {
    */
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      userName: ['', Validators.required],
+      login: ['', Validators.required],
+      name: [''],
       password: ['', Validators.required],
+      tToken: [''],
     });
   }
 
   async login() {
     const res: any = await this.authService.tryLogin({
-      login: this.loginForm.get('userName').value,
+      login: this.loginForm.get('login').value,
       password: this.loginForm.get('password').value,
     });
     if (res && res.user) {
@@ -43,5 +47,23 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/welcome/main');
     }
 
+  }
+
+  showRegistration() {
+    this.reg = !this.reg;
+  }
+
+  async registration() {
+    const res: any = await this.authService.registration({
+      login: this.loginForm.get('login').value,
+      password: this.loginForm.get('password').value,
+      name: this.loginForm.get('name').value,
+      tToken: this.loginForm.get('tToken').value,
+    });
+    if (res) {
+      this.reg = false;
+    } else {
+      alert('что то пошло не так');
+    }
   }
 }
