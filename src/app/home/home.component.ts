@@ -29,7 +29,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
   "market": "america",
   "showToolbar": true,
   "colorTheme": "light",
-  "locale": "ru"
+  "locale": "ru",
+  "isTransparent": true,
+  "largeChartUrl": "http://localhost:4205/#/detail/"
 }
   </script>
 </div>

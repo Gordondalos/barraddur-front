@@ -1,9 +1,11 @@
 <div class="header">
-  <div class="mr-auto">
-    <button mat-icon-button (click)="sidenav.toggle()">
-      <img class="logo" src="assets/images/logos/logo.png" alt="logo">
-    </button>
-    <span class="pl8 d-inline-block">baraddur.ru</span>
+  <div class="d-flex align-items-center">
+    <div class="mr-auto">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <img class="logo" src="assets/images/logos/logo.png" alt="logo">
+      </button>
+      <span class="pl8 d-inline-block">baraddur.ru</span>
+    </div>
   </div>
 
 <!--  <ng-container *ngFor="let item of balance">-->
@@ -15,13 +17,13 @@
   <div class="f-gr-1 mx16" id="mydivHeader"></div>
 
   <div class="theme d-flex align-items-center">
-    <mat-select name="themeSelect"
-                placeholder="тема"
-                [(ngModel)]="themeSelect"
-                (ngModelChange)="changeThemeColor($event)">
-      <mat-option value="light">Светлая</mat-option>
-      <mat-option value="dark">темная</mat-option>
-    </mat-select>
+<!--    <mat-select name="themeSelect"-->
+<!--                placeholder="тема"-->
+<!--                [(ngModel)]="themeSelect"-->
+<!--                (ngModelChange)="changeThemeColor($event)">-->
+<!--      <mat-option value="light">Светлая</mat-option>-->
+<!--      <mat-option value="dark">темная</mat-option>-->
+<!--    </mat-select>-->
 
     <button class="ml16" (click)="logout()" mat-raised-button>Выход</button>
 

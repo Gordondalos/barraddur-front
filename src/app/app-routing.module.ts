@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'welcome',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
   {
@@ -39,6 +39,10 @@ const routes: Routes = [
   {
     path: 'news',
     loadChildren: () => import('./news/news.module').then(m => m.NewsModule),
+  },
+  {
+    path: 'detail',
+    loadChildren: () => import('./detail-info/detail-info.module').then(m => m.DetailInfoModule),
   },
 ];
 
