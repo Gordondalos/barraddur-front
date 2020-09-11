@@ -91,9 +91,19 @@ export class AuthService {
       });
   }
 
+
   async logOut(): Promise<any> {
-    // const response = await this.http.get<Response>('/api/auth/logout').toPromise();
     localStorage.clear();
-    this.router.navigateByUrl('/');
+    window.location.href = '/#/auth/login';
+  }
+
+  async registration(data): Promise<boolean> {
+    const url = `/api/auth/registration`;
+    const res: any = await this.http.post(url, data).toPromise();
+    if (res) {
+      return res.data;
+    } else {
+      return false;
+    }
   }
 }

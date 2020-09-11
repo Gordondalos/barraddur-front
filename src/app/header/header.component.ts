@@ -2,9 +2,9 @@ import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { ThemeService } from '../services/theme.service';
 import { PortfolioService } from '../services/portfolio.service';
-import { AuthService } from '../services/auth.service';
 import { LocalstorageService } from '../services/localstorage.service';
 import postscribe from 'postscribe';
+import { AuthService } from '../auth/services/auth.service';
 
 @Component({
   selector: 'app-header',
