@@ -15,10 +15,13 @@ export class FatherService {
   }
 
   get(url: string): Promise<any> {
-    const address = `${this.host}${url}`;
+    const address = `${ this.host }${ url }`;
     return this.httpClient.get(address).toPromise()
       .then((res: any) => {
-        return res.data;
+        if (res) {
+          return res.data;
+        }
+        return false;
       })
       .catch((error) => {
         console.log(error);
@@ -27,7 +30,7 @@ export class FatherService {
 
 
   post(url: string, data): Promise<any> {
-    return this.httpClient.post(`${this.host}${url}`, data).toPromise()
+    return this.httpClient.post(`${ this.host }${ url }`, data).toPromise()
       .then((res: any) => {
         return res.data;
       })

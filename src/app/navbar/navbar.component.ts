@@ -26,6 +26,7 @@ export class NavbarComponent implements OnInit{
   ];
 
   user: User;
+  showNavbar = false;
 
   constructor(
     private sidenavService: SidenavService,
@@ -44,6 +45,7 @@ export class NavbarComponent implements OnInit{
   ngOnInit() {
     this.sideNavState = this.localstorageService.get('sideNavState');
     this.user = this.localstorageService.get('user');
+    this.showNavbar = window.innerWidth > 968;
   }
 
   onSidenavToggle() {

@@ -36,6 +36,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
       item.id = item.figi;
     }
     this.portfolio = portfolio;
+    console.log(this.portfolio)
 
     this.balance = await this.portfolioService.getBalance();
     console.log(this.portfolio);

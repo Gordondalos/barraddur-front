@@ -21,7 +21,7 @@ export class PortfolioService extends FatherService {
 
   async getBalance(): Promise<any> {
     const data: any = await this.get('/api/portfolioCurrencies');
-    return data.currencies;
+    return data ? data.currencies : '';
   }
 
   async checkApi(): Promise<any> {

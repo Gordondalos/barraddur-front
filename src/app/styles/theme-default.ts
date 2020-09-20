@@ -18,7 +18,7 @@ export const light: Theme = {
     '--bg-info': '#039be5',
     '--text-danger': '#f44336',
     '--bg-danger': '#f44336',
-    '--navbar-bg-color': '#1E2146',
+    '--navbar-bg-color': 'rgba(0,0,0,.87)',
     '--navbar-text-color': '#ffffff',
     '--sidebar-bg-color':  '#3c4252',
     '--sidebar-text-color': '#ffffff',

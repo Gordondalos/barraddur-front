@@ -1,5 +1,28 @@
+@import "~iiko-styles/style/variables";
+@import "../../styles/variables";
+
 table {
   width: 100%;
+}
+
+
+.ticker {
+  width: 40px;
+  height: 40px;
+  background-color: $primary;
+  border-radius: 100%;
+  font-size: 10px;
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-item {
+  border-bottom: 1px solid $light-gray;
+  //&:last-child {
+  //  border: none;
+  //}
 }
 
 .mat-form-field {
@@ -10,5 +33,9 @@ table {
 ::ng-deep {
   .ag-center-cols-container, .ag-header-row, .ag-header-container {
     width: 100% !important;
+  }
+
+  .mat-list-content {
+    padding: 0;
   }
 }

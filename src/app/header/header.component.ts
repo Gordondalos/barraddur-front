@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @Input() sidenav: MatSidenav;
   themeSelect: string;
   balance: Array<{ currency: string, balance: number }>;
+  showTitle = false;
 
   constructor(
     public themeService: ThemeService,
@@ -29,7 +30,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
-    postscribe('#mydivHeader', `
+    if (this.showTitle) {
+      postscribe('#mydivHeader', `
    <!-- TradingView Widget BEGIN -->
 <div class="tradingview-widget-container">
   <div class="tradingview-widget-container__widget"></div>
@@ -61,6 +63,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 </div>
 <!-- TradingView Widget END -->
     `);
+    }
 
 
   }
@@ -70,6 +73,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
     if (user) {
       this.getBalance().then();
     }
+    this.showTitle = window.innerWidth > 968;
   }
 
   async getBalance(): Promise<void> {
@@ -82,5 +86,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   logout() {
     this.authService.logOut().then();
+  }
+
+  showSideBar() {
+    console.log('тут выводим сайдбар');
   }
 }

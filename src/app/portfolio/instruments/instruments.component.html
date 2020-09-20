@@ -1,9 +1,39 @@
+<ng-container *ngIf="!show">
+  <h3 class="bold px16 mb0 mt16">Инструменты</h3>
+  <mat-list role="list">
+    <ng-container *ngFor="let item of portfolio">
+      <mat-list-item class="list-item" role="listitem">
+        <div class="ticker mr16">
+          <ng-container *ngIf="item.ticker.length <= 5">
+            <span>{{item.ticker}}</span>
+          </ng-container>
 
-<div class="d-flex vertical-center mb16">
-  <h2>Portfolio items</h2>
-  <div class="f-gr-1"></div>
-  <button mat-raised-button color="primary" (click)="updateData()">Обновить данные по акциям</button>
-</div>
+        </div>
+        <div class="f-gr-1">
+          <div class="bold f12">
+            {{item.name}}
+          </div>
+          <div class="d-block text-gray f10">{{item.lots}} шт.</div>
+        </div>
+
+        <div class="price f12">
+          {{item.price}}.
+        </div>
+
+
+
+
+      </mat-list-item>
+    </ng-container>
+  </mat-list>
+</ng-container>
+
+
+<!--<div class="d-flex vertical-center mb16">-->
+<!--  <h2>Portfolio items</h2>-->
+<!--  <div class="f-gr-1"></div>-->
+<!--  <button mat-raised-button color="primary" (click)="updateData()">Обновить данные по акциям</button>-->
+<!--</div>-->
 
 <ng-container *ngIf="show">
   <ag-grid-angular

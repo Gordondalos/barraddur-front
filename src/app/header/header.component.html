@@ -4,8 +4,8 @@
       <button mat-icon-button (click)="sidenav.toggle()">
         <img class="logo" src="assets/images/logos/logo.png" alt="logo">
       </button>
-      <span class="pl8 d-inline-block">baraddur.ru</span>
     </div>
+    <mat-icon class="f24 ml16" (click)="showSideBar()">menu</mat-icon>
   </div>
 
 <!--  <ng-container *ngFor="let item of balance">-->
@@ -14,7 +14,10 @@
 <!--    </div>-->
 <!--  </ng-container>-->
 
-  <div class="f-gr-1 mx16" id="mydivHeader"></div>
+  <ng-container *ngIf="showTitle">
+    <div class="f-gr-1 mx16" id="mydivHeader"></div>
+  </ng-container>
+
 
   <div class="theme d-flex align-items-center">
 <!--    <mat-select name="themeSelect"-->
@@ -24,8 +27,8 @@
 <!--      <mat-option value="light">Светлая</mat-option>-->
 <!--      <mat-option value="dark">темная</mat-option>-->
 <!--    </mat-select>-->
+    <mat-icon class="f24" (click)="logout()">exit_to_app</mat-icon>
 
-    <button class="ml16" (click)="logout()" mat-raised-button>Выход</button>
 
 </div>
 

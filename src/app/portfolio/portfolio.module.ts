@@ -14,6 +14,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {FormsModule} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import { BuySellModule } from '../buy-sell/buy-sell.module';
+import { MatListModule } from '@angular/material/list';
 
 const routes: Routes = [
   {
@@ -28,20 +29,21 @@ const routes: Routes = [
     InstrumentsComponent,
     GroupKreatorComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    MatFormFieldModule,
-    MatTableModule,
-    MatInputModule,
-    MatSortModule,
-    AgGridModule.withComponents([]),
-    MatButtonModule,
-    MatAutocompleteModule,
-    FormsModule,
-    MatIconModule,
-    BuySellModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        MatFormFieldModule,
+        MatTableModule,
+        MatInputModule,
+        MatSortModule,
+        AgGridModule.withComponents([]),
+        MatButtonModule,
+        MatAutocompleteModule,
+        FormsModule,
+        MatIconModule,
+        BuySellModule,
+        MatListModule,
+    ],
   exports: [
     PortfolioComponent,
   ]
