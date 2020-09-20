@@ -1,9 +1,40 @@
 
 
-<div class="d-flex w100">
-  <div class="w100">
+<div class="d-flex w100 h100">
+  <div class="w100 h100">
     <ng-container *ngIf="portfolio">
-      <app-instruments [portfolio]="portfolio"></app-instruments>
+      <mat-tab-group class="h100" headerPosition="below" animationDuration="0ms" mat-align-tabs="center">
+        <mat-tab class="py8">
+          <ng-template mat-tab-label class="d-flex flex-column">
+            <mat-icon class="example-tab-icon">home_repair_service</mat-icon>
+           <span class="f10">Портфель</span>
+          </ng-template>
+          <app-instruments [portfolio]="portfolio"></app-instruments>
+        </mat-tab>
+        <mat-tab >
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">article</mat-icon>
+            <span class="f10">Лента</span>
+          </ng-template>
+          Content 2</mat-tab>
+
+        <mat-tab >
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">chat</mat-icon>
+            <span class="f10">Чат</span>
+          </ng-template>
+          Content 4
+        </mat-tab>
+        <mat-tab >
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">person</mat-icon>
+            Еще
+          </ng-template>
+          <app-personal-area></app-personal-area>
+        </mat-tab>
+      </mat-tab-group>
+
+
     </ng-container>
   </div>
 

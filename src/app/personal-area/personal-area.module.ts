@@ -8,25 +8,18 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 
-
-const routes: Routes = [
-  {
-    path: '',
-    component: PersonalAreaComponent
-  }
-];
-
-
 @NgModule({
-  declarations: [PersonalAreaComponent],
+    declarations: [PersonalAreaComponent],
     imports: [
         CommonModule,
-        RouterModule.forChild(routes),
         MatFormFieldModule,
         MatInputModule,
         FormsModule,
         MatButtonModule,
         MatSelectModule,
+    ],
+    exports: [
+        PersonalAreaComponent,
     ],
 })
 export class PersonalAreaModule { }

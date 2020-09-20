@@ -24,6 +24,7 @@ export class PersonalAreaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.user = this.localStorageService.get('user');
   }
 
