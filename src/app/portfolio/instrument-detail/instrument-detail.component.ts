@@ -56,7 +56,7 @@ export class InstrumentDetailComponent implements OnInit {
       ],
       chart: {
         type: 'candlestick',
-        height: 290,
+        height: 250,
         id: 'candles',
         toolbar: {
           autoSelected: 'pan',
@@ -69,8 +69,8 @@ export class InstrumentDetailComponent implements OnInit {
       plotOptions: {
         candlestick: {
           colors: {
-            upward: '#3C90EB',
-            downward: '#DF7D46',
+            upward: '#379903',
+            downward: '#e9032d',
           },
         },
       },
@@ -87,7 +87,7 @@ export class InstrumentDetailComponent implements OnInit {
         },
       ],
       chart: {
-        height: 160,
+        height: 120,
         type: 'bar',
         brush: {
           enabled: true,
@@ -119,12 +119,12 @@ export class InstrumentDetailComponent implements OnInit {
               {
                 from: -1000,
                 to: 0,
-                color: '#F15B46',
+                color: '#eab616',
               },
               {
                 from: 1,
                 to: 10000,
-                color: '#FEB019',
+                color: '#04c4e1',
               },
             ],
           },
