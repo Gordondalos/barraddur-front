@@ -92,26 +92,11 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
 
   updateDataInPortfolio(event: SocketEventInterface) {
     // console.log(event);
-    if (this.gridApi) {
-      this.gridApi.forEachNode((node) => {
-        if (node.id === event.payload.figi) {
-          const data = node.data;
-          data.price = event.payload.c;
-          node.setData(data);
-          console.log(data.name, data.price);
-        } else {
-          if (+node.id === 0) {
-            this.gridApi.forEachNode((rowNode, index) => {
-              rowNode.id = this.portfolio[ index ].figi;
-            });
-          }
-        }
-      });
-    } else {
-      console.log('this.gridApi не найден');
+    for (const item of this.portfolio) {
+      if (item.figi === event.payload.figi) {
+        item.price = event.payload.c;
+      }
     }
-
-
   }
 
   onFirstDataRendered(params) {
@@ -161,6 +146,13 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
       item.id = item.figi;
     }
     this.portfolio = portfolio;
+  }
+
+  openDetail(item: InstrumentInterface) {
+    this.router.navigateByUrl(`/portfolio/detail/${ item.figi }`);
+    setTimeout(() => {
+      this.portfolioService.instrumentEvent.next(item);
+    }, 10);
   }
 }
 

@@ -1,12 +1,29 @@
 <div class="header">
-  <div class="d-flex align-items-center">
-    <div class="mr-auto">
-      <button mat-icon-button (click)="sidenav.toggle()">
-        <img class="logo" src="assets/images/logos/logo.png" alt="logo">
-      </button>
+  <ng-container *ngIf="!isDetailInstrument">
+    <div class="d-flex align-items-center">
+
+      <div class="mr-auto">
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <img class="logo" src="assets/images/logos/logo.png" alt="logo">
+        </button>
+      </div>
+      <!--    <mat-icon class="f24 ml16" (click)="showSideBar()">menu</mat-icon>-->
     </div>
-    <mat-icon class="f24 ml16" (click)="showSideBar()">menu</mat-icon>
+  </ng-container>
+
+
+  <div class="d-flex align-items-center">
+    <ng-container *ngIf="currentInstrument && isDetailInstrument">
+      <mat-icon class="f24 mx16" (click)="goBack()">keyboard_backspace</mat-icon>
+      <div>
+        <div >{{currentInstrument.name}}</div>
+        <div class="f10 text-gray">{{currentInstrument.ticker}}</div>
+      </div>
+    </ng-container>
   </div>
+
+
+
 
 <!--  <ng-container *ngFor="let item of balance">-->
 <!--    <div class="d-flex align-items-center balance-padding">-->

@@ -2,7 +2,7 @@
   <h3 class="bold px16 mb0 mt16">Инструменты</h3>
   <mat-list role="list">
     <ng-container *ngFor="let item of portfolio">
-      <mat-list-item class="list-item" role="listitem">
+      <mat-list-item (click)="openDetail(item)" class="list-item" role="listitem">
         <div class="ticker mr16">
           <ng-container *ngIf="item.ticker.length <= 5">
             <span>{{item.ticker}}</span>
@@ -17,11 +17,8 @@
         </div>
 
         <div class="price f12">
-          {{item.price}}.
+          {{item.price}}
         </div>
-
-
-
 
       </mat-list-item>
     </ng-container>
@@ -35,18 +32,18 @@
 <!--  <button mat-raised-button color="primary" (click)="updateData()">Обновить данные по акциям</button>-->
 <!--</div>-->
 
-<ng-container *ngIf="show">
-  <ag-grid-angular
-    style="width: 100%;"
-    domLayout='autoHeight'
-    class="ag-theme-alpine"
-    [rowData]="portfolio"
-    [columnDefs]="columnDefs"
-    (gridReady)="onGridReady($event)"
-    (firstDataRendered)="onFirstDataRendered($event)"
-    (columnMoved)="columnMoved()"
-    (rowClicked)="rowClick($event)"
-  >
-  </ag-grid-angular>
-</ng-container>
+<!--<ng-container *ngIf="show">-->
+<!--  <ag-grid-angular-->
+<!--    style="width: 100%;"-->
+<!--    domLayout='autoHeight'-->
+<!--    class="ag-theme-alpine"-->
+<!--    [rowData]="portfolio"-->
+<!--    [columnDefs]="columnDefs"-->
+<!--    (gridReady)="onGridReady($event)"-->
+<!--    (firstDataRendered)="onFirstDataRendered($event)"-->
+<!--    (columnMoved)="columnMoved()"-->
+<!--    (rowClicked)="rowClick($event)"-->
+<!--  >-->
+<!--  </ag-grid-angular>-->
+<!--</ng-container>-->
 

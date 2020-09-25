@@ -17,11 +17,17 @@ import { BuySellModule } from '../buy-sell/buy-sell.module';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { PersonalAreaModule } from '../personal-area/personal-area.module';
+import { InstrumentDetailComponent } from './instrument-detail/instrument-detail.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 const routes: Routes = [
   {
     path: '',
     component: PortfolioComponent,
+  },
+  {
+    path: 'detail/:figi',
+    component: InstrumentDetailComponent,
   },
 ];
 
@@ -30,6 +36,8 @@ const routes: Routes = [
     PortfolioComponent,
     InstrumentsComponent,
     GroupKreatorComponent,
+    InstrumentDetailComponent,
+
   ],
   imports: [
     CommonModule,
@@ -47,6 +55,7 @@ const routes: Routes = [
     MatListModule,
     MatTabsModule,
     PersonalAreaModule,
+    NgApexchartsModule,
   ],
   exports: [
     PortfolioComponent,
