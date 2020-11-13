@@ -36,4 +36,14 @@ export class PortfolioService extends FatherService {
     return data;
   }
 
+  async getCandleFigiPeriod(figi, from, to): Promise<any> {
+    const data = await this.get(`/api/get-candle-by-period/${figi}/${from}/${to}`);
+    return data;
+  }
+
+  async getInfoByFigi(figi): Promise<any> {
+    const data = await this.get(`/api/get-info-by-figi/${figi}`);
+    return data;
+  }
+
 }

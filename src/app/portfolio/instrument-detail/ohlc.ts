@@ -1,7 +1,7 @@
 export const seriesData = [
   {
     x: new Date(2016, 1, 1),
-    y: [51.98, 56.29, 51.59, 53.85]
+    y: [51.98, 56.29, 51.59, 53.85] // open, high, low, close
   },
   {
     x: new Date(2016, 2, 9),

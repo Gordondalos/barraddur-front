@@ -19,6 +19,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { PersonalAreaModule } from '../personal-area/personal-area.module';
 import { InstrumentDetailComponent } from './instrument-detail/instrument-detail.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 const routes: Routes = [
   {
@@ -56,6 +57,7 @@ const routes: Routes = [
     MatTabsModule,
     PersonalAreaModule,
     NgApexchartsModule,
+    MatButtonToggleModule,
   ],
   exports: [
     PortfolioComponent,

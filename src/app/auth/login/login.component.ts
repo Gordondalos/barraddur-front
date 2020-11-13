@@ -44,7 +44,8 @@ export class LoginComponent implements OnInit {
       this.authService.getAuth(res);
       this.router.navigateByUrl('/');
     } else {
-      this.router.navigateByUrl('/');
+      // this.router.navigateByUrl('/');
+      alert('Авторизация не прошла!');
     }
 
   }

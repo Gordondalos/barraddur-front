@@ -1,3 +1,5 @@
+@import "~iiko-styles/style/variables";
+
 .chart-box {
   max-width: 650px;
   margin: 16px auto;
@@ -9,4 +11,15 @@
 
 #chart-bar {
   margin-top: -30px;
+}
+
+.periods {
+  justify-content: space-around;
+  span {
+    display: inline-block;
+    padding: 6px 8px;
+    text-align: center;
+    border: 1px solid $light-gray;
+    border-radius: 3px;
+  };
 }
