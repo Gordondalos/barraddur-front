@@ -1,5 +1,5 @@
 <mat-tab-group animationDuration="0ms" mat-align-tabs="center" class="w100 d-flex">
-  <mat-tab label="По рыночной" class="w-50">
+  <mat-tab (click)="selectTab('market')" label="По рыночной" class="w-50">
 
     <div class="p16">
       <div class="d-flex mt16">
@@ -17,16 +17,18 @@
         <div class="text-center bold f18"> {{(+count * +price).toFixed(2) }} {{info?.currency}}</div>
       </ng-container>
 
+      <mat-checkbox class="my16 d-block" [(ngModel)]="lags">Запустить трейлинг стоп</mat-checkbox>
+
       <div class="d-flex my16">
-        <button mat-raised-button color="accent" class="f-gr-1 mr8 w-50">Продать</button>
-        <button mat-raised-button color="primary" class="f-gr-1 ml8 w-50">Купить</button>
+        <button [disabled]="!price"  (click)="deal('Sell')"  mat-raised-button color="accent" class="f-gr-1 mr8 w-50">Продать</button>
+        <button [disabled]="!price" (click)="deal('Buy')" mat-raised-button color="primary" class="f-gr-1 ml8 w-50">Купить</button>
       </div>
 
     </div>
 
 
   </mat-tab>
-  <mat-tab label="По лимитной" class="w-50">
+  <mat-tab (click)="selectTab('limit')" label="По лимитной" class="w-50">
     <div class="p16" *ngIf="price">
       <div class="d-flex mt16">
         <mat-form-field appearance="outline" class="mw49 mr8 f-gr-1">
@@ -45,9 +47,10 @@
         </ng-container>
       {{info?.currency}}</div>
 
+      <mat-checkbox class="my16 d-block" [(ngModel)]="lags">Запустить трейлинг стоп</mat-checkbox>
       <div class="d-flex my16">
-        <button mat-raised-button color="accent" class="f-gr-1 mr8 w-50">Продать</button>
-        <button mat-raised-button color="primary" class="f-gr-1 ml8 w-50">Купить</button>
+        <button [disabled]="!customPrice" (click)="deal('Sell')"  mat-raised-button color="accent" class="f-gr-1 mr8 w-50">Продать</button>
+        <button [disabled]="!customPrice" (click)="deal('Buy')" mat-raised-button color="primary" class="f-gr-1 ml8 w-50">Купить</button>
       </div>
 
     </div>

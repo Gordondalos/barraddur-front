@@ -6,6 +6,7 @@ import { SocketEventInterface } from '../interfaces/socketEvent.interface';
 import { SocketService } from '../services/socket.service';
 import { PortfolioService } from '../services/portfolio.service';
 import { Subject } from 'rxjs';
+import { StockService } from '../services/stock.service';
 
 @Component({
   selector: 'app-buy-sell-one',
@@ -18,6 +19,9 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
   price: number;
 
   _currentInstrument: InstrumentInterface;
+  buySell: any = {};
+  lags = false;
+  type = 'market';
 
   @Input()
   get currentInstrument(): InstrumentInterface {
@@ -47,6 +51,7 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
   constructor(
     private socketService: SocketService,
     private portfolioService: PortfolioService,
+    private stockService: StockService,
   ) {
     this.socketService.eventSocketUpdate
       .pipe(takeUntil(this.unsubscribeAll))
@@ -67,4 +72,24 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
   }
 
 
+  async deal(operation: string) {
+    this.buySell.operation = operation;
+    this.buySell.count = this.count;
+    this.buySell.price = this.type === 'market' ? this.price : this.customPrice;
+    this.buySell.lags = this.lags;
+    this.buySell.instrument = this.info;
+    this.count = 0;
+    const res = await this.stockService.deal(this.buySell);
+    if (res) {
+      const portfolio = await this.portfolioService.getPortfolio();
+      this.portfolioService.portfolioUpdateEvent.next(portfolio);
+    }
+    setTimeout(() => {
+      this.count = this._info.lot;
+    }, 5000);
+  }
+
+  selectTab(value: string) {
+    this.type = value;
+  }
 }

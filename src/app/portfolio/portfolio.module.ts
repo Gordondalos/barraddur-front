@@ -22,6 +22,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { CountInfoComponent } from './count-info/count-info.component';
 import { BuySellOneComponent } from '../buy-sell-one/buy-sell-one.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 const routes: Routes = [
@@ -63,6 +64,7 @@ const routes: Routes = [
     PersonalAreaModule,
     NgApexchartsModule,
     MatButtonToggleModule,
+    MatCheckboxModule,
   ],
   exports: [
     PortfolioComponent,

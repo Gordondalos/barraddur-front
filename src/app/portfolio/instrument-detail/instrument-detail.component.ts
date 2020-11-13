@@ -48,7 +48,12 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
         if (event.payload.figi === this.figi) {
           this.price = event.payload.c;
         }
+      });
 
+    this.portfolioService.portfolioUpdateEvent
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe((portfolio) => {
+        this.currentInstrument = _.find(portfolio, (item) => item.figi === this.figi);
       });
   }
 
@@ -206,7 +211,7 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
   reformatCandles(candles: Array<CandleInterfase>) {
     const data = [];
     const val = [];
-    this.price = candles[candles.length - 1].c;
+    this.price = candles[ candles.length - 1 ].c;
     for (const item of candles) {
       // const date = new Date(+moment(item.time).format('YYYY'), +moment(item.time).format('M'), +moment(item.time).format('DD'));
       const date = new Date(moment(item.time).toISOString());
