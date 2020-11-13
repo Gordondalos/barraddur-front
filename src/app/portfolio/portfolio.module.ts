@@ -20,6 +20,7 @@ import { PersonalAreaModule } from '../personal-area/personal-area.module';
 import { InstrumentDetailComponent } from './instrument-detail/instrument-detail.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { CountInfoComponent } from './count-info/count-info.component';
 
 const routes: Routes = [
   {
@@ -38,6 +39,7 @@ const routes: Routes = [
     InstrumentsComponent,
     GroupKreatorComponent,
     InstrumentDetailComponent,
+    CountInfoComponent,
 
   ],
   imports: [

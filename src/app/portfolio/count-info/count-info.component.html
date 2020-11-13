@@ -1,0 +1,22 @@
+<section class="p16">
+
+  <ng-container *ngIf="_info && _info.currency && price && currentInstrument">
+    <div class="mat-elevation-z4 p16 ">
+
+      <div class="d-flex mb16">
+        <span>В портфеле</span>
+        <div class="bold f18 mx16">
+          {{currentInstrument.lots}}
+        </div>
+        <span>
+        <!--        {{currentInstrument.instrumentType}}-->
+        акций
+      </span>
+      </div>
+      <span class="mr16">На сумму</span>
+      <span class="bold f16">{{(price * currentInstrument.lots).toFixed(2)}}</span> {{_info.currency}}
+
+    </div>
+
+  </ng-container>
+</section>

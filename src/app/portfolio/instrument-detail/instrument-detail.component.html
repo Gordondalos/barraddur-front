@@ -1,12 +1,15 @@
 <mat-tab-group animationDuration="0ms">
   <mat-tab>
     <ng-template mat-tab-label>
-<!--      <mat-icon class="example-tab-icon">thumb_up</mat-icon>-->
+      <!--      <mat-icon class="example-tab-icon">thumb_up</mat-icon>-->
       Детали
     </ng-template>
 
     <div class="pr8">
 
+      <ng-container *ngIf="info && info.currency && price">
+        <span class="price">{{price}} {{info.currency}}</span>
+      </ng-container>
       <ng-container *ngIf="chartCandleOptions">
         <div class="chart-box">
           <div id="chart-candlestick">
@@ -45,14 +48,24 @@
         </div>
       </ng-container>
 
-<!--      <app-tv-chart-container></app-tv-chart-container>-->
+
+      <ng-container *ngIf="info">
+        <app-count-info
+          [info]="info"
+          [figi]="figi">
+        </app-count-info>
+      </ng-container>
+
+
+
+
     </div>
 
   </mat-tab>
 
   <mat-tab>
     <ng-template mat-tab-label>
-     Обзор
+      Обзор
     </ng-template>
 
     <div class="p16">

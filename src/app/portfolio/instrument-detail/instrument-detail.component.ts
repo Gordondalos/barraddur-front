@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ChartComponent } from 'ng-apexcharts';
@@ -8,6 +8,10 @@ import * as moment from 'moment';
 import { CandleInterfase } from '../../interfaces/candle.interfase';
 import { ChartOptions } from '../../interfaces/chart-options.interface';
 import { InstrumentInfoInterface } from '../../interfaces/instrument-info.interface';
+import { takeUntil } from 'rxjs/operators';
+import { SocketEventInterface } from '../../interfaces/socketEvent.interface';
+import { SocketService } from '../../services/socket.service';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -15,7 +19,7 @@ import { InstrumentInfoInterface } from '../../interfaces/instrument-info.interf
   templateUrl: './instrument-detail.component.html',
   styleUrls: ['./instrument-detail.component.scss'],
 })
-export class InstrumentDetailComponent implements OnInit {
+export class InstrumentDetailComponent implements OnInit, OnDestroy {
 
   @ViewChild('chart') chart: ChartComponent;
   public chartCandleOptions: Partial<ChartOptions>;
@@ -23,18 +27,34 @@ export class InstrumentDetailComponent implements OnInit {
 
   figi: string;
   info: InstrumentInfoInterface;
+  price: number;
+
+  private unsubscribeAll: Subject<any> = new Subject<any>();
 
   constructor(
     public route: ActivatedRoute,
     private portfolioService: PortfolioService,
+    private socketService: SocketService,
   ) {
     this.figi = route.snapshot.params.figi;
-    console.log(this.figi);
+
+    this.socketService.eventSocketUpdate
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe((event: SocketEventInterface) => {
+        if (event.payload.figi === this.figi) {
+          this.price = event.payload.c;
+        }
+
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribeAll.next();
+    this.unsubscribeAll.complete();
   }
 
   ngOnInit(): void {
     this.init();
-
   }
 
   async init(): Promise<void> {
@@ -180,6 +200,7 @@ export class InstrumentDetailComponent implements OnInit {
   reformatCandles(candles: Array<CandleInterfase>) {
     const data = [];
     const val = [];
+    this.price = candles[candles.length - 1].c;
     for (const item of candles) {
       // const date = new Date(+moment(item.time).format('YYYY'), +moment(item.time).format('M'), +moment(item.time).format('DD'));
       const date = new Date(moment(item.time).toISOString());
