@@ -12,6 +12,8 @@ import { takeUntil } from 'rxjs/operators';
 import { SocketEventInterface } from '../../interfaces/socketEvent.interface';
 import { SocketService } from '../../services/socket.service';
 import { Subject } from 'rxjs';
+import { InstrumentInterface } from '../../interfaces/instrumentInterface';
+import * as _ from 'lodash';
 
 
 @Component({
@@ -28,8 +30,10 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
   figi: string;
   info: InstrumentInfoInterface;
   price: number;
+  currentInstrument: InstrumentInterface;
 
   private unsubscribeAll: Subject<any> = new Subject<any>();
+
 
   constructor(
     public route: ActivatedRoute,
@@ -53,8 +57,10 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
     this.unsubscribeAll.complete();
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<any> {
     this.init();
+    const portfolio = await this.portfolioService.getPortfolio();
+    this.currentInstrument = _.find(portfolio, (item) => item.figi === this.figi);
   }
 
   async init(): Promise<void> {

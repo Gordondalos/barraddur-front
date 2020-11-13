@@ -4,7 +4,8 @@ export interface InstrumentInterface {
   figi: string;
   instrumentType: string;
   isin?: string;
-  lots: number;
+  lots?: number;
+  lot?: number;
   name: string;
   ticker: string;
   price: number;

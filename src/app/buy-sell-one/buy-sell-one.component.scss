@@ -1,0 +1,15 @@
+@import "~iiko-styles/style/variables";
+.mw49 {
+  width: 48%;
+  flex-grow: 1;
+}
+
+mat-tab-group {
+  background-color: $light-blue;
+}
+
+::ng-deep {
+  .mat-tab-label-content {
+    font-weight: bold;
+  }
+}

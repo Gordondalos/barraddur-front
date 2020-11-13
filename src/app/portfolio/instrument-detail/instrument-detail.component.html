@@ -5,7 +5,7 @@
       Детали
     </ng-template>
 
-    <div class="pr8">
+    <div>
 
       <ng-container *ngIf="info && info.currency && price">
         <span class="price">{{price}} {{info.currency}}</span>
@@ -33,7 +33,8 @@
 
           </div>
 
-          <div id="chart-bar" class="mt16">
+          <span class="mt16 d-block bold mx16">Объем торгов</span>
+          <div id="chart-bar" class="mt0">
             <apx-chart
               #chartBar
               [series]="chartBarOptions.series"
@@ -52,11 +53,19 @@
       <ng-container *ngIf="info">
         <app-count-info
           [info]="info"
+          [currentInstrument]="currentInstrument"
           [figi]="figi">
         </app-count-info>
       </ng-container>
 
-
+      <ng-container *ngIf="info && currentInstrument">
+        <app-buy-sell-one
+          class="mt16 d-block"
+          [info]="info"
+          [currentInstrument]="currentInstrument"
+          [figi]="figi"
+        ></app-buy-sell-one>
+      </ng-container>
 
 
     </div>

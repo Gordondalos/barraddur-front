@@ -22,32 +22,35 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
 
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
-  imports: [
-    HttpClientModule,
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HeaderModule,
-    NavbarModule,
-    MatSidenavModule,
-    MatNativeDateModule,
-    CommonComponentModule,
-    MatDialogModule,
-    LockScreenModule,
-    SocketIoModule.forRoot(config),
-    PortfolioModule,
-  ],
-  providers: [
-    HttpClient,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+    ],
+    imports: [
+        HttpClientModule,
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        HeaderModule,
+        NavbarModule,
+        MatSidenavModule,
+        MatNativeDateModule,
+        CommonComponentModule,
+        MatDialogModule,
+        LockScreenModule,
+        SocketIoModule.forRoot(config),
+        PortfolioModule,
+    ],
+    providers: [
+        HttpClient,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true,
+        },
+    ],
+    exports: [
+
+    ],
+    bootstrap: [AppComponent],
 })
 export class AppModule { }

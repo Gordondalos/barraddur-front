@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { LoginModule } from './login/login.module';
+import { UserAuthDirective } from './directives/user-auth.directive';
 
 
 const routes = [
@@ -30,6 +31,7 @@ const routes = [
 @NgModule({
   declarations: [
     RegistrationComponent,
+    UserAuthDirective
   ],
   imports: [
     CommonModule,

@@ -4,7 +4,8 @@ import { User } from '../interfaces/user.model';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CanActivateService } from '../services/can-activate.service';
-import { LocalstorageService } from '../../../services/localstorage.service';
+import { LocalstorageService } from '../../services/localstorage.service';
+
 
 @Directive({
   selector: '[iikoUserAuth]',

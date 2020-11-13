@@ -21,6 +21,8 @@ import { InstrumentDetailComponent } from './instrument-detail/instrument-detail
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { CountInfoComponent } from './count-info/count-info.component';
+import { BuySellOneComponent } from '../buy-sell-one/buy-sell-one.component';
+
 
 const routes: Routes = [
   {
@@ -40,6 +42,7 @@ const routes: Routes = [
     GroupKreatorComponent,
     InstrumentDetailComponent,
     CountInfoComponent,
+    BuySellOneComponent
 
   ],
   imports: [

@@ -1,26 +1,23 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { InstrumentInfoInterface } from '../../interfaces/instrument-info.interface';
+import { InstrumentInfoInterface } from '../interfaces/instrument-info.interface';
+import { InstrumentInterface } from '../interfaces/instrumentInterface';
 import { takeUntil } from 'rxjs/operators';
-import { SocketEventInterface } from '../../interfaces/socketEvent.interface';
-import { SocketService } from '../../services/socket.service';
+import { SocketEventInterface } from '../interfaces/socketEvent.interface';
+import { SocketService } from '../services/socket.service';
+import { PortfolioService } from '../services/portfolio.service';
 import { Subject } from 'rxjs';
-import { PortfolioService } from '../../services/portfolio.service';
-import * as _ from 'lodash';
-import { InstrumentInterface } from '../../interfaces/instrumentInterface';
 
 @Component({
-  selector: 'app-count-info',
-  templateUrl: './count-info.component.html',
-  styleUrls: ['./count-info.component.scss'],
+  selector: 'app-buy-sell-one',
+  templateUrl: './buy-sell-one.component.html',
+  styleUrls: ['./buy-sell-one.component.scss'],
 })
-export class CountInfoComponent implements OnInit, OnDestroy {
+export class BuySellOneComponent implements OnInit, OnDestroy {
 
   _info: InstrumentInfoInterface;
   price: number;
 
-  @Input() figi: string;
-
- _currentInstrument: InstrumentInterface;
+  _currentInstrument: InstrumentInterface;
 
   @Input()
   get currentInstrument(): InstrumentInterface {
@@ -31,6 +28,7 @@ export class CountInfoComponent implements OnInit, OnDestroy {
     this._currentInstrument = currentInstrument;
   }
 
+  @Input() figi: string;
 
 
   @Input()
@@ -42,7 +40,9 @@ export class CountInfoComponent implements OnInit, OnDestroy {
     this._info = info;
   }
 
+  count = 1;
   private unsubscribeAll: Subject<any> = new Subject<any>();
+  customPrice: number;
 
   constructor(
     private socketService: SocketService,
@@ -57,14 +57,14 @@ export class CountInfoComponent implements OnInit, OnDestroy {
       });
   }
 
+  ngOnInit(): void {
+    this.count = this._info.lot;
+  }
+
   ngOnDestroy(): void {
     this.unsubscribeAll.next();
     this.unsubscribeAll.complete();
   }
 
-
-  ngOnInit(): void {
-
-  }
 
 }
