@@ -1,52 +1,57 @@
 <div class="header">
-  <ng-container *ngIf="!isDetailInstrument">
-    <div class="d-flex align-items-center">
+  <div class="header-wrapper">
 
-      <div class="mr-auto">
-        <button mat-icon-button (click)="sidenav.toggle()">
-          <img class="logo" src="assets/images/logos/logo.png" alt="logo">
-        </button>
-      </div>
-      <!--    <mat-icon class="f24 ml16" (click)="showSideBar()">menu</mat-icon>-->
-    </div>
-  </ng-container>
+    <ng-container *ngIf="!isDetailInstrument">
+      <div class="d-flex align-items-center">
 
-
-  <div class="d-flex align-items-center">
-    <ng-container *ngIf="currentInstrument && isDetailInstrument">
-      <mat-icon class="f24 mx16" (click)="goBack()">keyboard_backspace</mat-icon>
-      <div>
-        <div >{{currentInstrument.name}}</div>
-        <div class="f10 text-gray">{{currentInstrument.ticker}}</div>
+        <div class="mr-auto">
+          <button mat-icon-button (click)="sidenav.toggle()">
+            <img class="logo" src="assets/images/logos/logo.png" alt="logo">
+          </button>
+        </div>
+        <!--    <mat-icon class="f24 ml16" (click)="showSideBar()">menu</mat-icon>-->
       </div>
     </ng-container>
+
+
+    <div class="d-flex align-items-center">
+      <ng-container *ngIf="currentInstrument && isDetailInstrument">
+        <mat-icon class="f24 mx16 pointer" (click)="goBack()">keyboard_backspace</mat-icon>
+        <div>
+          <div >{{currentInstrument.name}}</div>
+          <div class="f10 text-gray">{{currentInstrument.ticker}}</div>
+        </div>
+      </ng-container>
+    </div>
+
+
+
+
+    <!--  <ng-container *ngFor="let item of balance">-->
+    <!--    <div class="d-flex align-items-center balance-padding">-->
+    <!--      <span>{{item.currency}}: {{item.balance}}</span>-->
+    <!--    </div>-->
+    <!--  </ng-container>-->
+
+    <ng-container *ngIf="showTitle">
+      <div class="f-gr-1 mx16" id="mydivHeader"></div>
+    </ng-container>
+
+
+    <div class="theme d-flex align-items-center">
+      <!--    <mat-select name="themeSelect"-->
+      <!--                placeholder="тема"-->
+      <!--                [(ngModel)]="themeSelect"-->
+      <!--                (ngModelChange)="changeThemeColor($event)">-->
+      <!--      <mat-option value="light">Светлая</mat-option>-->
+      <!--      <mat-option value="dark">темная</mat-option>-->
+      <!--    </mat-select>-->
+      <mat-icon class="f24" (click)="logout()">exit_to_app</mat-icon>
+
+
+    </div>
+
   </div>
 
-
-
-
-<!--  <ng-container *ngFor="let item of balance">-->
-<!--    <div class="d-flex align-items-center balance-padding">-->
-<!--      <span>{{item.currency}}: {{item.balance}}</span>-->
-<!--    </div>-->
-<!--  </ng-container>-->
-
-  <ng-container *ngIf="showTitle">
-    <div class="f-gr-1 mx16" id="mydivHeader"></div>
-  </ng-container>
-
-
-  <div class="theme d-flex align-items-center">
-<!--    <mat-select name="themeSelect"-->
-<!--                placeholder="тема"-->
-<!--                [(ngModel)]="themeSelect"-->
-<!--                (ngModelChange)="changeThemeColor($event)">-->
-<!--      <mat-option value="light">Светлая</mat-option>-->
-<!--      <mat-option value="dark">темная</mat-option>-->
-<!--    </mat-select>-->
-    <mat-icon class="f24" (click)="logout()">exit_to_app</mat-icon>
-
-
-</div>
 
 </div>

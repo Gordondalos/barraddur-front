@@ -5,10 +5,10 @@
       Детали
     </ng-template>
 
-    <div>
+    <div class="wrapper">
 
       <ng-container *ngIf="info && info.currency && price">
-        <span class="price">{{price}} {{info.currency}}</span>
+        <span class="price d-block text-right">{{price}} {{info.currency}}</span>
       </ng-container>
       <ng-container *ngIf="chartCandleOptions">
         <div class="chart-box">

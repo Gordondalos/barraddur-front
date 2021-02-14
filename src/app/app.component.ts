@@ -15,7 +15,7 @@ import { SocketService } from './services/socket.service';
   animations: [onMainContentChange],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  title = 'tinkoff-front';
+  title = 'baraddur';
   onSideNavChange: boolean;
   isWelcome = false;
   userName = '';
@@ -30,9 +30,10 @@ export class AppComponent implements OnInit, OnDestroy {
     public router: Router,
     private socketService: SocketService,
   ) {
-    this.sidenavService.sideNavState$.subscribe(res => {
-      this.onSideNavChange = res;
-    });
+    this.sidenavService.sideNavState$
+      .subscribe(res => {
+        this.onSideNavChange = res;
+      });
 
     // this.welcome();
 
@@ -76,6 +77,6 @@ export class AppComponent implements OnInit, OnDestroy {
     // this.portfolio = portfolio;
     //
     // await this.socketService.startSubscribtion(this.portfolio);
-     this.socketService.connect();
+    this.socketService.connect();
   }
 }

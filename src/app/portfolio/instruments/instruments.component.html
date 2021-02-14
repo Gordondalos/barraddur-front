@@ -2,7 +2,7 @@
   <h3 class="bold px16 mb0 mt16">Инструменты</h3>
   <mat-list role="list">
     <ng-container *ngFor="let item of portfolio">
-      <mat-list-item (click)="openDetail(item)" class="list-item" role="listitem">
+      <mat-list-item (click)="openDetail(item)" class="list-item pointer" role="listitem">
         <div class="ticker mr16">
           <ng-container *ngIf="item.ticker.length <= 5">
             <span>{{item.ticker}}</span>

@@ -109,7 +109,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     if (user) {
       this.getBalance().then();
     }
-    this.showTitle = window.innerWidth > 968;
+    // this.showTitle = window.innerWidth > 968;
+    this.showTitle = true;
   }
 
   async getBalance(): Promise<void> {

@@ -3,6 +3,11 @@
   padding-left: 7px;
   background: var(--navbar-bg-color);
   color: var(--navbar-text-color);
+}
+
+.header-wrapper {
+  max-width: 650px;
+  margin: auto;
   display: flex;
 }
 

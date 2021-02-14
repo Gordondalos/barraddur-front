@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
 import { InstrumentInfoInterface } from '../interfaces/instrument-info.interface';
 import { InstrumentInterface } from '../interfaces/instrumentInterface';
 import { takeUntil } from 'rxjs/operators';
@@ -89,7 +89,9 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
     }, 5000);
   }
 
-  selectTab(value: string) {
+  selectTab(value: string, elem: ElementRef | any) {
     this.type = value;
+    console.log(elem);
+    elem.nativeElement.scrollIntoView();
   }
 }

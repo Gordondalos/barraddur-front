@@ -82,7 +82,8 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.settings = this.localStorageService.get('gridPortfoloSettings');
-    this.show = window.innerWidth > 968;
+    // this.show = window.innerWidth > 968;
+    this.show = false;
   }
 
   ngOnDestroy(): void {
