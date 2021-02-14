@@ -94,4 +94,5 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
     console.log(elem);
     elem.nativeElement.scrollIntoView();
   }
+
 }

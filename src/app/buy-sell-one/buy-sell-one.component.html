@@ -28,7 +28,7 @@
 
 
   </mat-tab>
-  <mat-tab (click)="selectTab('limit')" label="По лимитной" class="w-50">
+  <mat-tab #elem1 (click)="selectTab('limit', elem1)" label="По лимитной" class="w-50">
     <div class="p16" *ngIf="price">
       <div class="d-flex mt16">
         <mat-form-field appearance="outline" class="mw49 mr8 f-gr-1">
@@ -55,5 +55,4 @@
 
     </div>
   </mat-tab>
-
 </mat-tab-group>
