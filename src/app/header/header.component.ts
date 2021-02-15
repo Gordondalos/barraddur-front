@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   themeSelect: string;
   balance: Array<{ currency: string, balance: number }>;
   showTitle = false;
+  showBuy = false;
 
   currentInstrument: InstrumentInterface;
   isDetailInstrument: boolean;
@@ -46,6 +47,14 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
           } else {
             this.isDetailInstrument = false;
           }
+
+          if (this.router.url.indexOf('portfolio/buy') !== -1) {
+            this.showBuy = true;
+          } else {
+            this.showBuy = false;
+          }
+
+
         }
       });
 
@@ -62,42 +71,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
   ngAfterViewInit() {
-
-//     if (this.showTitle) {
-//       postscribe('#mydivHeader', `
-//    <!-- TradingView Widget BEGIN -->
-// <div class="tradingview-widget-container">
-//   <div class="tradingview-widget-container__widget"></div>
-//   <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
-//   {
-//   "symbols": [
-//     {
-//       "proName": "FOREXCOM:SPXUSD",
-//       "title": "S&P 500"
-//     },
-//     {
-//       "proName": "FOREXCOM:NSXUSD",
-//       "title": "NASDAQ 100"
-//     },
-//     {
-//       "proName": "FX_IDC:EURUSD",
-//       "title": "EUR/USD"
-//     },
-//     {
-//       "proName": "BITSTAMP:BTCUSD",
-//       "title": "BTC/USD"
-//     }
-//   ],
-//   "colorTheme": "dark",
-//   "isTransparent": true,
-//   "locale": "ru"
-// }
-//   </script>
-// </div>
-// <!-- TradingView Widget END -->
-//     `);
-//     }
-
 
   }
 

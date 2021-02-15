@@ -1,0 +1,33 @@
+@import "~iiko-styles/style/variables";
+
+.icon {
+  background-color: $black;
+  color: $white;
+  border-radius: 100%;
+  margin-right: 16px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font-size: 10px;
+  justify-items: center;
+  justify-content: center;
+}
+
+
+cdk-virtual-scroll-viewport{
+  height: calc(100vh - 150px);
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.b-b {
+  border-bottom: 1px solid $light-gray;
+}

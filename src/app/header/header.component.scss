@@ -1,3 +1,32 @@
+
+:host {
+  ::ng-deep {
+    mat-form-field.mat-form-field.mat-form-field-appearance-outline > div.mat-form-field-wrapper > div.mat-form-field-flex > div.mat-form-field-infix  { padding: 0.4em 0px }
+    mat-form-field.mat-form-field.mat-form-field-appearance-outline > div.mat-form-field-wrapper > div.mat-form-field-flex > div.mat-form-field-infix > span.mat-form-field-label-wrapper { top: -1.5em; }
+
+    .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+      transform: translateY(-1.1em) scale(.75);
+      width: 133.33333%;
+    }
+    .mat-form-field-wrapper {
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+    /* Border */
+    .mat-form-field-appearance-outline .mat-form-field-outline {
+      color: white !important;
+    }
+    /* Font color */
+    input.mat-input-element {
+      color: white;
+    }
+    .mat-form-field-label {
+      color: white  !important;
+    }
+  }
+}
+
+
 .header {
   background: var(--navbar-bg-color);
   color: var(--navbar-text-color);
@@ -11,6 +40,7 @@
   padding-left: 16px;
   padding-right: 16px;
   box-sizing: border-box;
+  min-height: 52px;
 }
 
 .btn {
@@ -48,7 +78,7 @@
 }
 
 .balance-padding {
-  padding: 0 10px;
+  padding: 0 5px;
 }
 
 .mr-auto {

@@ -74,7 +74,7 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
     this.socketService.eventSocketUpdate
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((event: SocketEventInterface) => {
-        console.log(event.payload.figi);
+        // console.log(event.payload.figi);
         this.updateDataInPortfolio(event);
       });
 

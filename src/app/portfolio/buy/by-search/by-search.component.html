@@ -1,0 +1,11 @@
+<ng-container *ngIf="instruments">
+  <cdk-virtual-scroll-viewport itemSize="50" class="h100">
+    <div (click)="openDetail(item)" *cdkVirtualFor="let item of instruments" class="px16 py3 b-b d-flex align-items-center pointer">
+      <div class="icon">
+        {{item.ticker}}
+      </div>
+      {{item.name}}
+    </div>
+  </cdk-virtual-scroll-viewport>
+</ng-container>
+

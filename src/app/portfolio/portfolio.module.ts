@@ -23,6 +23,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { CountInfoComponent } from './count-info/count-info.component';
 import { BuySellOneComponent } from '../buy-sell-one/buy-sell-one.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { BuyComponent } from './buy/buy.component';
+import { BySearchComponent } from './buy/by-search/by-search.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
 const routes: Routes = [
@@ -34,6 +37,11 @@ const routes: Routes = [
     path: 'detail/:figi',
     component: InstrumentDetailComponent,
   },
+
+  {
+    path: 'buy',
+    component: BuyComponent,
+  },
 ];
 
 @NgModule({
@@ -43,7 +51,9 @@ const routes: Routes = [
     GroupKreatorComponent,
     InstrumentDetailComponent,
     CountInfoComponent,
-    BuySellOneComponent
+    BuySellOneComponent,
+    BuyComponent,
+    BySearchComponent
 
   ],
   imports: [
@@ -65,6 +75,7 @@ const routes: Routes = [
     NgApexchartsModule,
     MatButtonToggleModule,
     MatCheckboxModule,
+    ScrollingModule,
   ],
   exports: [
     PortfolioComponent,

@@ -1,5 +1,10 @@
 <ng-container *ngIf="!show">
-  <h3 class="bold px16 mb0 mt16">Инструменты</h3>
+  <div class="d-flex align-items-center mt16 px16">
+    <h3 class="bold mb0">Инструменты</h3>
+    <div class="f-gr-1"></div>
+    <button [routerLink]="['/portfolio/buy']" mat-raised-button color="primary">Что купить</button>
+  </div>
+
   <mat-list role="list">
     <ng-container *ngFor="let item of portfolio">
       <mat-list-item (click)="openDetail(item)" class="list-item pointer" role="listitem">
