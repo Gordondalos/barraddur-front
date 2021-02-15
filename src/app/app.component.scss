@@ -18,8 +18,9 @@
 //  width: 100vw;
 //}
 
+
 .sidenav-container {
-  height: calc(100vh - 60px);
+  height: calc(100vh - 55px);
 }
 
 .main_content {
@@ -27,6 +28,9 @@
   height: calc(100vh - 66px);
   background: var(--bg-color);
   color: var(--text-color);
+  max-width: 600px;
+  margin: auto;
+  box-sizing: border-box;
 }
 
 mat-sidenav {
