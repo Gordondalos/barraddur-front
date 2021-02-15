@@ -3,15 +3,25 @@ import { News } from 'src/app/interfaces/news.interface';
 import { FeedService } from 'src/app/services/feed.service';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
+import { FixedSizeVirtualScrollStrategy, VIRTUAL_SCROLL_STRATEGY } from '@angular/cdk/scrolling';
+
+
+// export class CustomVirtualScrollStrategy extends FixedSizeVirtualScrollStrategy {
+//   constructor() {
+//     super(40, 2000, 2500);
+//   }
+// }
 
 @Component({
   selector: 'app-news-bar',
   templateUrl: './news-bar.component.html',
   styleUrls: ['./news-bar.component.scss'],
+  // providers: [{provide: VIRTUAL_SCROLL_STRATEGY, useClass: CustomVirtualScrollStrategy}]
+  // providers: [{provide: VIRTUAL_SCROLL_STRATEGY}]
 })
 
 export class NewsBarComponent implements OnInit {
-  from: any = moment().subtract(15, 'day').format('YYYY-MM-DD');
+  from: any = moment().subtract(200, 'day').format('YYYY-MM-DD');
   to: any = moment().format('YYYY-MM-DD');
   news: News[] = [];
 

@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  width: 100%;
+}
+.example-viewport {
+  min-height: calc(100vh - 233px);
+  max-width: 100%;
+}
+.example-item {
+  width: 100%;
+}
+
+.readed {
+  font-weight: bold !important;
+}
+
+.ellipsis {
+  max-width: 90%;
+}

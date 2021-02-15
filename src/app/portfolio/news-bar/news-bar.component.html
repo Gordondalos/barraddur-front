@@ -1,0 +1,50 @@
+<!--<mat-list>-->
+
+
+<!--  <mat-list-item class="pointer" *ngFor="let nw of news"-->
+<!--  (click)='openNewsDetail(nw.id);nw.read = !nw.read'>-->
+<!--    <div mat-line> {{nw.date_create | date}} </div>-->
+<!--    <mat-divider></mat-divider>-->
+<!--    <div mat-line [ngClass]='{"readed":!nw.read}'>{{nw.title}}</div>-->
+<!--  </mat-list-item>-->
+<!--</mat-list>-->
+
+
+<div class="d-flex px16 mt16">
+  <mat-form-field color="accent">
+    <mat-label>От</mat-label>
+    <input matInput [matDatepicker]="picker1"
+           [(ngModel)]='from'
+           [ngModelOptions]="{standalone: true}"
+           (ngModelChange)='loadNews()'
+    >
+    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field color="accent">
+    <mat-label>До</mat-label>
+    <input matInput [matDatepicker]="picker2"
+           [(ngModel)]='to'
+           [ngModelOptions]="{standalone: true}"
+           (ngModelChange)='loadNews()'
+    >
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2 color="primary"></mat-datepicker>
+  </mat-form-field>
+</div>
+
+<h3 class="px16">Новости</h3>
+
+<cdk-virtual-scroll-viewport
+                             itemSize="40"
+                             minBufferPx="640"
+                             maxBufferPx="700"
+                             class="example-viewport">
+  <div  *cdkVirtualFor="let nw of news"
+       class="example-item px16">
+    <div class="text-gray"><small>{{nw.date_create | date}}</small></div>
+    <div>{{ nw.title }} <span class="f10 pointer text-info"  (click)='openNewsDetail(nw.id);nw.read = !nw.read'>Подробнее</span></div>
+      </div>
+</cdk-virtual-scroll-viewport>
+
+

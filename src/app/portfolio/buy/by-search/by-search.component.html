@@ -1,5 +1,7 @@
 <ng-container *ngIf="instruments">
-  <cdk-virtual-scroll-viewport itemSize="50" class="h100">
+  <cdk-virtual-scroll-viewport  itemSize="50"
+                                minBufferPx="1000"
+                                maxBufferPx="1500" class="h100">
     <div (click)="openDetail(item)" *cdkVirtualFor="let item of instruments | filterInstruments: searchString" class="px16 py3 b-b d-flex align-items-center pointer">
       <div class="icon">
         {{item.ticker}}

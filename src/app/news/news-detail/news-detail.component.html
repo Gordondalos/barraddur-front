@@ -1,10 +1,11 @@
-<mat-card class="p32" *ngIf='nw'>
-  <small>{{nw.date_create | date}}</small>
-  <h1>{{nw.title}}</h1>
-  <img *ngIf='nw.img' mat-card-image [src]="nw.img" [alt]="nw.title">
-  <p>{{nw.description}}</p>
-</mat-card>
+<ng-container *ngIf="nw">
+ <div class="p16">
+   <small>{{nw.date_create | date}}</small>
+   <h1>{{nw.title}}</h1>
+   <img *ngIf='nw.img' mat-card-image [src]="nw.img" [alt]="nw.title">
+   <p>{{nw.description}}</p>
+ </div>
 
-<div *ngIf='!nw'>
-    <h1>Выберите новость в списке слева</h1>
-</div>
+  <button mat-raised-button color="primary" class="mx16" (click)="goBack()">Назад</button>
+</ng-container>
+

@@ -8,7 +8,6 @@ import { MatButtonModule } from '@angular/material/button';
 
 
 import { NewsComponent } from './news.component';
-import { NewsBarComponent } from './news-bar/news-bar.component';
 import { NewsDetailComponent } from './news-detail/news-detail.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
@@ -22,21 +21,13 @@ const routes: Routes = [
   },
   {
     path: ':id',
-    component: NewsComponent,
-    children: [
-      {
-        path: '',
-        component: NewsDetailComponent
-      }
-    ]
+    component: NewsDetailComponent,
   },
-
-]
+];
 
 @NgModule({
   declarations: [
     NewsComponent,
-    NewsBarComponent,
     NewsDetailComponent
   ],
   imports: [
@@ -53,7 +44,6 @@ const routes: Routes = [
   ],
     exports: [
         NewsComponent,
-        NewsBarComponent,
     ],
 })
 export class NewsModule { }

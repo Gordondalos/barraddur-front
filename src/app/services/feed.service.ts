@@ -23,7 +23,7 @@ export class FeedService extends FatherService {
     return this.get(url)
       .then((res: any) => {
         if (res) {
-          return res.data;
+          return res;
         }
       });
   }

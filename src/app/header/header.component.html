@@ -1,7 +1,10 @@
 <div class="header">
   <div class="header-wrapper h100 align-items-center">
-
     <ng-container *ngIf="showBuy">
+<!--      <mat-icon [routerLink]="['/']" class="mr16 pointer">home</mat-icon>-->
+      <button class="mr16" mat-icon-button [routerLink]="['/portfolio']" [queryParams]="{open: 'portfolio'}">
+        <img class="logo" src="assets/images/logos/logo.png" alt="logo">
+      </button>
       <mat-icon (click)="goBack()" class="f24 mr16 pointer">keyboard_backspace</mat-icon>
       <h3 class="mb0">Что купить</h3>
       <mat-form-field class="f-gr-1 mx16" appearance="outline" color="accent">
@@ -17,7 +20,9 @@
     <ng-container *ngIf="!isDetailInstrument && !showBuy">
       <div class="d-flex align-items-center my6">
         <div class="mr-auto">
-          <button mat-icon-button (click)="sidenav.toggle()">
+<!--          <mat-icon [routerLink]="['/']" class="mr16 pointer">home</mat-icon>-->
+
+          <button mat-icon-button [routerLink]="['/portfolio']" [queryParams]="{open: 'portfolio'}">
             <img class="logo" src="assets/images/logos/logo.png" alt="logo">
           </button>
         </div>
@@ -27,7 +32,11 @@
 
 
     <div class="d-flex align-items-center">
+
       <ng-container *ngIf="currentInstrument && isDetailInstrument">
+        <button class="mr16" mat-icon-button [routerLink]="['/portfolio']" [queryParams]="{open: 'portfolio'}">
+          <img class="logo" src="assets/images/logos/logo.png" alt="logo">
+        </button>
         <mat-icon class="f24 mr16 pointer" (click)="goBack()">keyboard_backspace</mat-icon>
         <div class="d-flex py16">
           <div>{{currentInstrument.name}}</div>

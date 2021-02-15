@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { GroupService } from '../../../services/group.service';
-import { Stock } from '../../../interfaces/stock.interface';
 import { InstrumentInterface } from '../../../interfaces/instrumentInterface';
 import { Router } from '@angular/router';
 import { PortfolioService } from '../../../services/portfolio.service';
@@ -34,7 +33,6 @@ export class BySearchComponent implements OnInit, AfterViewInit {
   async init() {
     const res = await this.groupService.getData();
     this.instruments = res.result.instruments;
-    console.log(this.instruments);
   }
 
   ngAfterViewInit() {

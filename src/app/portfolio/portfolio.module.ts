@@ -26,6 +26,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { BuyComponent } from './buy/buy.component';
 import { BySearchComponent } from './buy/by-search/by-search.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { NewsBarComponent } from './news-bar/news-bar.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 
 const routes: Routes = [
@@ -53,7 +55,8 @@ const routes: Routes = [
     CountInfoComponent,
     BuySellOneComponent,
     BuyComponent,
-    BySearchComponent
+    BySearchComponent,
+    NewsBarComponent,
 
   ],
   imports: [
@@ -76,6 +79,7 @@ const routes: Routes = [
     MatButtonToggleModule,
     MatCheckboxModule,
     ScrollingModule,
+    MatDatepickerModule,
   ],
   exports: [
     PortfolioComponent,
