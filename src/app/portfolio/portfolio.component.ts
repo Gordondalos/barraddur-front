@@ -45,7 +45,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
             this.openTab(3);
             break;
           default:
-            this.openTab(1);
+            this.openTab(0);
         }
 
       }
