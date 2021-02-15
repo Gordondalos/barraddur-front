@@ -3,12 +3,12 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { ThemeService } from '../services/theme.service';
 import { PortfolioService } from '../services/portfolio.service';
 import { LocalstorageService } from '../services/localstorage.service';
-import postscribe from 'postscribe';
 import { AuthService } from '../auth/services/auth.service';
 import { InstrumentInterface } from '../interfaces/instrumentInterface';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   isDetailInstrument: boolean;
 
   private unsubscribeAll: Subject<any> = new Subject<any>();
+  search: string;
 
   constructor(
     public themeService: ThemeService,
@@ -33,6 +34,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     private authService: AuthService,
     private localstorageService: LocalstorageService,
     private router: Router,
+    private _location: Location,
   ) {
     this.portfolioService.updateBalanceEvent.subscribe((res) => {
       this.getBalance().then();
@@ -54,6 +56,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
             this.showBuy = false;
           }
 
+          this.search = '';
 
         }
       });
@@ -103,6 +106,11 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   goBack() {
-    this.router.navigateByUrl('/portfolio');
+    this._location.back();
+  }
+
+
+  searchChange(event: string) {
+    this.portfolioService.searchEvent.next(event);
   }
 }

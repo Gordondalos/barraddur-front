@@ -2,11 +2,14 @@
   <div class="header-wrapper h100 align-items-center">
 
     <ng-container *ngIf="showBuy">
-      <mat-icon [routerLink]="['/']" class="f24 mr16 pointer">keyboard_backspace</mat-icon>
+      <mat-icon (click)="goBack()" class="f24 mr16 pointer">keyboard_backspace</mat-icon>
       <h3 class="mb0">Что купить</h3>
       <mat-form-field class="f-gr-1 mx16" appearance="outline" color="accent">
         <mat-label>Поиск</mat-label>
-        <input matInput placeholder="Поиск...">
+        <input (ngModelChange)="searchChange($event)" [(ngModel)]="search" matInput placeholder="Поиск...">
+        <button mat-button *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="search=''">
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
 
     </ng-container>

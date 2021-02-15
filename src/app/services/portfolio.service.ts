@@ -11,6 +11,7 @@ export class PortfolioService extends FatherService {
   updateBalanceEvent = new Subject();
   instrumentEvent = new Subject();
   portfolioUpdateEvent = new Subject();
+  searchEvent = new Subject();
 
   constructor(public httpClient: HttpClient) {
     super(httpClient);

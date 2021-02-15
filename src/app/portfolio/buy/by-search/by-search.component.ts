@@ -14,6 +14,7 @@ export class BySearchComponent implements OnInit, AfterViewInit {
   @Input() type: string;
   @Input() label: string;
   instruments: InstrumentInterface[];
+  searchString = '';
 
 
   constructor(
@@ -21,6 +22,9 @@ export class BySearchComponent implements OnInit, AfterViewInit {
     private router: Router,
     private portfolioService: PortfolioService,
   ) {
+    this.portfolioService.searchEvent.subscribe((search: string) => {
+      this.searchString = search;
+    });
   }
 
   ngOnInit(): void {

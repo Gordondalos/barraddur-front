@@ -7,13 +7,15 @@ import { FormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FilterInstrumentsPipe } from './filter-instruments.pipe';
 
 
 @NgModule({
-  declarations: [BuySellComponent],
-  exports: [
-    BuySellComponent,
-  ],
+  declarations: [BuySellComponent, FilterInstrumentsPipe],
+    exports: [
+        BuySellComponent,
+        FilterInstrumentsPipe,
+    ],
   imports: [
     CommonModule,
     MatFormFieldModule,
