@@ -19,7 +19,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
   balance: Array<{ currency: string, balance: number }>;
 
   instr: any;
-  tabIndex = 1;
+  tabIndex = 0;
 
   constructor(
     public portfolioService: PortfolioService,
