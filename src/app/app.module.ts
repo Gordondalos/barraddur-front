@@ -17,8 +17,10 @@ import { LockScreenModule } from './auth/lock-screen/lock-screen.module';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { PortfolioModule } from './portfolio/portfolio.module';
+import { environment } from '../environments/environment';
 
-const config: SocketIoConfig = { url: 'http://baraddur.ru:5000', options: {} };
+
+const config: SocketIoConfig = { url: environment.SOCKET_URL, options: {} };
 
 
 @NgModule({
