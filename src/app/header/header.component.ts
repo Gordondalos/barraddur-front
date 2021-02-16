@@ -18,7 +18,6 @@ import {Location} from '@angular/common';
 export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   @Input() sidenav: MatSidenav;
   themeSelect: string;
-  balance: Array<{ currency: string, balance: number }>;
   showTitle = false;
   showBuy = false;
 
@@ -27,6 +26,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private unsubscribeAll: Subject<any> = new Subject<any>();
   search: string;
+  showSearch = false;
 
   constructor(
     public themeService: ThemeService,
@@ -36,9 +36,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     private router: Router,
     private _location: Location,
   ) {
-    this.portfolioService.updateBalanceEvent.subscribe((res) => {
-      this.getBalance().then();
-    });
 
     this.router.events
       .pipe(takeUntil(this.unsubscribeAll))
@@ -80,18 +77,11 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   async ngOnInit(): Promise<any> {
 
     this.currentInstrument = this.localstorageService.get('currentInstrument');
-
-    const user = this.localstorageService.get('user');
-    if (user) {
-      this.getBalance().then();
-    }
     // this.showTitle = window.innerWidth > 968;
     this.showTitle = true;
   }
 
-  async getBalance(): Promise<void> {
-    this.balance = await this.portfolioService.getBalance();
-  }
+
 
   changeThemeColor(theme) {
     this.themeService.applyTheme(theme);

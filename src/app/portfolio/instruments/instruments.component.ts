@@ -23,6 +23,7 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
   gridColumnApi: any;
   gridOptionsApi: any;
   gridApi: any;
+  balance: Array<{ currency: string, balance: number }>;
 
   settings: any;
   show = true;
@@ -52,7 +53,12 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
     public localStorageService: LocalstorageService,
     public socketService: SocketService,
     private router: Router,
+    private localstorageService: LocalstorageService,
   ) {
+    this.portfolioService.updateBalanceEvent.subscribe((res) => {
+      this.getBalance().then();
+    });
+
     this.router.events
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((res) => {
@@ -84,6 +90,11 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
     this.settings = this.localStorageService.get('gridPortfoloSettings');
     // this.show = window.innerWidth > 968;
     this.show = false;
+
+    const user = this.localstorageService.get('user');
+    if (user) {
+      this.getBalance().then();
+    }
   }
 
   ngOnDestroy(): void {
@@ -154,6 +165,10 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.portfolioService.instrumentEvent.next(item);
     }, 10);
+  }
+
+  async getBalance(): Promise<void> {
+    this.balance = await this.portfolioService.getBalance();
   }
 }
 

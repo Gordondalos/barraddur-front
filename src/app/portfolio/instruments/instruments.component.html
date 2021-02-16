@@ -5,6 +5,14 @@
     <button [routerLink]="['/portfolio/buy']" mat-raised-button color="primary">Что купить</button>
   </div>
 
+
+  <div class="d-flex align-items-center my16 px16 f12">
+    <ng-container *ngFor="let item of balance">
+      <span class="d-block mr8">{{item.currency}}: {{item.balance.toFixed(2)}}</span>
+    </ng-container>
+  </div>
+
+
   <mat-list role="list">
     <ng-container *ngFor="let item of portfolio">
       <mat-list-item (click)="openDetail(item)" class="list-item pointer" role="listitem">
