@@ -24,11 +24,16 @@ const src = './dist/tinkoff-front'
 const extDir = '../www/html'
 
 // fs.rmdirSync(extDir, { recursive: true });
-rimraf(extDir, function () { console.log("Dir html removed"); });
+rimraf(extDir, function () {
+  console.log("Dir html removed");
 
-fs.mkdir(extDir, function (){
-  console.log('Dir html created')
+  fs.mkdir(extDir, function (){
+    console.log('Dir html created')
+  });
+
 });
+
+
 
 const dest = '../www/html';
 copyRecursiveSync(src, dest)
