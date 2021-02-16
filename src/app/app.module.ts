@@ -18,7 +18,7 @@ import { LockScreenModule } from './auth/lock-screen/lock-screen.module';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { PortfolioModule } from './portfolio/portfolio.module';
 
-const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
+const config: SocketIoConfig = { url: 'http://baraddur.ru:5000', options: {} };
 
 
 @NgModule({
