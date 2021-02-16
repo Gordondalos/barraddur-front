@@ -29,11 +29,11 @@ rimraf(extDir, function () {
 
   fs.mkdir(extDir, function (){
     console.log('Dir html created')
+
+    const dest = '../www/html';
+    copyRecursiveSync(src, dest)
   });
 
 });
 
 
-
-const dest = '../www/html';
-copyRecursiveSync(src, dest)
