@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "copy": "node copy.js",
-    "restart": "npm run build && npm run copy"
+    "restart": "git pull && npm run build && npm run copy"
   },
   "private": true,
   "dependencies": {
