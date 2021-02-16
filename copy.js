@@ -1,5 +1,7 @@
 const fs = require("fs")
 const path = require("path")
+const rimraf = require("rimraf");
+
 
 const copyRecursiveSync = function (src, dest) {
     const exists = fs.existsSync(src);
@@ -20,6 +22,7 @@ const copyRecursiveSync = function (src, dest) {
 
 const src = './dist/tinkoff-front'
 const extDir = '../www/html'
-fs.rmdirSync(extDir, { recursive: true });
+// fs.rmdirSync(extDir, { recursive: true });
+rimraf(extDir, function () { console.log("done"); });
 const dest = '../www/html';
 copyRecursiveSync(src, dest)
