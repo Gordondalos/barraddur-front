@@ -47,6 +47,7 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
       .subscribe((event: SocketEventInterface) => {
         if (event.payload.figi === this.figi) {
           this.price = event.payload.c;
+          console.log(this.price);
         }
       });
 
@@ -71,7 +72,9 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
   async init(): Promise<void> {
 
     this.info = await this.portfolioService.getInfoByFigi(this.figi);
-    console.log(this.info);
+
+    this.socketService.subscribeInstrument(this.info ).then();
+
 
     const fr = moment().subtract(185, 'day');
     const toe = moment();

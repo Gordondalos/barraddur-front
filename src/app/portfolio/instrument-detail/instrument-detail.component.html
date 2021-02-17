@@ -30,7 +30,6 @@
             <span>Ч1</span>
             <span>Ч4</span>
             <span>1 день</span>
-
           </div>
 
           <span class="mt16 d-block bold mx16">Объем торгов</span>
@@ -50,7 +49,7 @@
       </ng-container>
 
 
-      <ng-container *ngIf="info">
+      <ng-container *ngIf="info && currentInstrument">
         <app-count-info
           [info]="info"
           [currentInstrument]="currentInstrument"
@@ -64,7 +63,7 @@
         <app-buy-sell-one
           class="mt16 d-block"
           [info]="info"
-          [currentInstrument]="currentInstrument"
+          [currentInstrument]="info"
           [figi]="figi"
         ></app-buy-sell-one>
       </ng-container>

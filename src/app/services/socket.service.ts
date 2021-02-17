@@ -7,6 +7,8 @@ import { StockService } from './stock.service';
 import { Socket } from 'ngx-socket-io';
 import { map } from 'rxjs/operators';
 import { LocalstorageService } from './localstorage.service';
+import { InstrumentInfoInterface } from '../interfaces/instrument-info.interface';
+import { InstrumentInterface } from '../interfaces/instrumentInterface';
 
 @Injectable({
   providedIn: 'root',
@@ -46,6 +48,8 @@ export class SocketService extends FatherService {
           m = 'clientId';
         }
 
+        // console.log(JSON.parse(m).payload.figi);
+
         switch (m) {
           case 'clientId':
             console.log(id);
@@ -66,51 +70,13 @@ export class SocketService extends FatherService {
     });
   }
 
+  subscribeInstrument(data: InstrumentInterface | InstrumentInfoInterface) {
+    return this.post('/api/subscribeInstrument', {instrument: data, period: 'hour'});
+  }
 
-  startSubscribtion(data) {
+
+  startSubscribtion(data: InstrumentInterface[] | InstrumentInfoInterface[]) {
     return this.post('/api/socketFire', { data });
   }
-
-
-  disconnect() {
-    this.ws.send('exit');
-    this.ws.close();
-  }
-
-  subsOnMessage() {
-    this.ws.onopen = () => {
-      console.log('Соединение утановлено');
-      this.ws.send(JSON.stringify({ myId: 'qweqweqwe' }));
-    };
-    this.ws.onclose = () => {
-      console.log('соединение отвалилось');
-    };
-    this.ws.onmessage = (message) => {
-      // console.log('получено сообщение', message);
-      if (message.data && typeof message.data === 'string') {
-        if (message.data === 'isExist') {
-          this.ws.send('exit');
-          this.ws.close();
-        } else {
-          try {
-            const m: SocketEventInterface | string = message.data;
-            switch (m) {
-              case 'updatePortfolio':
-                console.log('updatePortfolio');
-                this.stockService.updateInstrumentsList.next();
-                break;
-              default:
-                this.eventSocketUpdate.next(JSON.parse(m));
-            }
-
-          } catch (e) {
-            console.log(e);
-            console.log(message.data);
-          }
-        }
-      }
-    };
-  }
-
 
 }

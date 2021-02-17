@@ -18,17 +18,17 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
   _info: InstrumentInfoInterface;
   price: number;
 
-  _currentInstrument: InstrumentInterface;
+  _currentInstrument: InstrumentInterface | InstrumentInfoInterface;
   buySell: any = {};
   lags = false;
   type = 'market';
 
   @Input()
-  get currentInstrument(): InstrumentInterface {
+  get currentInstrument(): InstrumentInterface | InstrumentInfoInterface {
     return this._currentInstrument;
   }
 
-  set currentInstrument(currentInstrument: InstrumentInterface) {
+  set currentInstrument(currentInstrument: InstrumentInterface | InstrumentInfoInterface) {
     this._currentInstrument = currentInstrument;
   }
 

@@ -64,7 +64,7 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
       .subscribe((res) => {
         if (res instanceof NavigationEnd) {
           if (this.router.url.indexOf('portfolio') === -1) {
-            this.socketService.disconnect();
+            // this.socketService.disconnect();
           }
         }
       });
