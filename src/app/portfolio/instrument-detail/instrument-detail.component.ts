@@ -72,7 +72,7 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
 
   async init(): Promise<void> {
     this.info = await this.portfolioService.getInfoByFigi(this.figi);
-    this.socketService.subscribeInstrument(this.info ).then();
+    this.socketService.subscribeInstrument(this.info).then();
 
 
     const fr = moment().subtract(185, 'day');
@@ -213,6 +213,8 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
     const data = [];
     const val = [];
     this.price = candles[ candles.length - 1 ].c;
+    const last = { payload: candles[ candles.length - 1 ] };
+    this.socketService.eventSocketUpdate.next(last);
     for (const item of candles) {
       // const date = new Date(+moment(item.time).format('YYYY'), +moment(item.time).format('M'), +moment(item.time).format('DD'));
       const date = new Date(moment(item.time).toISOString());
