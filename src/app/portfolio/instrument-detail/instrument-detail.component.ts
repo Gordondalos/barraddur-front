@@ -47,7 +47,6 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
       .subscribe((event: SocketEventInterface) => {
         if (event.payload.figi === this.figi) {
           this.price = event.payload.c;
-          console.log(this.price);
         }
       });
 
