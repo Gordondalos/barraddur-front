@@ -4,5 +4,5 @@ export const environment = {
   baseHref: '/',
   API_REST_URL: 'http://baraddur.ru',
   API_REST_PORT: '3000',
-  SOCKET_URL: 'http://localhost:5000'
+  SOCKET_URL: 'http://baraddur.ru:5000'
 };
