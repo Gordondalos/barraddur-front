@@ -61,6 +61,7 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.unsubscribeAll.next();
     this.unsubscribeAll.complete();
+    this.socketService.unSubscribeInstrument(this.info).then();
   }
 
   async ngOnInit(): Promise<any> {
@@ -79,7 +80,6 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
     const from = fr.format('DD-MM-YYYY');
     const to = toe.format('DD-MM-YYYY');
     const res = await this.portfolioService.getCandleFigiPeriod(this.figi, from, to);
-    console.log(res);
     if (res) {
       const result = this.reformatCandles(res.candles);
 

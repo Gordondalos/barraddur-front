@@ -68,7 +68,13 @@ export class SocketService extends FatherService {
   }
 
   subscribeInstrument(data: InstrumentInterface | InstrumentInfoInterface) {
+    // TODO период задан жестко, нужно как то его хранить и обрабатывать
     return this.post('/api/subscribeInstrument', {instrument: data, period: 'hour'});
+  }
+
+  unSubscribeInstrument(data: InstrumentInterface | InstrumentInfoInterface) {
+    // TODO период задан жестко, нужно как то его хранить и обрабатывать
+    return this.post('/api/unSubscribeInstrument', {instrument: data, period: 'hour'});
   }
 
 
