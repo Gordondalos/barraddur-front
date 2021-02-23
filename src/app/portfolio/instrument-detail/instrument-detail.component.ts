@@ -14,6 +14,9 @@ import { SocketService } from '../../services/socket.service';
 import { Subject } from 'rxjs';
 import { InstrumentInterface } from '../../interfaces/instrumentInterface';
 import * as _ from 'lodash';
+import { BuySellOneComponent } from '../../buy-sell-one/buy-sell-one.component';
+import { DinamicLoaderService } from '../../services/dinamic-loader.service';
+import { SidenavService } from '../../services/sidenav.service';
 
 
 @Component({
@@ -39,6 +42,8 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
     public route: ActivatedRoute,
     private portfolioService: PortfolioService,
     private socketService: SocketService,
+    private dinamicLoaderService: DinamicLoaderService,
+    public sidenavService: SidenavService,
   ) {
     this.figi = route.snapshot.params.figi;
 
@@ -236,6 +241,21 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
     }
     return { data, val };
 
+  }
+
+
+  opensideNav() {
+    this.dinamicLoaderService.loadComponent$.next({
+      component: BuySellOneComponent, data: {
+        info: this.info,
+        figi: this.figi,
+        currentInstrument: this.info,
+        price: this.price,
+      },
+    });
+    setTimeout(() => {
+      this.sidenavService.sideNavState$.next(true);
+    });
   }
 
 }

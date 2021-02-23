@@ -7,7 +7,7 @@
     <div class="text-warning">Продажа</div>
   </div>
   <ng-container *ngFor="let item of bids">
-    <div class="d-flex py16 b-b">
+    <div class="d-flex py16 b-b pointer" (click)="opensideNav(item)">
       <div class="w-50"></div>
       <div>{{item[0]}} {{currency}}</div>
       <div class="f-gr-1"></div>
@@ -15,7 +15,7 @@
     </div>
   </ng-container>
   <ng-container *ngFor="let item of asks">
-    <div class="d-flex py16 b-b">
+    <div class="d-flex py16 b-b pointer" (click)="opensideNav(item)">
       <div>{{item[1]}}</div>
       <div class="f-gr-1"></div>
       <div>{{item[0]}} {{currency}}</div>

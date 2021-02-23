@@ -1,13 +1,20 @@
 @import "~iiko-styles/style/variables";
 
+
+:host {
+  max-width: 600px;
+  display: block;
+  margin: auto;
+}
+
 .mw49 {
   width: 48%;
   flex-grow: 1;
 }
 
-mat-tab-group {
-  background-color: $light-blue;
-}
+//mat-tab-group {
+//  background-color: $light-blue;
+//}
 
 ::ng-deep {
   .mat-tab-label-content {

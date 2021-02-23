@@ -18,6 +18,9 @@ import { LockScreenModule } from './auth/lock-screen/lock-screen.module';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { PortfolioModule } from './portfolio/portfolio.module';
 import { environment } from '../environments/environment';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DinamicLoaderModule } from './dinamic-loader/dinamic-loader.module';
+import { MatIconModule } from '@angular/material/icon';
 
 
 const config: SocketIoConfig = { url: environment.SOCKET_URL, options: {} };
@@ -27,21 +30,24 @@ const config: SocketIoConfig = { url: environment.SOCKET_URL, options: {} };
     declarations: [
         AppComponent,
     ],
-    imports: [
-        HttpClientModule,
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        HeaderModule,
-        NavbarModule,
-        MatSidenavModule,
-        MatNativeDateModule,
-        CommonComponentModule,
-        MatDialogModule,
-        LockScreenModule,
-        SocketIoModule.forRoot(config),
-        PortfolioModule,
-    ],
+  imports: [
+    HttpClientModule,
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    HeaderModule,
+    NavbarModule,
+    MatSidenavModule,
+    MatNativeDateModule,
+    CommonComponentModule,
+    MatDialogModule,
+    LockScreenModule,
+    SocketIoModule.forRoot(config),
+    PortfolioModule,
+    ReactiveFormsModule,
+    DinamicLoaderModule,
+    MatIconModule,
+  ],
     providers: [
         HttpClient,
         {

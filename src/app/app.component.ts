@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { SidenavService } from './services/sidenav.service';
 import { onMainContentChange } from './animations/animations';
 import { PortfolioService } from './services/portfolio.service';
@@ -7,6 +7,8 @@ import { NavigationEnd, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { SocketService } from './services/socket.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +18,10 @@ import { SocketService } from './services/socket.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'baraddur';
-  onSideNavChange: boolean;
+
+  @ViewChild('leftSidenav') leftSidenav: MatSidenav;
+
+  onSideNavChange = false;
   isWelcome = false;
   userName = '';
   portfolio: any;
@@ -30,9 +35,15 @@ export class AppComponent implements OnInit, OnDestroy {
     public router: Router,
     private socketService: SocketService,
   ) {
+
+
     this.sidenavService.sideNavState$
       .subscribe(res => {
-        this.onSideNavChange = res;
+        if (res) {
+          this.leftSidenav.open();
+        } else {
+          this.leftSidenav.close();
+        }
       });
 
     // this.welcome();

@@ -7,6 +7,7 @@ import { SocketService } from '../services/socket.service';
 import { PortfolioService } from '../services/portfolio.service';
 import { Subject } from 'rxjs';
 import { StockService } from '../services/stock.service';
+import { SidenavService } from '../services/sidenav.service';
 
 @Component({
   selector: 'app-buy-sell-one',
@@ -16,33 +17,18 @@ import { StockService } from '../services/stock.service';
 export class BuySellOneComponent implements OnInit, OnDestroy {
 
   _info: InstrumentInfoInterface;
-  price: number;
+
 
   _currentInstrument: InstrumentInterface | InstrumentInfoInterface;
   buySell: any = {};
   lags = false;
   type = 'market';
 
-  @Input()
-  get currentInstrument(): InstrumentInterface | InstrumentInfoInterface {
-    return this._currentInstrument;
-  }
-
-  set currentInstrument(currentInstrument: InstrumentInterface | InstrumentInfoInterface) {
-    this._currentInstrument = currentInstrument;
-  }
-
+  @Input() data: any;
+  @Input() currentInstrument: InstrumentInterface;
+  @Input() info: InstrumentInfoInterface;
   @Input() figi: string;
-
-
-  @Input()
-  get info(): InstrumentInfoInterface {
-    return this._info;
-  }
-
-  set info(info: InstrumentInfoInterface) {
-    this._info = info;
-  }
+  @Input() price: number;
 
   count = 1;
   private unsubscribeAll: Subject<any> = new Subject<any>();
@@ -52,6 +38,8 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
     private socketService: SocketService,
     private portfolioService: PortfolioService,
     private stockService: StockService,
+    public sidenavService: SidenavService,
+
   ) {
     this.socketService.eventSocketUpdate
       .pipe(takeUntil(this.unsubscribeAll))
@@ -63,7 +51,13 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.count = this._info.lot;
+    if (this.data) {
+      this.info = this.data.info;
+      this.currentInstrument = this.data.currentInstrument;
+      this.figi = this.data.figi;
+      this.price = this.data.price;
+    }
+    this.count = this.info.lot;
     this.buySell.lags = 1.5;
   }
 
@@ -77,7 +71,7 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
     this.buySell.operation = operation;
     this.buySell.count = this.count;
     this.buySell.price = this.type === 'market' ? this.price : this.customPrice;
-    this.buySell.lags  = this.buySell.lags ? this.buySell.lags : 0;
+    this.buySell.lags = this.buySell.lags ? this.buySell.lags : 0;
     this.buySell.instrument = this.info;
     this.count = 0;
     const res = await this.stockService.deal(this.buySell);
@@ -86,6 +80,7 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
       this.portfolioService.portfolioUpdateEvent.next(portfolio);
       this.buySell.lags = 0;
       this.lags = false;
+      this.sidenavService.sideNavState$.next(false);
     }
     setTimeout(() => {
       this.count = this._info.lot;
@@ -94,7 +89,6 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
 
   selectTab(value: string, elem: ElementRef | any) {
     this.type = value;
-    console.log(elem);
     elem.nativeElement.scrollIntoView();
   }
 

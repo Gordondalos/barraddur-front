@@ -9,10 +9,16 @@
     </app-header>
 
       <mat-sidenav-container class="sidenav-container">
-        <mat-sidenav #leftSidenav mode="side" opened>
-          <app-navbar></app-navbar>
+        <mat-sidenav position="end" class="example-sidenav" #leftSidenav mode="over" [fixedInViewport]="false">
+
+          <div class="d-flex w100 posr">
+            <div class="f-gr-1"></div>
+            <mat-icon class="mat-24 close pointer m16" (click)="leftSidenav.close()">close</mat-icon>
+          </div>
+          <app-dinamic-loader></app-dinamic-loader>
+
         </mat-sidenav>
-        <mat-sidenav-content [@onMainContentChange]="onSideNavChange ? 'open': 'close'">
+        <mat-sidenav-content >
           <div class="main_content">
             <router-outlet></router-outlet>
           </div>

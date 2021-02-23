@@ -2,6 +2,9 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { SocketService } from '../../services/socket.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { SidenavService } from '../../services/sidenav.service';
+import { DinamicLoaderService } from '../../services/dinamic-loader.service';
+import { BuySellOneComponent } from '../../buy-sell-one/buy-sell-one.component';
 
 @Component({
   selector: 'app-orderbook',
@@ -11,6 +14,9 @@ import { takeUntil } from 'rxjs/operators';
 export class OrderbookComponent implements OnInit, OnDestroy {
 
   @Input() currency: string;
+  @Input() figi: any;
+  @Input() info: any;
+  @Input() currentInstrument: any;
 
   asks: any;
   bids: any;
@@ -19,6 +25,8 @@ export class OrderbookComponent implements OnInit, OnDestroy {
 
   constructor(
     public socketService: SocketService,
+    public sidenavService: SidenavService,
+    private dinamicLoaderService: DinamicLoaderService,
   ) {
     this.socketService.eventSocketUpdateOrderBook
       .pipe(takeUntil(this.unsubscribeAll))
@@ -36,4 +44,17 @@ export class OrderbookComponent implements OnInit, OnDestroy {
     this.unsubscribeAll.complete();
   }
 
+  opensideNav(item: any) {
+    this.dinamicLoaderService.loadComponent$.next({
+      component: BuySellOneComponent, data: {
+        info: this.info,
+        figi: this.figi,
+        currentInstrument: this.info,
+        price: item[0],
+      },
+    });
+    setTimeout(() => {
+      this.sidenavService.sideNavState$.next(true);
+    });
+  }
 }

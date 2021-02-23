@@ -1,13 +1,13 @@
 @import "node_modules/iiko-styles/style/variables";
 
 
-//:host {
-//  display: block;
-//  margin: auto;
-//  height: 100vh;
-//  width: 100vw;
-//  background: black;
-//}
+:host {
+  ::ng-deep {
+    .mat-drawer-backdrop {
+      position: fixed;
+    }
+  }
+}
 
 //.wrapper-content {
 //  max-width: 375px;
@@ -17,6 +17,15 @@
 //  height: 100vh;
 //  width: 100vw;
 //}
+
+
+.example-sidenav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: $white;
+}
 
 
 .sidenav-container {

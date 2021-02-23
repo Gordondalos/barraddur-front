@@ -1,15 +1,28 @@
 <mat-tab-group animationDuration="0ms">
   <mat-tab>
     <ng-template mat-tab-label>
-      <!--      <mat-icon class="example-tab-icon">thumb_up</mat-icon>-->
       Детали
     </ng-template>
 
     <div class="wrapper">
 
       <ng-container *ngIf="info && info.currency && price">
-        <span class="price d-block text-right">{{price}} {{info.currency}}</span>
+        <div class="d-flex p16 align-items-center">
+          <span class="price">{{price}} {{info.currency}}</span>
+          <div class="f-gr-1"></div>
+          <button mat-raised-button color="primary" (click)="opensideNav()">Купить / Продать</button>
+        </div>
       </ng-container>
+
+
+      <ng-container *ngIf="info && currentInstrument">
+        <app-count-info
+          [info]="info"
+          [currentInstrument]="currentInstrument"
+          [figi]="figi">
+        </app-count-info>
+      </ng-container>
+
       <ng-container *ngIf="chartCandleOptions">
         <div class="chart-box">
           <div id="chart-candlestick">
@@ -49,25 +62,6 @@
       </ng-container>
 
 
-      <ng-container *ngIf="info && currentInstrument">
-        <app-count-info
-          [info]="info"
-          [currentInstrument]="currentInstrument"
-          [figi]="figi">
-        </app-count-info>
-      </ng-container>
-
-
-
-      <ng-container *ngIf="info">
-        <app-buy-sell-one
-          class="mt16 d-block"
-          [info]="info"
-          [currentInstrument]="info"
-          [figi]="figi"
-        ></app-buy-sell-one>
-      </ng-container>
-
 
     </div>
 
@@ -78,7 +72,10 @@
       Стакан
     </ng-template>
     <div class="p16" *ngIf="info">
-      <app-orderbook [currency]="info.currency"></app-orderbook>
+      <app-orderbook
+        [info]="info"
+        [figi]="figi"
+        [currency]="info.currency"></app-orderbook>
     </div>
   </mat-tab>
 
@@ -92,23 +89,21 @@
     </div>
   </mat-tab>
 
+<!--  <mat-tab>-->
+<!--    <ng-template mat-tab-label>-->
+<!--      Аналитика-->
+<!--    </ng-template>-->
+<!--    <div class="p16">-->
+<!--      Уже скоро-->
+<!--    </div>-->
+<!--  </mat-tab>-->
 
-
-  <mat-tab>
-    <ng-template mat-tab-label>
-      Аналитика
-    </ng-template>
-    <div class="p16">
-      Уже скоро
-    </div>
-  </mat-tab>
-
-  <mat-tab>
-    <ng-template mat-tab-label>
-      События
-    </ng-template>
-    <div class="p16">
-      Уже скоро
-    </div>
-  </mat-tab>
+<!--  <mat-tab>-->
+<!--    <ng-template mat-tab-label>-->
+<!--      События-->
+<!--    </ng-template>-->
+<!--    <div class="p16">-->
+<!--      Уже скоро-->
+<!--    </div>-->
+<!--  </mat-tab>-->
 </mat-tab-group>
