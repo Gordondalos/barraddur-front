@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { FatherService } from './father.service';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
-import { SocketEventInterface } from '../interfaces/socketEvent.interface';
 import { StockService } from './stock.service';
 import { Socket } from 'ngx-socket-io';
 import { map } from 'rxjs/operators';
@@ -48,11 +47,9 @@ export class SocketService extends FatherService {
           m = 'clientId';
         }
 
-        // console.log(JSON.parse(m).payload.figi);
-
         switch (m) {
           case 'clientId':
-            console.log(id);
+            console.log('socketClientId --->', id);
             this.localstorageService.set('socketId', id);
             break;
           case 'updatePortfolio':

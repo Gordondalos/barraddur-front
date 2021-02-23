@@ -70,9 +70,7 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
   }
 
   async init(): Promise<void> {
-
     this.info = await this.portfolioService.getInfoByFigi(this.figi);
-
     this.socketService.subscribeInstrument(this.info ).then();
 
 
