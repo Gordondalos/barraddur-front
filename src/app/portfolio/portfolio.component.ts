@@ -63,8 +63,8 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
     }
     this.portfolio = portfolio;
     this.balance = await this.portfolioService.getBalance();
-    const res = await this.groupService.getData();
-    this.instruments = res.result.instruments;
+    // const res = await this.groupService.getData();
+    // this.instruments = res.result.instruments;
     await this.socketService.startSubscribtion(this.portfolio);
     // this.socketService.connect();
   }

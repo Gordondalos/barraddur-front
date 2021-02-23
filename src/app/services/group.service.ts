@@ -12,8 +12,8 @@ export class GroupService extends FatherService {
     super(http);
   }
 
-  async getData(): Promise<any> {
-    return await this.get('/api/stocks');
+  async getData(type): Promise<any> {
+    return await this.get(`/api/stocks?type=${type}`);
   }
 
   async saveGroup(data): Promise<any> {

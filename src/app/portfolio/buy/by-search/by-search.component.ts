@@ -31,8 +31,10 @@ export class BySearchComponent implements OnInit, AfterViewInit {
   }
 
   async init() {
-    const res = await this.groupService.getData();
-    this.instruments = res.result.instruments;
+    const res = await this.groupService.getData(this.type);
+    if (res) {
+      this.instruments = res.result.instruments;
+    }
   }
 
   ngAfterViewInit() {
