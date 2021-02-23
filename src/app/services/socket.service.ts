@@ -15,6 +15,7 @@ import { InstrumentInterface } from '../interfaces/instrumentInterface';
 export class SocketService extends FatherService {
 
   eventSocketUpdate: Subject<any> = new Subject();
+  eventSocketUpdateOrderBook: Subject<any> = new Subject();
   ws: WebSocket;
 
   constructor(
@@ -57,7 +58,13 @@ export class SocketService extends FatherService {
             this.stockService.updateInstrumentsList.next();
             break;
           default:
-            this.eventSocketUpdate.next(JSON.parse(m));
+            const mes = JSON.parse(m);
+            if (mes.event === 'candle') {
+              this.eventSocketUpdate.next(mes);
+            }
+            if (mes.event === 'orderbook') {
+              this.eventSocketUpdateOrderBook.next(mes.payload);
+            }
         }
 
       } catch (e) {
@@ -69,12 +76,12 @@ export class SocketService extends FatherService {
 
   subscribeInstrument(data: InstrumentInterface | InstrumentInfoInterface) {
     // TODO период задан жестко, нужно как то его хранить и обрабатывать
-    return this.post('/api/subscribeInstrument', {instrument: data, period: 'hour'});
+    return this.post('/api/subscribeInstrument', { instrument: data, period: 'hour' });
   }
 
   unSubscribeInstrument(data: InstrumentInterface | InstrumentInfoInterface) {
     // TODO период задан жестко, нужно как то его хранить и обрабатывать
-    return this.post('/api/unSubscribeInstrument', {instrument: data, period: 'hour'});
+    return this.post('/api/unSubscribeInstrument', { instrument: data, period: 'hour' });
   }
 
 

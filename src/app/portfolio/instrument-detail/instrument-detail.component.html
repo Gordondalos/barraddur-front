@@ -75,6 +75,15 @@
 
   <mat-tab>
     <ng-template mat-tab-label>
+      Стакан
+    </ng-template>
+    <div class="p16" *ngIf="info">
+      <app-orderbook [currency]="info.currency"></app-orderbook>
+    </div>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
       Обзор
     </ng-template>
 
@@ -83,14 +92,7 @@
     </div>
   </mat-tab>
 
-  <mat-tab>
-    <ng-template mat-tab-label>
-      Стакан
-    </ng-template>
-    <div class="p16">
-      Уже скоро
-    </div>
-  </mat-tab>
+
 
   <mat-tab>
     <ng-template mat-tab-label>

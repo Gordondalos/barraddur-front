@@ -28,6 +28,7 @@ import { BySearchComponent } from './buy/by-search/by-search.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { NewsBarComponent } from './news-bar/news-bar.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { OrderbookComponent } from './orderbook/orderbook.component';
 
 
 const routes: Routes = [
@@ -57,6 +58,7 @@ const routes: Routes = [
     BuyComponent,
     BySearchComponent,
     NewsBarComponent,
+    OrderbookComponent,
 
   ],
   imports: [

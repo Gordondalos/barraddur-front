@@ -64,6 +64,7 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.count = this._info.lot;
+    this.buySell.lags = 1.5;
   }
 
   ngOnDestroy(): void {
