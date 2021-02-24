@@ -8,7 +8,7 @@
 
       <ng-container *ngIf="info && info.currency && price">
         <div class="d-flex p16 align-items-center">
-          <span class="price">{{price}} {{info.currency}}</span>
+          <span class="price">{{price.toFixed(3)}} {{info.currency}}</span>
           <div class="f-gr-1"></div>
           <button mat-raised-button color="primary" (click)="opensideNav()">Купить / Продать</button>
         </div>
@@ -60,11 +60,7 @@
           </div>
         </div>
       </ng-container>
-
-
-
     </div>
-
   </mat-tab>
 
   <mat-tab>
