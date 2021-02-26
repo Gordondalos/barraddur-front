@@ -98,7 +98,7 @@ export class AuthService {
   }
 
   async registration(data): Promise<boolean> {
-    const url = `/api/auth/registration`;
+    const url = `${this.host}/api/auth/registration`;
     const res: any = await this.http.post(url, data).toPromise();
     if (res) {
       return res.data;
