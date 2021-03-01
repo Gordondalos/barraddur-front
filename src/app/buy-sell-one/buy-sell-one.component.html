@@ -39,7 +39,7 @@
     <div class="p16" *ngIf="price">
       <div class="d-flex mt16">
         <mat-form-field appearance="outline" class="mw49 mr8 f-gr-1">
-          <mat-label>Цена {{price.toFixed(2) ? price.toFixed(2) : ''}}</mat-label>
+          <mat-label>Цена {{price?.toFixed(2) ? price?.toFixed(2) : ''}}</mat-label>
           <input type="number" matInput [(ngModel)]="customPrice">
         </mat-form-field>
         <mat-form-field appearance="outline" class="mw49 ml8 f-gr-1">
