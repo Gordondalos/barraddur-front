@@ -3,6 +3,7 @@
 </ng-container>
 
 <ng-container *ngIf="!isWelcome">
+
   <div class="wrapper-content">
     <app-header
       [sidenav]="leftSidenav">
@@ -19,7 +20,12 @@
 
         </mat-sidenav>
         <mat-sidenav-content >
-          <div class="main_content">
+          <div
+            class="main_content">
+            <ng-container
+              *ngIf="showSpiner">
+              <mat-spinner></mat-spinner>
+            </ng-container>
             <router-outlet></router-outlet>
           </div>
         </mat-sidenav-content>

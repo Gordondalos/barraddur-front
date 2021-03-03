@@ -21,15 +21,15 @@ import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DinamicLoaderModule } from './dinamic-loader/dinamic-loader.module';
 import { MatIconModule } from '@angular/material/icon';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const config: SocketIoConfig = { url: environment.SOCKET_URL, options: {} };
 
 
 @NgModule({
-    declarations: [
-        AppComponent,
-    ],
+  declarations: [
+    AppComponent,
+  ],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -47,18 +47,18 @@ const config: SocketIoConfig = { url: environment.SOCKET_URL, options: {} };
     ReactiveFormsModule,
     DinamicLoaderModule,
     MatIconModule,
+    MatProgressSpinnerModule,
   ],
-    providers: [
-        HttpClient,
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
-            multi: true,
-        },
-    ],
-    exports: [
-
-    ],
-    bootstrap: [AppComponent],
+  providers: [
+    HttpClient,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
+  exports: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+}

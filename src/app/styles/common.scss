@@ -1,3 +1,11 @@
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+* {
+  box-sizing: border-box !important;
+}
+
 .container {
   max-width: 1200px;
   margin: auto;
@@ -23,5 +31,13 @@
 .mat-tab-label {
   padding-top: 8px !important;
   min-width: 100px !important;
+}
+
+mat-spinner {
+  position: fixed !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
 }
 

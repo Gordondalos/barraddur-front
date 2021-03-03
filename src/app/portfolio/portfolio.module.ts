@@ -29,6 +29,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { NewsBarComponent } from './news-bar/news-bar.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { OrderbookComponent } from './orderbook/orderbook.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 const routes: Routes = [
@@ -82,6 +83,7 @@ const routes: Routes = [
     MatCheckboxModule,
     ScrollingModule,
     MatDatepickerModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     PortfolioComponent,

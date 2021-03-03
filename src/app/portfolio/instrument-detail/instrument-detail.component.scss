@@ -12,7 +12,9 @@ mat-tab-group {
 }
 #chart-candlestick,
 #chart-bar {
-  max-width: 640px;
+  max-width: 95%;
+  width: 640px;
+  margin: auto;
 }
 
 #chart-bar {
@@ -26,12 +28,17 @@ mat-tab-group {
 }
 
 .periods {
-  justify-content: space-around;
+  justify-content: center;
+  max-width: 95%;
   span {
     display: inline-block;
     padding: 6px 8px;
     text-align: center;
     border: 1px solid $light-gray;
     border-radius: 3px;
+    margin: 1px;
+    &.selected {
+      background-color: $light-gray;
+    }
   };
 }

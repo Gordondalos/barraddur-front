@@ -27,6 +27,7 @@ export class AppComponent implements OnInit, OnDestroy {
   portfolio: any;
 
   private unsubscribeAll: Subject<any> = new Subject<any>();
+  showSpiner = false;
 
   constructor(
     private sidenavService: SidenavService,
@@ -35,6 +36,9 @@ export class AppComponent implements OnInit, OnDestroy {
     public router: Router,
     private socketService: SocketService,
   ) {
+    this.sidenavService.showSpiner.subscribe((res) => {
+      this.showSpiner = res;
+    });
 
 
     this.sidenavService.sideNavState$
