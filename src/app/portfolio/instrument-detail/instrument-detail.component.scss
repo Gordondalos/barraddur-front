@@ -4,12 +4,14 @@ mat-tab-group {
   max-width: 650px;
   margin: auto;
 }
+
 .chart-box {
   max-width: 650px;
   margin: auto;
   position: relative;
   top: -10px
 }
+
 #chart-candlestick,
 #chart-bar {
   max-width: 95%;
@@ -30,6 +32,7 @@ mat-tab-group {
 .periods {
   justify-content: center;
   max-width: 95%;
+
   span {
     display: inline-block;
     padding: 6px 8px;
@@ -37,8 +40,26 @@ mat-tab-group {
     border: 1px solid $light-gray;
     border-radius: 3px;
     margin: 1px;
+
     &.selected {
       background-color: $light-gray;
     }
-  };
+  }
+;
+}
+
+.select-chart {
+  position: relative;
+  top: 10px;
+  left: 16px;
+  z-index: 1000;
+  border-bottom: 1px dashed $info;
+  margin-left: 8px;
+  cursor: pointer;
+  color: $info;
+  &.selected {
+    color: $primary-dark;
+    border: none;
+    cursor: auto;
+  }
 }

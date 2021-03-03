@@ -14,7 +14,6 @@
         </div>
       </ng-container>
 
-
       <ng-container *ngIf="info && currentInstrument">
         <app-count-info
           [info]="info"
@@ -23,34 +22,62 @@
         </app-count-info>
       </ng-container>
 
+      <h4 class="text-center mb0">График по московскому времени</h4>
+
+      <span
+        class="select-chart"
+        [ngClass]="{'selected': chartType === 'line'}"
+        (click)="toggleCandleToLine('line')">
+          Линия
+      </span>
+
+      <span
+        class="select-chart"
+        [ngClass]="{'selected': chartType === 'candlestick'}"
+        (click)="toggleCandleToLine('candlestick')">
+          Свечи
+      </span>
+
       <ng-container *ngIf="chartCandleOptions">
-        <div class="chart-box">
+        <div class="chart-box mt16">
           <div id="chart-candlestick">
             <apx-chart
               #chartCandle
               [series]="chartCandleOptions.series"
               [chart]="chartCandleOptions.chart"
               [xaxis]="chartCandleOptions.xaxis"
+              [yaxis]="chartCandleOptions.yaxis"
+              [stroke]="chartCandleOptions.stroke"
               [plotOptions]="chartCandleOptions.plotOptions"
               [tooltip]="chartCandleOptions.tooltip"
             ></apx-chart>
           </div>
 
           <div class="d-flex periods flex-wrap">
-            <span [ngClass]="{'selected': interval === '1min'}" class="pointer" (click)="loadInterval('1min')" >1мин</span>
-            <span [ngClass]="{'selected': interval === '2min'}" class="pointer"  (click)="loadInterval('2min')">2мин</span>
-            <span [ngClass]="{'selected': interval === '3min'}" class="pointer" (click)="loadInterval('3min')">3мин</span>
-            <span [ngClass]="{'selected': interval === '5min'}" class="pointer" (click)="loadInterval('5min')">5мин</span>
-            <span [ngClass]="{'selected': interval === '10min'}" class="pointer" (click)="loadInterval('10min')">10мин</span>
-            <span [ngClass]="{'selected': interval === '15min'}" class="pointer" (click)="loadInterval('15min')">15мин</span>
+            <span [ngClass]="{'selected': interval === '1min'}" class="pointer"
+                  (click)="loadInterval('1min')">1мин</span>
+            <span [ngClass]="{'selected': interval === '2min'}" class="pointer"
+                  (click)="loadInterval('2min')">2мин</span>
+            <span [ngClass]="{'selected': interval === '3min'}" class="pointer"
+                  (click)="loadInterval('3min')">3мин</span>
+            <span [ngClass]="{'selected': interval === '5min'}" class="pointer"
+                  (click)="loadInterval('5min')">5мин</span>
+            <span [ngClass]="{'selected': interval === '10min'}" class="pointer"
+                  (click)="loadInterval('10min')">10мин</span>
+            <span [ngClass]="{'selected': interval === '15min'}" class="pointer"
+                  (click)="loadInterval('15min')">15мин</span>
           </div>
 
           <div class="d-flex periods flex-wrap">
-            <span [ngClass]="{'selected': interval === '30min'}" class="pointer" (click)="loadInterval('30min')">30мин</span>
-            <span [ngClass]="{'selected': interval === 'hour'}" class="pointer" (click)="loadInterval('hour')">час</span>
+            <span [ngClass]="{'selected': interval === '30min'}" class="pointer"
+                  (click)="loadInterval('30min')">30мин</span>
+            <span [ngClass]="{'selected': interval === 'hour'}" class="pointer"
+                  (click)="loadInterval('hour')">час</span>
             <span [ngClass]="{'selected': interval === 'day'}" class="pointer" (click)="loadInterval('day')">день</span>
-            <span [ngClass]="{'selected': interval === 'week'}" class="pointer" (click)="loadInterval('week')">неделя</span>
-            <span [ngClass]="{'selected': interval === 'month'}" class="pointer" (click)="loadInterval('month')">месяц</span>
+            <span [ngClass]="{'selected': interval === 'week'}" class="pointer"
+                  (click)="loadInterval('week')">неделя</span>
+            <span [ngClass]="{'selected': interval === 'month'}" class="pointer"
+                  (click)="loadInterval('month')">месяц</span>
           </div>
 
           <span class="mt16 d-block bold mx16">Объем торгов</span>
@@ -93,21 +120,21 @@
     </div>
   </mat-tab>
 
-<!--  <mat-tab>-->
-<!--    <ng-template mat-tab-label>-->
-<!--      Аналитика-->
-<!--    </ng-template>-->
-<!--    <div class="p16">-->
-<!--      Уже скоро-->
-<!--    </div>-->
-<!--  </mat-tab>-->
+  <!--  <mat-tab>-->
+  <!--    <ng-template mat-tab-label>-->
+  <!--      Аналитика-->
+  <!--    </ng-template>-->
+  <!--    <div class="p16">-->
+  <!--      Уже скоро-->
+  <!--    </div>-->
+  <!--  </mat-tab>-->
 
-<!--  <mat-tab>-->
-<!--    <ng-template mat-tab-label>-->
-<!--      События-->
-<!--    </ng-template>-->
-<!--    <div class="p16">-->
-<!--      Уже скоро-->
-<!--    </div>-->
-<!--  </mat-tab>-->
+  <!--  <mat-tab>-->
+  <!--    <ng-template mat-tab-label>-->
+  <!--      События-->
+  <!--    </ng-template>-->
+  <!--    <div class="p16">-->
+  <!--      Уже скоро-->
+  <!--    </div>-->
+  <!--  </mat-tab>-->
 </mat-tab-group>

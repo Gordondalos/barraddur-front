@@ -33,6 +33,21 @@
   min-width: 100px !important;
 }
 
+.apexcharts-toolbar {
+  top: -16px !important;
+}
+
+.apexcharts-toolbar > div {
+  margin: 0 8px;
+  &:last-child {
+    margin-right: 0;
+  }
+  &:first-child{
+    margin-left: 0;
+  }
+
+}
+
 mat-spinner {
   position: fixed !important;
   top: 50%;

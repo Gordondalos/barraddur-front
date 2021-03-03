@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ChartComponent } from 'ng-apexcharts';
+import { ChartComponent, ChartType } from 'ng-apexcharts';
 // import { ChartOptions } from '../../interfaces/chart-options.interface';
 import { PortfolioService } from '../../services/portfolio.service';
 import * as moment from 'moment';
@@ -40,6 +40,7 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
 
   private unsubscribeAll: Subject<any> = new Subject<any>();
   private min: any;
+  chartType: ChartType = 'line';
 
 
   constructor(
@@ -95,7 +96,7 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
     let fr: Moment;
     let toe: Moment;
 
-    switch (this.interval){
+    switch (this.interval) {
       case '1min': {
         fr = moment().subtract(1, 'day');
         toe = moment();
@@ -193,7 +194,7 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
       this.chartCandleOptions = {
         series: [
           {
-            name: 'Instrument',
+            name: `${this.info.name}`,
             data: result.data,
           },
         ],
@@ -202,21 +203,41 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
           align: 'left',
         },
 
+        stroke: {
+          curve: 'smooth',
+          width: 2,
+        },
+
         chart: {
-          type: 'candlestick',
+          type: this.chartType,
+
           height: 250,
           id: 'candles',
           stacked: false,
           toolbar: {
-            autoSelected: 'pan',
-            show: false,
+            show: true,
+            offsetX: 0,
+            offsetY: 0,
+            tools: {
+              download: true,
+              selection: true,
+              zoom: true,
+              zoomin: true,
+              zoomout: true,
+              pan: false,
+              reset: false,
+            },
           },
-          zoom: {
-            enabled: true,
+
+          events: {
+            updated: (event) => {
+              console.log(event);
+            },
           },
         },
 
         plotOptions: {
+
           candlestick: {
             colors: {
               upward: '#379903',
@@ -224,33 +245,57 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
             },
           },
         },
-
+        yaxis: {
+          // forceNiceScale: true,
+          floating: false,
+          // axisTicks: {
+          //   show: true,
+          // },
+          showForNullSeries: false,
+          // logarithmic: true,
+          tooltip: {
+            enabled: true,
+          },
+          opposite: true,
+          labels: {
+            show: true,
+            align: 'right',
+          },
+        },
         xaxis: {
           type: 'datetime',
+          tickAmount: 10,
           labels: {
             formatter: (val) => {
-              switch (this.interval){
-                case '1min': return moment(val).format('hh:mm');
-                case '2min': return moment(val).format('hh:mm');
-                case '3min': return moment(val).format('hh:mm');
-                case '5min': return moment(val).format('hh:mm');
-                case '10min': return moment(val).format('hh:mm');
-                case '15min': return moment(val).format('hh:mm');
-                case '30min': return moment(val).format('hh:mm');
-                case 'hour': return moment(val).format('hh:mm');
-                case 'day': return moment(val).format('DD.MM.YY');
-                case 'week': return moment(val).format('DD.MM.YY');
-                case 'month': return moment(val).format('DD.MM.YY');
+              switch (this.interval) {
+                case '1min':
+                  return moment(val).format('hh:mm');
+                case '2min':
+                  return moment(val).format('hh:mm');
+                case '3min':
+                  return moment(val).format('hh:mm');
+                case '5min':
+                  return moment(val).format('hh:mm');
+                case '10min':
+                  return moment(val).format('hh:mm');
+                case '15min':
+                  return moment(val).format('hh:mm');
+                case '30min':
+                  return moment(val).format('hh:mm');
+                case 'hour':
+                  return moment(val).format('hh:mm');
+                case 'day':
+                  return moment(val).format('DD.MM.YY');
+                case 'week':
+                  return moment(val).format('DD.MM.YY');
+                case 'month':
+                  return moment(val).format('DD.MM.YY');
               }
               return moment(val).format('DD.MM.YY');
             },
           },
         },
-        yaxis: {
-          tooltip: {
-            enabled: true,
-          },
-        },
+
 
         tooltip: {
           enabled: true,
@@ -378,4 +423,8 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
   }
 
 
+  toggleCandleToLine(type) {
+    this.chartType = type;
+    this.init();
+  }
 }
