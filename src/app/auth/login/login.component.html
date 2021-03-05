@@ -10,32 +10,32 @@
       <form name="loginForm" [formGroup]="loginForm" novalidate>
 
         <mat-form-field class="d-block mb16" appearance="outline">
-          <mat-label>Login</mat-label>
+          <mat-label>Электронная почта</mat-label>
           <input matInput formControlName="login">
           <mat-icon matSuffix class="secondary-text">account_box</mat-icon>
           <mat-error i18n="login error" *ngIf="loginForm.get('login').hasError('required')">
-            Login name is required
+            Почта обязательна
           </mat-error>
         </mat-form-field>
 
         <ng-container *ngIf="reg">
           <mat-form-field class="d-block mb16" appearance="outline">
-            <mat-label>Name</mat-label>
+            <mat-label>Ваше имя</mat-label>
             <input matInput formControlName="name">
             <mat-icon matSuffix class="secondary-text">account_box</mat-icon>
             <mat-error i18n="login error" *ngIf="loginForm.get('name').hasError('required')">
-              User name is required
+              Имя пользователя обязательно
             </mat-error>
           </mat-form-field>
         </ng-container>
 
 
         <mat-form-field class="d-block mb16" appearance="outline">
-          <mat-label>Password</mat-label>
+          <mat-label>Пароль</mat-label>
           <input (keyup.enter)="login()" matInput type="password" formControlName="password">
           <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
           <mat-error>
-            Password is required
+            Пароль
           </mat-error>
         </mat-form-field>
 
@@ -44,7 +44,7 @@
           <input matInput type="password" formControlName="tToken">
           <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
           <mat-error>
-            Token is required
+            Токен обязателен
           </mat-error>
         </mat-form-field>
 
@@ -57,7 +57,7 @@
                   mat-raised-button color="warn"
                   class="text-uppercase mr16 f-gr-1"
                   i18n="Registration button text">
-           Go to login
+           Перейти к авторизации
           </button>
 
           <button (click)="registration()"
@@ -65,7 +65,7 @@
                   class="submit-button text-uppercase f-gr-1"
                   [disabled]="loginForm.invalid"
                   i18n="login button text">
-            Registration
+            Регистрация
           </button>
         </div>
 
@@ -78,7 +78,7 @@
                   mat-raised-button color="warn"
                   class="text-uppercase mr16 f-gr-1"
                   i18n="Registration button text">
-            Go to registration
+            Регистрация
           </button>
 
           <button (click)="login()"
@@ -86,7 +86,7 @@
                   class="submit-button text-uppercase f-gr-1"
                   [disabled]="loginForm.invalid"
                   i18n="login button text">
-            Login
+            Войти
           </button>
         </div>
 
