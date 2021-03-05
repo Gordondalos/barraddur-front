@@ -67,7 +67,7 @@ export class AuthService {
     const headers = new HttpHeaders();
     headers[ 'disableCache' ] = 'true';
 
-    const url = `${this.host}/api/auth/login`;
+    const url = `${ this.host }/api/auth/login`;
 
     console.log('this.apiPort', this.apiPort);
     console.log('environment', environment);
@@ -98,8 +98,18 @@ export class AuthService {
   }
 
   async registration(data): Promise<boolean> {
-    const url = `${this.host}/api/auth/registration`;
+    const url = `${ this.host }/api/auth/registration`;
     const res: any = await this.http.post(url, data).toPromise();
+    if (res) {
+      return res.data;
+    } else {
+      return false;
+    }
+  }
+
+  async checkLogin(login) {
+    const url = `${ this.host }/api/auth/check-login`;
+    const res: any = await this.http.post(url, { login }).toPromise();
     if (res) {
       return res.data;
     } else {

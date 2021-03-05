@@ -58,15 +58,18 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
   async ngOnInit(): Promise<any> {
 
     const portfolio = await this.portfolioService.getPortfolio();
-    for (const item of portfolio) {
-      item.id = item.figi;
+    if (portfolio && portfolio.length) {
+      for (const item of portfolio) {
+        item.id = item.figi;
+      }
+      this.portfolio = portfolio;
+      this.balance = await this.portfolioService.getBalance();
+      // const res = await this.groupService.getData();
+      // this.instruments = res.result.instruments;
+      await this.socketService.startSubscribtion(this.portfolio);
+      // this.socketService.connect();
     }
-    this.portfolio = portfolio;
-    this.balance = await this.portfolioService.getBalance();
-    // const res = await this.groupService.getData();
-    // this.instruments = res.result.instruments;
-    await this.socketService.startSubscribtion(this.portfolio);
-    // this.socketService.connect();
+
   }
 
   openTab(tabIndex: number) {
@@ -75,6 +78,6 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
 
   setTabs(tabsName: string) {
     const queryParams = { open: tabsName };
-    this.router.navigate(['.'], { relativeTo: this.activatedRoute, queryParams});
+    this.router.navigate(['.'], { relativeTo: this.activatedRoute, queryParams });
   }
 }

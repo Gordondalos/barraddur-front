@@ -1,6 +1,6 @@
-<div id="login"  fxLayout="column">
+<div id="login" fxLayout="column">
 
-  <div id="login-form-wrapper"  fxLayout="column" fxLayoutAlign="center center">
+  <div id="login-form-wrapper" fxLayout="column" fxLayoutAlign="center center">
     <div class="d-flex align-items-center mb16">
       <img class="logo mr8 d-inline-block" src="assets/images/logos/logo2.svg" alt="logo">
       <span class="welcome f24">Добро пожаловать</span>
@@ -34,21 +34,28 @@
           <mat-label>Пароль</mat-label>
           <input (keyup.enter)="login()" matInput [type]="type" formControlName="password">
           <mat-icon *ngIf="visibility" (click)="visibility = !visibility; type = 'password'"
-                    matSuffix class="secondary-text pointer">visibility</mat-icon>
+                    matSuffix class="secondary-text pointer">visibility
+          </mat-icon>
           <mat-icon *ngIf="!visibility" (click)="visibility = !visibility; type = 'text'"
-                    matSuffix class="secondary-text pointer">visibility_off</mat-icon>
+                    matSuffix class="secondary-text pointer">visibility_off
+          </mat-icon>
           <mat-error>
             Пароль
           </mat-error>
         </mat-form-field>
 
-        <mat-checkbox *ngIf="reg"
-                      disabled="true"
-                      [checked]="checkedBtn"
-                      color="primary"
-                      [(ngModel)]="checkedBtn">Демо счет</mat-checkbox>
+        <ng-container *ngIf="reg">
+          <mat-checkbox
+            disabled="true"
+            [checked]="checkedBtn"
+            color="primary"
+            formControlName="is_demo"
+            [(ngModel)]="checkedBtn">Демо счет
+          </mat-checkbox>
+        </ng-container>
 
-        <mat-form-field  *ngIf="reg" class="d-block mb16" appearance="outline">
+
+        <mat-form-field *ngIf="reg" class="d-block mb16" appearance="outline">
           <mat-label>Token</mat-label>
           <input matInput type="password" formControlName="tToken">
           <mat-icon matSuffix class="secondary-text">vpn_key</mat-icon>
@@ -57,53 +64,50 @@
           </mat-error>
         </mat-form-field>
 
+
+        <ng-container *ngIf="reg">
+
+          <div class="d-flex">
+            <button (click)="showRegistration()"
+                    mat-raised-button color="warn"
+                    class="text-uppercase mr16 f-gr-1"
+                    i18n="Registration button text">
+              Перейти к авторизации
+            </button>
+
+            <button (click)="registration()"
+                    mat-raised-button color="warn"
+                    class="submit-button text-uppercase f-gr-1"
+                    [disabled]="loginForm.invalid"
+                    i18n="login button text">
+              Регистрация
+            </button>
+          </div>
+
+        </ng-container>
+
+        <ng-container *ngIf="!reg">
+
+          <div class="d-flex">
+            <button (click)="showRegistration()"
+                    mat-raised-button color="warn"
+                    class="text-uppercase mr16 f-gr-1"
+                    i18n="Registration button text">
+              Регистрация
+            </button>
+
+            <button (click)="login()"
+                    mat-raised-button color="warn"
+                    class="submit-button text-uppercase f-gr-1"
+                    [disabled]="loginForm.invalid"
+                    i18n="login button text">
+              Войти
+            </button>
+          </div>
+
+        </ng-container>
+
       </form>
-
-      <ng-container *ngIf="reg">
-
-        <div class="d-flex">
-          <button (click)="showRegistration()"
-                  mat-raised-button color="warn"
-                  class="text-uppercase mr16 f-gr-1"
-                  i18n="Registration button text">
-           Перейти к авторизации
-          </button>
-
-          <button (click)="registration()"
-                  mat-raised-button color="warn"
-                  class="submit-button text-uppercase f-gr-1"
-                  [disabled]="loginForm.invalid"
-                  i18n="login button text">
-            Регистрация
-          </button>
-        </div>
-
-      </ng-container>
-
-      <ng-container *ngIf="!reg">
-
-        <div class="d-flex">
-          <button (click)="showRegistration()"
-                  mat-raised-button color="warn"
-                  class="text-uppercase mr16 f-gr-1"
-                  i18n="Registration button text">
-            Регистрация
-          </button>
-
-          <button (click)="login()"
-                  mat-raised-button color="warn"
-                  class="submit-button text-uppercase f-gr-1"
-                  [disabled]="loginForm.invalid"
-                  i18n="login button text">
-            Войти
-          </button>
-        </div>
-
-      </ng-container>
-
-
-
-
     </div>
 
   </div>

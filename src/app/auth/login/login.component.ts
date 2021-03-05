@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
       name: [''],
       password: ['', Validators.required],
       tToken: [''],
+      is_demo: [''],
     });
   }
 
@@ -58,16 +59,25 @@ export class LoginComponent implements OnInit {
   }
 
   async registration() {
-    const res: any = await this.authService.registration({
-      login: this.loginForm.get('login').value,
-      password: this.loginForm.get('password').value,
-      name: this.loginForm.get('name').value,
-      tToken: this.loginForm.get('tToken').value,
-    });
-    if (res) {
-      this.reg = false;
+
+    const checkLogin = await this.authService.checkLogin(this.loginForm.get('login').value);
+    if (!checkLogin) {
+      const res: any = await this.authService.registration({
+        login: this.loginForm.get('login').value,
+        password: this.loginForm.get('password').value,
+        name: this.loginForm.get('name').value,
+        tToken: this.loginForm.get('tToken').value,
+        is_demo: this.loginForm.get('is_demo').value ? 1 : 0,
+      });
+      if (res) {
+        this.reg = false;
+      } else {
+        alert('что то пошло не так');
+      }
     } else {
-      alert('что то пошло не так');
+      alert('Пользователь с этой почтой уже зарегестрирован!');
     }
+
+
   }
 }
