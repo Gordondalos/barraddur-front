@@ -16,9 +16,6 @@ import { SidenavService } from '../services/sidenav.service';
 })
 export class BuySellOneComponent implements OnInit, OnDestroy {
 
-  _info: InstrumentInfoInterface;
-
-
   _currentInstrument: InstrumentInterface | InstrumentInfoInterface;
   buySell: any = {};
   lags = false;
@@ -83,7 +80,7 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
       this.sidenavService.sideNavState$.next(false);
     }
     setTimeout(() => {
-      this.count = this._info.lot;
+      this.count = this.info.lot;
     }, 5000);
   }
 
