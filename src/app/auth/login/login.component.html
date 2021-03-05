@@ -87,15 +87,7 @@
         </ng-container>
 
         <ng-container *ngIf="!reg">
-
-          <div class="d-flex">
-            <button (click)="showRegistration()"
-                    mat-raised-button color="warn"
-                    class="text-uppercase mr16 f-gr-1"
-                    i18n="Registration button text">
-              Регистрация
-            </button>
-
+          <div class="d-flex align-items-center">
             <button (click)="login()"
                     mat-raised-button color="warn"
                     class="submit-button text-uppercase f-gr-1"
@@ -103,6 +95,13 @@
                     i18n="login button text">
               Войти
             </button>
+
+            <span (click)="showRegistration()"
+                  class="text-uppercase ml16 f-gr-1 text-info text-underline"
+                  i18n="Registration button text">
+              Регистрация
+            </span>
+
           </div>
 
         </ng-container>
