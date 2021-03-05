@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   reg = false;
+  visibility = false;
+  type = 'password';
 
   constructor(
     private formBuilder: FormBuilder,
