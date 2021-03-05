@@ -22,23 +22,22 @@
         </app-count-info>
       </ng-container>
 
-      <h4 class="text-center mb0">График по московскому времени</h4>
+      <ng-container *ngIf="chartCandleOptions">
+        <h4 class="text-center mb0">График по московскому времени</h4>
 
-      <span
-        class="select-chart"
-        [ngClass]="{'selected': chartType === 'line'}"
-        (click)="toggleCandleToLine('line')">
+        <span
+          class="select-chart"
+          [ngClass]="{'selected': chartType === 'line'}"
+          (click)="toggleCandleToLine('line')">
           Линия
       </span>
 
-      <span
-        class="select-chart"
-        [ngClass]="{'selected': chartType === 'candlestick'}"
-        (click)="toggleCandleToLine('candlestick')">
+        <span
+          class="select-chart"
+          [ngClass]="{'selected': chartType === 'candlestick'}"
+          (click)="toggleCandleToLine('candlestick')">
           Свечи
       </span>
-
-      <ng-container *ngIf="chartCandleOptions">
         <div class="chart-box mt16">
           <div id="chart-candlestick">
             <apx-chart
