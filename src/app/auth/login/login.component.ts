@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   reg = false;
   visibility = false;
   type = 'password';
+  checkedBtn = true;
 
   constructor(
     private formBuilder: FormBuilder,

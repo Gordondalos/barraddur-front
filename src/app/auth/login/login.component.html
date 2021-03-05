@@ -42,6 +42,12 @@
           </mat-error>
         </mat-form-field>
 
+        <mat-checkbox *ngIf="reg"
+                      disabled="true"
+                      [checked]="checkedBtn"
+                      color="primary"
+                      [(ngModel)]="checkedBtn">Демо счет</mat-checkbox>
+
         <mat-form-field  *ngIf="reg" class="d-block mb16" appearance="outline">
           <mat-label>Token</mat-label>
           <input matInput type="password" formControlName="tToken">
