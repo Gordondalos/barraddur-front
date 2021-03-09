@@ -19,7 +19,10 @@ export class PortfolioService extends FatherService {
 
   async getPortfolio(): Promise<any> {
     const data = await this.get('/api/portfolio');
-    return data.positions;
+    if (data) {
+      return data.positions;
+    }
+    return [];
   }
 
   async getBalance(): Promise<any> {
@@ -39,12 +42,12 @@ export class PortfolioService extends FatherService {
   }
 
   async getCandleFigiPeriod(figi, from, to, interval): Promise<any> {
-    const data = await this.get(`/api/get-candle-by-period/${figi}/${from}/${to}/${interval}`);
+    const data = await this.get(`/api/get-candle-by-period/${ figi }/${ from }/${ to }/${ interval }`);
     return data;
   }
 
   async getInfoByFigi(figi): Promise<any> {
-    const data = await this.get(`/api/get-info-by-figi/${figi}`);
+    const data = await this.get(`/api/get-info-by-figi/${ figi }`);
     return data;
   }
 

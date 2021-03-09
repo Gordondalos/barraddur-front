@@ -68,7 +68,7 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
     this.buySell.operation = operation;
     this.buySell.count = this.count;
     this.buySell.price = this.type === 'market' ? this.price : this.customPrice;
-    this.buySell.lags = this.buySell.lags ? this.buySell.lags : 0;
+    this.buySell.lags = this.buySell.lags && this.lags ? this.buySell.lags : 0;
     this.buySell.instrument = this.info;
     this.count = 0;
     const res = await this.stockService.deal(this.buySell);
