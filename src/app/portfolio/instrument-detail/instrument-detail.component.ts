@@ -231,7 +231,7 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
 
           events: {
             updated: (event) => {
-              console.log(event);
+              // console.log(event);
             },
           },
         },

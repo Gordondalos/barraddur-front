@@ -9,6 +9,7 @@ import { PortfolioService } from '../../services/portfolio.service';
 export class HistoryTrilingComponent implements OnInit {
   @Input() figi: string;
   history: any[];
+  result: number;
 
   constructor(
     private portFolioService: PortfolioService,
@@ -19,7 +20,9 @@ export class HistoryTrilingComponent implements OnInit {
     this.portFolioService.getHistoryTrailing(this.figi)
       .then((res) => {
         this.history = res;
-        console.log('this.history', this.history);
+        const last = this.history[ 0 ].stopLossValue;
+        const first = this.history[ this.history.length - 1 ].stopLossValue;
+        this.result = (last - first) / first * 100;
       });
   }
 
