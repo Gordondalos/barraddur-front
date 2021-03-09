@@ -30,7 +30,13 @@
         </div>
 
         <div class="price f12">
+
           {{item?.price?.toFixed(2)}}
+
+          <ng-container *ngIf="item.trailingStop">
+            <mat-icon matTooltip="трейлингстоп" class="f16 trailing">directions_run</mat-icon>
+          </ng-container>
+
         </div>
 
       </mat-list-item>

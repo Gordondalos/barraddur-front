@@ -30,6 +30,7 @@ import { NewsBarComponent } from './news-bar/news-bar.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { OrderbookComponent } from './orderbook/orderbook.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 const routes: Routes = [
@@ -62,29 +63,30 @@ const routes: Routes = [
     OrderbookComponent,
 
   ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    MatFormFieldModule,
-    MatTableModule,
-    MatInputModule,
-    MatSortModule,
-    AgGridModule.withComponents([]),
-    MatButtonModule,
-    MatAutocompleteModule,
-    FormsModule,
-    MatIconModule,
-    BuySellModule,
-    MatListModule,
-    MatTabsModule,
-    PersonalAreaModule,
-    NgApexchartsModule,
-    MatButtonToggleModule,
-    MatCheckboxModule,
-    ScrollingModule,
-    MatDatepickerModule,
-    MatProgressSpinnerModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        MatFormFieldModule,
+        MatTableModule,
+        MatInputModule,
+        MatSortModule,
+        AgGridModule.withComponents([]),
+        MatButtonModule,
+        MatAutocompleteModule,
+        FormsModule,
+        MatIconModule,
+        BuySellModule,
+        MatListModule,
+        MatTabsModule,
+        PersonalAreaModule,
+        NgApexchartsModule,
+        MatButtonToggleModule,
+        MatCheckboxModule,
+        ScrollingModule,
+        MatDatepickerModule,
+        MatProgressSpinnerModule,
+        MatTooltipModule,
+    ],
   exports: [
     PortfolioComponent,
   ],

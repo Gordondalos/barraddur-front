@@ -9,4 +9,5 @@ export interface InstrumentInterface {
   name: string;
   ticker: string;
   price: number;
+  trailingStop?: boolean;
 }

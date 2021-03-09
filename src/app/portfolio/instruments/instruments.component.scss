@@ -1,8 +1,21 @@
 @import "~iiko-styles/style/variables";
 @import "../../styles/variables";
 
+
+::ng-deep {
+  .mat-tooltip {
+    font-size: 14px !important;
+  }
+}
+
 table {
   width: 100%;
+}
+
+.trailing {
+  position: relative;
+  top: 4px;
+  left: 10px;
 }
 
 
