@@ -31,6 +31,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { OrderbookComponent } from './orderbook/orderbook.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { HistoryTrilingComponent } from './history-triling/history-triling.component';
 
 
 const routes: Routes = [
@@ -61,6 +62,7 @@ const routes: Routes = [
     BySearchComponent,
     NewsBarComponent,
     OrderbookComponent,
+    HistoryTrilingComponent,
 
   ],
     imports: [

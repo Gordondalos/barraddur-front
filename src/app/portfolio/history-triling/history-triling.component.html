@@ -1,0 +1,7 @@
+<cdk-virtual-scroll-viewport
+  minBufferPx="800" maxBufferPx="1500"
+  itemSize="30" class="example-viewport">
+  <div *cdkVirtualFor="let item of history" class="example-item">
+    {{item.date_update | date : 'dd-MM-YYYY hh:mm'}} {{item.message}} {{item.stopLossValue}}
+  </div>
+</cdk-virtual-scroll-viewport>

@@ -25,6 +25,14 @@ export class PortfolioService extends FatherService {
     return [];
   }
 
+  async getHistoryTrailing(figi): Promise<any> {
+    const data = await this.get(`/api/getHistoryTrailing/${figi}`);
+    if (data) {
+      return data;
+    }
+    return [];
+  }
+
   async getBalance(): Promise<any> {
     const data: any = await this.get('/api/portfolioCurrencies');
     return data ? data.currencies : '';

@@ -1,0 +1,12 @@
+@import "~iiko-styles/style/variables";
+
+.example-viewport {
+  height: calc(100vh - 150px);
+  width: 100%;
+}
+
+.example-item {
+  height: 40px;
+  border-bottom: 1px solid $light-gray;
+  padding: 5px 10px 5px 5px;
+}
