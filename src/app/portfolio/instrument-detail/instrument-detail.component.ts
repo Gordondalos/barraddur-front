@@ -415,6 +415,7 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
         figi: this.figi,
         currentInstrument: this.info,
         price: this.price,
+        inPortfolio: !!this.currentInstrument
       },
     });
     setTimeout(() => {

@@ -17,19 +17,28 @@
         <div class="text-center bold f18"> {{(+count * +price).toFixed(2) }} {{info?.currency}}</div>
       </ng-container>
 
-      <mat-checkbox class="my16 d-block" [(ngModel)]="lags">Запустить трейлинг стоп</mat-checkbox>
+            <mat-checkbox class="my16 d-block" [(ngModel)]="lags">Запустить трейлинг стоп</mat-checkbox>
 
-      <ng-container *ngIf="lags">
-        <mat-form-field appearance="outline">
-          <mat-label>Процент отставания</mat-label>
-          <input [(ngModel)]="buySell.lags" type="number" matInput>
-        </mat-form-field>
-      </ng-container>
+            <ng-container *ngIf="lags">
+              <mat-form-field appearance="outline">
+                <mat-label>Процент отставания</mat-label>
+                <input [(ngModel)]="buySell.lags" type="number" matInput>
+              </mat-form-field>
+            </ng-container>
 
       <div class="d-flex my16">
-        <button [disabled]="!price"  (click)="deal('Sell')"  mat-raised-button color="accent" class="f-gr-1 mr8 w-50">Продать</button>
-        <button [disabled]="!price" (click)="deal('Buy')" mat-raised-button color="primary" class="f-gr-1 ml8 w-50">Купить</button>
+        <button [disabled]="!price || lags" (click)="deal('Sell')" mat-raised-button color="accent" class="f-gr-1 mr8 w-50">
+          Продать
+        </button>
+        <button [disabled]="!price" (click)="deal('Buy')" mat-raised-button color="primary" class="f-gr-1 ml8 w-50">
+          Купить
+        </button>
       </div>
+
+      <ng-container *ngIf="inPortfolio">
+        <ng-container *ngTemplateOutlet="trailing"></ng-container>
+      </ng-container>
+
 
     </div>
 
@@ -50,9 +59,9 @@
       </div>
       <div class="text-center bold f18">
         <ng-container *ngIf="customPrice > 0">
-           {{(+count * +customPrice).toFixed(2) }}
+          {{(+count * +customPrice).toFixed(2) }}
         </ng-container>
-      {{info?.currency}}</div>
+        {{info?.currency}}</div>
 
       <mat-checkbox class="my16 d-block" [(ngModel)]="lags">Запустить трейлинг стоп</mat-checkbox>
 
@@ -64,10 +73,31 @@
       </ng-container>
 
       <div class="d-flex my16">
-        <button [disabled]="!customPrice" (click)="deal('Sell')"  mat-raised-button color="accent" class="f-gr-1 mr8 w-50">Продать</button>
-        <button [disabled]="!customPrice" (click)="deal('Buy')" mat-raised-button color="primary" class="f-gr-1 ml8 w-50">Купить</button>
+        <button [disabled]="!customPrice" (click)="deal('Sell')" mat-raised-button color="accent"
+                class="f-gr-1 mr8 w-50">Продать
+        </button>
+        <button [disabled]="!customPrice" (click)="deal('Buy')" mat-raised-button color="primary"
+                class="f-gr-1 ml8 w-50">Купить
+        </button>
       </div>
+
+      <ng-container *ngIf="inPortfolio">
+        <ng-container *ngTemplateOutlet="trailing"></ng-container>
+      </ng-container>
 
     </div>
   </mat-tab>
 </mat-tab-group>
+
+
+<ng-template #trailing>
+  <div class=" mt24 w100">
+    <h3>Настройки трейлинг стоп</h3>
+    <mat-form-field appearance="outline" class="w100 d-block">
+      <mat-label>Процент отставания</mat-label>
+      <input [(ngModel)]="buySell.lags" type="number" matInput>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="lags = true; startTrailingStop()">Запустить трейлинг стоп</button>
+  </div>
+
+</ng-template>

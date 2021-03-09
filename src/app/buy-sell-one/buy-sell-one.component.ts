@@ -30,13 +30,13 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
   count = 1;
   private unsubscribeAll: Subject<any> = new Subject<any>();
   customPrice: number;
+  inPortfolio: boolean;
 
   constructor(
     private socketService: SocketService,
     private portfolioService: PortfolioService,
     private stockService: StockService,
     public sidenavService: SidenavService,
-
   ) {
     this.socketService.eventSocketUpdate
       .pipe(takeUntil(this.unsubscribeAll))
@@ -53,6 +53,7 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
       this.currentInstrument = this.data.currentInstrument;
       this.figi = this.data.figi;
       this.price = this.data.price;
+      this.inPortfolio = this.data.inPortfolio;
     }
     this.count = this.info.lot;
     this.buySell.lags = 1.5;
@@ -61,6 +62,21 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.unsubscribeAll.next();
     this.unsubscribeAll.complete();
+  }
+
+  startTrailingStop() {
+    if (this.buySell.lags > 0) {
+      const data = {
+        lags: this.buySell.lags,
+        ticker: this.info.ticker,
+        figi: this.info.figi,
+        instrument: this.info,
+        price: this.type === 'market' ? this.price : this.customPrice
+      };
+
+      this.stockService.trailingStart(data);
+    }
+
   }
 
 

@@ -25,7 +25,13 @@ export class StockService extends FatherService {
       this.updateInstrumentsList.next(true);
       return res;
     });
+  }
 
+  async trailingStart(data): Promise<any> {
+    return this.post(`/api/trailing/${ data.instrument.ticker }`, data).then((res) => {
+      this.updateInstrumentsList.next(true);
+      return res;
+    });
   }
 
 }
