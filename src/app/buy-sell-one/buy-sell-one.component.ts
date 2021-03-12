@@ -57,6 +57,7 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
     }
     this.count = this.info.lot;
     this.buySell.lags = 1.5;
+    this.buySell.startLags = 0.5;
   }
 
   ngOnDestroy(): void {
@@ -67,6 +68,7 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
   startTrailingStop() {
     if (this.buySell.lags > 0) {
       const data = {
+        startLags: this.buySell.startLags,
         lags: this.buySell.lags,
         ticker: this.info.ticker,
         figi: this.info.figi,
@@ -85,6 +87,7 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
     this.buySell.count = this.count;
     this.buySell.price = this.type === 'market' ? this.price : this.customPrice;
     this.buySell.lags = this.buySell.lags && this.lags ? this.buySell.lags : 0;
+    this.buySell.startLags = this.buySell.startLags && this.lags ? this.buySell.startLags : this.buySell.lags || 0;
     this.buySell.instrument = this.info;
     this.count = 0;
     const res = await this.stockService.deal(this.buySell);

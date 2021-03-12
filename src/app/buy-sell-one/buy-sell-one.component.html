@@ -19,11 +19,19 @@
 
             <mat-checkbox class="my16 d-block" [(ngModel)]="lags">Запустить трейлинг стоп</mat-checkbox>
 
+
             <ng-container *ngIf="lags">
-              <mat-form-field appearance="outline">
-                <mat-label>Процент отставания</mat-label>
-                <input [(ngModel)]="buySell.lags" type="number" matInput>
-              </mat-form-field>
+              <div class="d-flex w100">
+                <mat-form-field appearance="outline" class="f-gr-1 w-50">
+                  <mat-label>Процент отставания %</mat-label>
+                  <input [(ngModel)]="buySell.lags" type="number" matInput>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="ml16 w-50 f-gr-1">
+                  <mat-label>Стартовый риск %</mat-label>
+                  <input [(ngModel)]="buySell.startLags" type="number" matInput>
+                </mat-form-field>
+              </div>
+
             </ng-container>
 
       <div class="d-flex my16">
@@ -93,10 +101,17 @@
 <ng-template #trailing>
   <div class=" mt24 w100">
     <h3>Настройки трейлинг стоп</h3>
-    <mat-form-field appearance="outline" class="w100 d-block">
-      <mat-label>Процент отставания</mat-label>
-      <input [(ngModel)]="buySell.lags" type="number" matInput>
-    </mat-form-field>
+    <div class="d-flex w100">
+      <mat-form-field appearance="outline" class="f-gr-1 w-50">
+        <mat-label>Процент отставания %</mat-label>
+        <input [(ngModel)]="buySell.lags" type="number" matInput>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="ml16 f-gr-1 w-50">
+        <mat-label>Стартовый риск %</mat-label>
+        <input [(ngModel)]="buySell.startLags" type="number" matInput>
+      </mat-form-field>
+    </div>
+
     <button mat-raised-button color="primary" (click)="lags = true; startTrailingStop()">Запустить трейлинг стоп</button>
   </div>
 
