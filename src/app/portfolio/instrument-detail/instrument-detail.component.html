@@ -10,7 +10,8 @@
         <div class="d-flex p16 align-items-center">
           <span class="price">{{price?.toFixed(3)}} {{info.currency}}</span>
           <div class="f-gr-1"></div>
-          <button mat-raised-button color="primary" (click)="opensideNav()">Купить / Продать</button>
+          <button class="mr16" mat-raised-button color="primary" (click)="opensideNav(true)">Трейлинг Стоп</button>
+          <button mat-raised-button color="primary" (click)="opensideNav(false)">Купить / Продать</button>
         </div>
       </ng-container>
 

@@ -31,6 +31,7 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
   private unsubscribeAll: Subject<any> = new Subject<any>();
   customPrice: number;
   inPortfolio: boolean;
+  trailOnly: boolean;
 
   constructor(
     private socketService: SocketService,
@@ -54,6 +55,7 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
       this.figi = this.data.figi;
       this.price = this.data.price;
       this.inPortfolio = this.data.inPortfolio;
+      this.trailOnly = this.data.trailOnly;
     }
     this.count = this.info.lot;
     this.buySell.lags = 1.5;

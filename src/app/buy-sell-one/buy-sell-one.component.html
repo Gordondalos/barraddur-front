@@ -1,106 +1,84 @@
-<mat-tab-group animationDuration="0ms" mat-align-tabs="center" class="w100 d-flex">
-  <mat-tab #elem (click)="selectTab('market', elem)" label="По рыночной" class="w-50">
-
-    <div class="p16">
-      <div class="d-flex mt16">
-        <mat-form-field appearance="outline" class="mw49 mr8 f-gr-1">
-          <mat-label>Цена</mat-label>
-          <input [disabled]="true" type="number" matInput [(ngModel)]="price">
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="mw49 ml8 f-gr-1">
-          <mat-label>Лоты</mat-label>
-          <input type="number" matInput [(ngModel)]="count">
-        </mat-form-field>
-
-      </div>
-      <ng-container *ngIf="price && count">
-        <div class="text-center bold f18"> {{(+count * +price).toFixed(2) }} {{info?.currency}}</div>
-      </ng-container>
-
-            <mat-checkbox class="my16 d-block" [(ngModel)]="lags">Запустить трейлинг стоп</mat-checkbox>
-
-
-            <ng-container *ngIf="lags">
-              <div class="d-flex w100">
-                <mat-form-field appearance="outline" class="f-gr-1 w-50">
-                  <mat-label>Процент отставания %</mat-label>
-                  <input [(ngModel)]="buySell.lags" type="number" matInput>
-                </mat-form-field>
-                <mat-form-field appearance="outline" class="ml16 w-50 f-gr-1">
-                  <mat-label>Стартовый риск %</mat-label>
-                  <input [(ngModel)]="buySell.startLags" type="number" matInput>
-                </mat-form-field>
-              </div>
-
-            </ng-container>
-
-      <div class="d-flex my16">
-        <button [disabled]="!price || lags" (click)="deal('Sell')" mat-raised-button color="accent" class="f-gr-1 mr8 w-50">
-          Продать
-        </button>
-        <button [disabled]="!price" (click)="deal('Buy')" mat-raised-button color="primary" class="f-gr-1 ml8 w-50">
-          Купить
-        </button>
-      </div>
-
-      <ng-container *ngIf="inPortfolio">
-        <ng-container *ngTemplateOutlet="trailing"></ng-container>
-      </ng-container>
-
-
-    </div>
-
-
-  </mat-tab>
-  <mat-tab #elem1 (click)="selectTab('limit', elem1)" label="По лимитной" class="w-50">
-    <div class="p16" *ngIf="price">
-      <div class="d-flex mt16">
-        <mat-form-field appearance="outline" class="mw49 mr8 f-gr-1">
-          <mat-label>Цена {{price?.toFixed(2) ? price?.toFixed(2) : ''}}</mat-label>
-          <input type="number" matInput [(ngModel)]="customPrice">
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="mw49 ml8 f-gr-1">
-          <mat-label>Лоты</mat-label>
-          <input type="number" matInput [(ngModel)]="count">
-        </mat-form-field>
-
-      </div>
-      <div class="text-center bold f18">
-        <ng-container *ngIf="customPrice > 0">
-          {{(+count * +customPrice).toFixed(2) }}
+<ng-container *ngIf="!trailOnly">
+  <mat-tab-group animationDuration="0ms" mat-align-tabs="center" class="w100 d-flex">
+    <mat-tab #elem (click)="selectTab('market', elem)" label="По рыночной" class="w-50">
+      <div class="p16">
+        <div class="d-flex mt16">
+          <mat-form-field appearance="outline" class="mw49 mr8 f-gr-1">
+            <mat-label>Цена</mat-label>
+            <input [disabled]="true" type="number" matInput [(ngModel)]="price">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="mw49 ml8 f-gr-1">
+            <mat-label>Лоты</mat-label>
+            <input type="number" matInput [(ngModel)]="count">
+          </mat-form-field>
+        </div>
+        <ng-container *ngIf="price && count">
+          <div class="text-center bold f18"> {{(+count * +price).toFixed(2) }} {{info?.currency}}</div>
         </ng-container>
-        {{info?.currency}}</div>
 
-      <mat-checkbox class="my16 d-block" [(ngModel)]="lags">Запустить трейлинг стоп</mat-checkbox>
 
-      <ng-container *ngIf="lags">
-        <mat-form-field appearance="outline">
-          <mat-label>Процент отставания</mat-label>
-          <input [(ngModel)]="buySell.lags" type="number" matInput>
-        </mat-form-field>
-      </ng-container>
+        <div class="d-flex my16">
+          <button [disabled]="!price || lags" (click)="deal('Sell')" mat-raised-button color="accent" class="f-gr-1 mr8 w-50">
+            Продать
+          </button>
+          <button [disabled]="!price" (click)="deal('Buy')" mat-raised-button color="primary" class="f-gr-1 ml8 w-50">
+            Купить
+          </button>
+        </div>
 
-      <div class="d-flex my16">
-        <button [disabled]="!customPrice" (click)="deal('Sell')" mat-raised-button color="accent"
-                class="f-gr-1 mr8 w-50">Продать
-        </button>
-        <button [disabled]="!customPrice" (click)="deal('Buy')" mat-raised-button color="primary"
-                class="f-gr-1 ml8 w-50">Купить
-        </button>
+
       </div>
+    </mat-tab>
+    <mat-tab #elem1 (click)="selectTab('limit', elem1)" label="По лимитной" class="w-50">
+      <div class="p16" *ngIf="price">
+        <div class="d-flex mt16">
+          <mat-form-field appearance="outline" class="mw49 mr8 f-gr-1">
+            <mat-label>Цена {{price?.toFixed(2) ? price?.toFixed(2) : ''}}</mat-label>
+            <input type="number" matInput [(ngModel)]="customPrice">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="mw49 ml8 f-gr-1">
+            <mat-label>Лоты</mat-label>
+            <input type="number" matInput [(ngModel)]="count">
+          </mat-form-field>
 
-      <ng-container *ngIf="inPortfolio">
-        <ng-container *ngTemplateOutlet="trailing"></ng-container>
-      </ng-container>
+        </div>
+        <div class="text-center bold f18">
+          <ng-container *ngIf="customPrice > 0">
+            {{(+count * +customPrice).toFixed(2) }}
+          </ng-container>
+          {{info?.currency}}</div>
 
-    </div>
-  </mat-tab>
-</mat-tab-group>
+        <ng-container *ngIf="lags">
+          <mat-form-field appearance="outline">
+            <mat-label>Процент отставания</mat-label>
+            <input [(ngModel)]="buySell.lags" type="number" matInput>
+          </mat-form-field>
+        </ng-container>
+
+        <div class="d-flex my16">
+          <button [disabled]="!customPrice" (click)="deal('Sell')" mat-raised-button color="accent"
+                  class="f-gr-1 mr8 w-50">Продать
+          </button>
+          <button [disabled]="!customPrice" (click)="deal('Buy')" mat-raised-button color="primary"
+                  class="f-gr-1 ml8 w-50">Купить
+          </button>
+        </div>
+
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</ng-container>
+
+
+<ng-container *ngIf="inPortfolio && trailOnly">
+  <ng-container *ngTemplateOutlet="trailing"></ng-container>
+</ng-container>
 
 
 <ng-template #trailing>
   <div class=" mt24 w100">
-    <h3>Настройки трейлинг стоп</h3>
+    <h2 class="bold f24">Настройки Трейлинг Стоп</h2>
+    <h4>Стартовая цена {{price}}</h4>
     <div class="d-flex w100">
       <mat-form-field appearance="outline" class="f-gr-1 w-50">
         <mat-label>Процент отставания %</mat-label>
@@ -112,7 +90,10 @@
       </mat-form-field>
     </div>
 
-    <button mat-raised-button color="primary" (click)="lags = true; startTrailingStop()">Запустить трейлинг стоп</button>
+    <button mat-raised-button color="primary" (click)="lags = true; startTrailingStop()">Запустить Трейлинг Стоп</button>
   </div>
 
 </ng-template>
+
+
+

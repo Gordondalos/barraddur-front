@@ -408,9 +408,10 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
   }
 
 
-  opensideNav() {
+  opensideNav(trailOnly: boolean) {
     this.dinamicLoaderService.loadComponent$.next({
       component: BuySellOneComponent, data: {
+        trailOnly,
         info: this.info,
         figi: this.figi,
         currentInstrument: this.info,
