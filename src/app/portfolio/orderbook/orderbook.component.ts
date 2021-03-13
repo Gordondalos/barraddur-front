@@ -31,8 +31,11 @@ export class OrderbookComponent implements OnInit, OnDestroy {
     this.socketService.eventSocketUpdateOrderBook
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((res) => {
-        this.asks = res.asks;
-        this.bids = res.bids;
+        if (this.figi === res.figi) {
+          this.asks = res.asks;
+          this.bids = res.bids;
+        }
+
       });
   }
 
@@ -50,7 +53,7 @@ export class OrderbookComponent implements OnInit, OnDestroy {
         info: this.info,
         figi: this.figi,
         currentInstrument: this.info,
-        price: item[0],
+        price: item[ 0 ],
       },
     });
     setTimeout(() => {
