@@ -74,6 +74,8 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
       // this.instruments = res.result.instruments;
       await this.socketService.startSubscribtion(this.portfolio);
       // this.socketService.connect();
+    } else {
+      this.portfolio = [];
     }
 
     this.sidenavService.showSpiner.next(false);

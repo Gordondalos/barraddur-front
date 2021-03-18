@@ -18,7 +18,6 @@ export class FatherService {
     const address = `${ this.host }${ url }`;
     return this.httpClient.get(address, { observe: 'response' }).toPromise()
       .then((res: any) => {
-        console.log(res.body);
         const token = res.headers.get('token');
         if (token) {
           localStorage.setItem('token', JSON.stringify(token));
