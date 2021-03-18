@@ -10,3 +10,11 @@
   border-bottom: 1px solid $light-gray;
   padding: 5px 10px 5px 5px;
 }
+
+.buy {
+  border-right: 1px solid $light-gray;
+}
+
+.sell{
+  border-left: 1px solid $light-gray;
+}

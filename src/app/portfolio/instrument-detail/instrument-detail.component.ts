@@ -80,6 +80,15 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
     this.init();
     const portfolio = await this.portfolioService.getPortfolio();
     this.currentInstrument = _.find(portfolio, (item) => item.figi === this.figi);
+    if (this.currentInstrument) {
+      const instrumentPortfolio = await this.portfolioService.instrumentPortfolio(this.currentInstrument);
+
+      console.log('-------------instrumentPortfolio--------------');
+      console.log('instrumentPortfolio', instrumentPortfolio);
+      console.log('-------------instrumentPortfolio--------------');
+
+
+    }
   }
 
   loadInterval(interval: CandleResolution) {
@@ -194,7 +203,7 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
       this.chartCandleOptions = {
         series: [
           {
-            name: `${this.info.name}`,
+            name: `${ this.info.name }`,
             data: result.data,
           },
         ],
@@ -285,13 +294,13 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
                 case 'hour':
                   return moment(val).format('hh:mm');
                 case 'day':
-                  return moment(val).format('DD.MM.YY');
+                  return moment(val).format('DD.MM.YYYY');
                 case 'week':
-                  return moment(val).format('DD.MM.YY');
+                  return moment(val).format('DD.MM.YYYY');
                 case 'month':
-                  return moment(val).format('DD.MM.YY');
+                  return moment(val).format('DD.MM.YYYY');
               }
-              return moment(val).format('DD.MM.YY');
+              return moment(val).format('DD.MM.YYYY');
             },
           },
         },
@@ -416,7 +425,7 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
         figi: this.figi,
         currentInstrument: this.info,
         price: this.price,
-        inPortfolio: !!this.currentInstrument
+        inPortfolio: !!this.currentInstrument,
       },
     });
     setTimeout(() => {

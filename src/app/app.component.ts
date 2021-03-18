@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterContentInit, AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { SidenavService } from './services/sidenav.service';
 import { onMainContentChange } from './animations/animations';
 import { PortfolioService } from './services/portfolio.service';
@@ -7,7 +7,6 @@ import { NavigationEnd, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { SocketService } from './services/socket.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
@@ -16,7 +15,7 @@ import { MatSidenav } from '@angular/material/sidenav';
   styleUrls: ['./app.component.scss'],
   animations: [onMainContentChange],
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit, OnDestroy, AfterViewInit, AfterContentInit {
   title = 'baraddur';
 
   @ViewChild('leftSidenav') leftSidenav: MatSidenav;
@@ -35,6 +34,7 @@ export class AppComponent implements OnInit, OnDestroy {
     public localstorageService: LocalstorageService,
     public router: Router,
     private socketService: SocketService,
+    private cdr: ChangeDetectorRef,
   ) {
     this.sidenavService.showSpiner.subscribe((res) => {
       this.showSpiner = res;
@@ -61,6 +61,14 @@ export class AppComponent implements OnInit, OnDestroy {
         }
       });
 
+  }
+
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
+  }
+
+  ngAfterContentInit() {
+    this.cdr.detectChanges();
   }
 
   ngOnDestroy(): void {

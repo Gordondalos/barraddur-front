@@ -1,8 +1,72 @@
-<h3 class="bold">Общий прирост {{result?.toFixed(2)}}%</h3>
-<cdk-virtual-scroll-viewport
-  minBufferPx="800" maxBufferPx="1500"
-  itemSize="30" class="example-viewport">
-  <div *cdkVirtualFor="let item of history" class="example-item">
-    {{item.date_update | date : 'dd-MM-YYYY hh:mm'}} {{item.message}} {{item.stopLossValue}}
+<h3>История по инструменту</h3>
+
+<div class="d-flex w100">
+  <div class="w-50">Покупка</div>
+  <div class="w-50">Продажа</div>
+</div>
+<ng-container *ngFor="let item of operations">
+  <hr>
+  <div *ngIf="item.operationType === 'Buy'" class=" d-flex">
+      <div class="w-50 buy">
+        <div>Дата: {{item.date| date: 'DD-MM-YYYY: HH:mm'}}</div>
+        <div>Комиссия: {{item.commission}}</div>
+        <div>Валюта: {{item.currency}}</div>
+        <div>Цена: {{item.price}}</div>
+        <div>Оплата: {{item.payment}}</div>
+        <div>Количество: {{item.quantity}}</div>
+      </div>
+<!--      <ng-container *ngTemplateOutlet="info; context: item"></ng-container>-->
+
+    <div class="f-gr-1"></div>
   </div>
-</cdk-virtual-scroll-viewport>
+
+  <div *ngIf="item.operationType === 'Sell'" class=" d-flex">
+    <div class="f-gr-1"></div>
+
+<!--      <ng-container *ngTemplateOutlet="info; context: item"></ng-container>-->
+      <div class="w-50 sell">
+        <div>Дата: {{item.date| date: 'dd-MM-YYYY: HH:mm'}}</div>
+        <div>Комиссия: {{item.commission}}</div>
+        <div>Валюта: {{item.currency}}</div>
+        <div>Цена: {{item.price}}</div>
+        <div>Оплата: {{item.payment}}</div>
+        <div>Количество: {{item.quantity}}</div>
+      </div>
+
+  </div>
+
+</ng-container>
+
+<hr>
+
+<ng-container *ngIf="total && currentInstrument">
+  <div class="bold text-right">
+    {{total.toFixed(2)}} {{operations[0].currency}}
+  </div>
+  <div
+    class="bold text-right"
+    [ngClass]="{'test-success': (price * currentInstrument.lots - total) > 0, 'text-danger': (price * currentInstrument.lots - total) < 0}">
+    {{(price * currentInstrument.lots - total).toFixed(2)}} {{operations[0].currency}}
+  </div>
+</ng-container>
+
+
+<ng-template #info let-item="item">
+  <div class="w-50">
+    <div>Дата: {{item.date| date: 'dd-MM-YYYY: HH:mm'}}</div>
+    <div>Комиссия: {{item.commission}}</div>
+    <div>Валюта: {{item.currency}}</div>
+    <div>Цена: {{item.price}}</div>
+    <div>Оплата: {{item.payment}}</div>
+    <div>Количество: {{item.quantity}}</div>
+  </div>
+</ng-template>
+
+<!--<h3 class="bold">Общий прирост {{result?.toFixed(2)}}%</h3>-->
+<!--<cdk-virtual-scroll-viewport-->
+<!--  minBufferPx="800" maxBufferPx="1500"-->
+<!--  itemSize="30" class="example-viewport">-->
+<!--  <div *cdkVirtualFor="let item of history" class="example-item">-->
+<!--    {{item.date_update | date : 'dd-MM-YYYY hh:mm'}} {{item.message}} {{item.stopLossValue}}-->
+<!--  </div>-->
+<!--</cdk-virtual-scroll-viewport>-->

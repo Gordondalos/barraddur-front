@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { FatherService } from './father.service';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
+import { OperationsInterface } from '../interfaces/operations.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -25,8 +26,25 @@ export class PortfolioService extends FatherService {
     return [];
   }
 
+  async instrumentPortfolio(params): Promise<any> {
+    const res = await this.post('/api/instrumentPortfolio', {figi: params.figi});
+    if (res) {
+      return res;
+    }
+    return {};
+  }
+
+  async getInstrumentOperations(params: { figi: string, from?: string, to?: string }): Promise<OperationsInterface | any> {
+    // from и  to должны быть в формате 'DD-MM-YYYY'
+    const res = await this.post('/api/instrumentOperations', { figi: params.figi, from: params.from, to: params.to });
+    if (res) {
+      return res.operations;
+    }
+    return [];
+  }
+
   async getHistoryTrailing(figi): Promise<any> {
-    const data = await this.get(`/api/getHistoryTrailing/${figi}`);
+    const data = await this.get(`/api/getHistoryTrailing/${ figi }`);
     if (data) {
       return data;
     }

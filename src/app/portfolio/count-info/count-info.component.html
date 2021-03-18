@@ -7,6 +7,9 @@
         <span>В портфеле</span>
         <div class="bold f18 mx16">
           {{currentInstrument.lots}}
+          <ng-container *ngIf="currentInstrument.trailingStop">
+           <span class="ml16">Трейлинг стоп запущен</span>
+          </ng-container>
         </div>
         <span>
 <!--            {{currentInstrument.instrumentType}}-->

@@ -26,7 +26,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     request.headers[ 'Accept-language' ] = this.languageService.getLanguage();
 
-    const sessionTtl = +localStorage.getItem('iikoWeb_sessionTtl');
+    // const sessionTtl = +localStorage.getItem('iikoWeb_sessionTtl');
     let token = localStorage.getItem('token');
     if (!token) {
       token = 'start';
@@ -36,15 +36,15 @@ export class AuthInterceptor implements HttpInterceptor {
       window.location.href = '/#/auth/login';
     }
 
-    if (sessionTtl && sessionTtl !== 0) {
-      if (this.subscription !== null) {
-        this.subscription.unsubscribe();
-        this.subscription = null;
-      }
-      const timer = sessionTtl * 1000;
-      const intv = interval(timer);
-      this.subscription = intv.subscribe(n => this.showDialogAuth());
-    }
+    // if (sessionTtl && sessionTtl !== 0) {
+    //   if (this.subscription !== null) {
+    //     this.subscription.unsubscribe();
+    //     this.subscription = null;
+    //   }
+    //   const timer = sessionTtl * 1000;
+    //   const intv = interval(timer);
+    //   this.subscription = intv.subscribe(n => this.showDialogAuth());
+    // }
 
     const req = request.clone({
       setHeaders: {

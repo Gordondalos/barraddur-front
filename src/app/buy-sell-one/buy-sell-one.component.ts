@@ -78,7 +78,10 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
         price: this.type === 'market' ? this.price : this.customPrice
       };
 
-      this.stockService.trailingStart(data);
+      this.stockService.trailingStart(data)
+        .then(() => {
+          this.sidenavService.sideNavState$.next(false);
+        });
     }
 
   }

@@ -5,6 +5,7 @@ import { GroupService } from '../services/group.service';
 import { Stock } from '../interfaces/stock.interface';
 import { SocketService } from '../services/socket.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { SidenavService } from '../services/sidenav.service';
 
 @Component({
   selector: 'app-portfolio',
@@ -27,6 +28,7 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
     private socketService: SocketService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private sidenavService: SidenavService,
   ) {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -57,6 +59,10 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
 
   async ngOnInit(): Promise<any> {
 
+    setTimeout(() => {
+      this.sidenavService.showSpiner.next(true);
+    }, 10);
+
     const portfolio = await this.portfolioService.getPortfolio();
     if (portfolio && portfolio.length) {
       for (const item of portfolio) {
@@ -69,6 +75,8 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
       await this.socketService.startSubscribtion(this.portfolio);
       // this.socketService.connect();
     }
+
+    this.sidenavService.showSpiner.next(false);
 
   }
 

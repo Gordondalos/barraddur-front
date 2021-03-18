@@ -9,6 +9,7 @@
       <ng-container *ngIf="info && info.currency && price">
         <div class="d-flex p16 align-items-center">
           <span class="price">{{price?.toFixed(3)}} {{info.currency}}</span>
+          <mat-icon *ngIf="currentInstrument?.trailingStop">directions_run</mat-icon>
           <div class="f-gr-1"></div>
           <button class="mr16" mat-raised-button color="primary" (click)="opensideNav(true)">Трейлинг Стоп</button>
           <button mat-raised-button color="primary" (click)="opensideNav(false)">Купить / Продать</button>
@@ -134,7 +135,10 @@
         События
       </ng-template>
       <div class="p16">
-        <app-history-triling [figi]="figi"></app-history-triling>
+        <app-history-triling
+          [info]="info"
+          [currentInstrument]="currentInstrument"
+          [figi]="figi"></app-history-triling>
       </div>
     </mat-tab>
 </mat-tab-group>
