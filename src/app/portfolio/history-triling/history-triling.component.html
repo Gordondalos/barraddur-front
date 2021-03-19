@@ -1,63 +1,61 @@
-<h3>История по инструменту</h3>
+<h3>История по инструменту (за календарный год)</h3>
 
 <div class="d-flex w100">
-  <div class="w-50">Покупка</div>
-  <div class="w-50">Продажа</div>
+  <div class="w-50 text-center">Покупка</div>
+  <div class="w-50 text-center">Продажа</div>
 </div>
-<ng-container *ngFor="let item of operations">
+<ng-container *ngFor="let item of operations?.reverse()">
   <hr>
   <div *ngIf="item.operationType === 'Buy'" class=" d-flex">
-      <div class="w-50 buy">
-        <div>Дата: {{item.date| date: 'DD-MM-YYYY: HH:mm'}}</div>
-        <div>Комиссия: {{item.commission}}</div>
-        <div>Валюта: {{item.currency}}</div>
-        <div>Цена: {{item.price}}</div>
-        <div>Оплата: {{item.payment}}</div>
-        <div>Количество: {{item.quantity}}</div>
-      </div>
-<!--      <ng-container *ngTemplateOutlet="info; context: item"></ng-container>-->
-
+    <ng-container *ngTemplateOutlet="info; context: {item:item}"></ng-container>
     <div class="f-gr-1"></div>
   </div>
 
   <div *ngIf="item.operationType === 'Sell'" class=" d-flex">
     <div class="f-gr-1"></div>
-
-<!--      <ng-container *ngTemplateOutlet="info; context: item"></ng-container>-->
-      <div class="w-50 sell">
-        <div>Дата: {{item.date| date: 'dd-MM-YYYY: HH:mm'}}</div>
-        <div>Комиссия: {{item.commission}}</div>
-        <div>Валюта: {{item.currency}}</div>
-        <div>Цена: {{item.price}}</div>
-        <div>Оплата: {{item.payment}}</div>
-        <div>Количество: {{item.quantity}}</div>
-      </div>
-
+    <ng-container *ngTemplateOutlet="info; context: {item:item}"></ng-container>
   </div>
 
 </ng-container>
 
 <hr>
+<ng-container *ngIf="currentInstrument && price">
+  <div class="d-flex w100">
+    <div class="bold w-50 buy px16">
+      {{totalBuy?.toFixed(2)}} {{operations[0].currency}}
+    </div>
+    <div class="bold w-50 sell px16">
+      {{totalSell?.toFixed(2)}} {{operations[0].currency}}
+    </div>
+  </div>
+  <hr>
 
-<ng-container *ngIf="total && currentInstrument">
   <div class="bold text-right">
-    {{total.toFixed(2)}} {{operations[0].currency}}
+    Портфель: {{total?.toFixed(2)}} {{operations[0].currency}}
   </div>
+  <hr>
+  <div class="text-right">
+    <div>Цена: {{price}}</div>
+    <div>Количество лотов: {{currentInstrument.lots}}</div>
+    <div>На общую сумму: {{(price * currentInstrument.lots).toFixed(2)}}</div>
+  </div>
+  <hr>
   <div
-    class="bold text-right"
-    [ngClass]="{'test-success': (price * currentInstrument.lots - total) > 0, 'text-danger': (price * currentInstrument.lots - total) < 0}">
-    {{(price * currentInstrument.lots - total).toFixed(2)}} {{operations[0].currency}}
+    class="text-right mt16 bold"
+    [ngClass]="{'text-success': (price * currentInstrument.lots - total) > 0, 'text-danger': (price * currentInstrument.lots - total) < 0}">
+    Баланс (прибыль/убыток): {{(price * currentInstrument.lots + total).toFixed(2)}} {{operations[0].currency}}
   </div>
+  <hr>
 </ng-container>
 
 
 <ng-template #info let-item="item">
-  <div class="w-50">
+  <div class="w-50 px16" [ngClass]="{'buy': item.operationType === 'Buy', 'sell': item.operationType === 'Sell'}">
     <div>Дата: {{item.date| date: 'dd-MM-YYYY: HH:mm'}}</div>
     <div>Комиссия: {{item.commission}}</div>
     <div>Валюта: {{item.currency}}</div>
-    <div>Цена: {{item.price}}</div>
-    <div>Оплата: {{item.payment}}</div>
+    <div>Цена: {{item.price.toFixed(3)}}</div>
+    <div>Оплата: {{item.payment.toFixed(3)}}</div>
     <div>Количество: {{item.quantity}}</div>
   </div>
 </ng-template>

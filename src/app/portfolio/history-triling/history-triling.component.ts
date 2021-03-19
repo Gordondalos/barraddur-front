@@ -21,6 +21,8 @@ export class HistoryTrilingComponent implements OnInit, OnDestroy {
   history: any[];
   result: number;
   operations: Array<OneOperation>;
+  totalBuy = 0;
+  totalSell = 0;
   total = 0;
   price: number;
 
@@ -72,11 +74,14 @@ export class HistoryTrilingComponent implements OnInit, OnDestroy {
     if (this.operations) {
       this.operations.forEach((item) => {
         if (item.operationType === 'Buy') {
-          this.total -= item.payment;
+          this.totalBuy += item.payment;
         } else {
-          this.total += item.payment;
+          this.totalSell += item.payment;
         }
       });
+
+      this.total = this.totalBuy + this.totalSell;
+
     }
     this.sidenavService.showSpiner.next(false);
   }
