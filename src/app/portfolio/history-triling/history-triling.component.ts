@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { PortfolioService } from '../../services/portfolio.service';
 import { OneOperation } from '../../interfaces/operations.interface';
 import { InstrumentInfo } from '../../../assets/charting_library/charting_library.min';
@@ -13,6 +13,7 @@ import { SidenavService } from '../../services/sidenav.service';
   selector: 'app-history-triling',
   templateUrl: './history-triling.component.html',
   styleUrls: ['./history-triling.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HistoryTrilingComponent implements OnInit, OnDestroy {
   @Input() figi: string;

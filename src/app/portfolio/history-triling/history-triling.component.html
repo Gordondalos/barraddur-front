@@ -4,22 +4,25 @@
   <div class="w-50 text-center">Покупка</div>
   <div class="w-50 text-center">Продажа</div>
 </div>
-<ng-container *ngFor="let item of operations?.reverse()">
-  <hr>
-  <div *ngIf="item.operationType === 'Buy'" class=" d-flex">
-    <ng-container *ngTemplateOutlet="info; context: {item:item}"></ng-container>
-    <div class="f-gr-1"></div>
-  </div>
+<ng-container *ngIf="operations">
+  <ng-container *ngFor="let item of operations.reverse()">
+    <hr>
+    <div *ngIf="item.operationType === 'Buy'" class=" d-flex">
+      <ng-container *ngTemplateOutlet="info; context: {item:item}"></ng-container>
+      <div class="f-gr-1"></div>
+    </div>
 
-  <div *ngIf="item.operationType === 'Sell'" class=" d-flex">
-    <div class="f-gr-1"></div>
-    <ng-container *ngTemplateOutlet="info; context: {item:item}"></ng-container>
-  </div>
+    <div *ngIf="item.operationType === 'Sell'" class=" d-flex">
+      <div class="f-gr-1"></div>
+      <ng-container *ngTemplateOutlet="info; context: {item:item}"></ng-container>
+    </div>
 
+  </ng-container>
 </ng-container>
 
+
 <hr>
-<ng-container *ngIf="currentInstrument">
+<ng-container *ngIf="currentInstrument && price">
   <div class="d-flex w100">
     <div class="bold w-50 buy px16">
       {{totalBuy?.toFixed(2)}} {{operations[0].currency}}
