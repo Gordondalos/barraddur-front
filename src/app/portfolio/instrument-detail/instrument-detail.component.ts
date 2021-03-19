@@ -86,6 +86,7 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
       this.lastAllData = [...this.lastAllData, ...result.data];
       this.lastAllDataValue = [...this.lastAllDataValue, ...result.val];
       (this.chartCandle.series[0] as any).data = this.lastAllData;
+      // console.log(this.chartCandle);
       (this.chartBar.series[0] as any).data = this.lastAllDataValue;
     }
   }
@@ -269,13 +270,13 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
           },
         },
         yaxis: {
-          // forceNiceScale: true,
+          // max: 53,
+          // min: 50,
+          // forceNiceScale: false,
+          tickAmount: 4,
           floating: false,
-          // axisTicks: {
-          //   show: true,
-          // },
-          showForNullSeries: false,
-          // logarithmic: true,
+          showForNullSeries: true,
+          logarithmic: false,
           tooltip: {
             enabled: true,
           },
@@ -318,7 +319,6 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
             },
           },
         },
-
 
         tooltip: {
           enabled: true,
