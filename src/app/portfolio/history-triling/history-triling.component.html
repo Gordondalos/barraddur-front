@@ -45,7 +45,8 @@
   <hr>
   <div
     class="text-right mt16 bold"
-    [ngClass]="{'text-success': (price * currentInstrument.lots - total) > 0, 'text-danger': (price * currentInstrument.lots - total) < 0}">
+    [ngClass]="{'text-success': (price * currentInstrument.lots + total) > 0,
+     'text-danger': (price * currentInstrument.lots + total) < 0 }">
     Баланс (прибыль/убыток): {{(price * currentInstrument.lots + total).toFixed(2)}} {{operations[0].currency}}
   </div>
   <hr>
