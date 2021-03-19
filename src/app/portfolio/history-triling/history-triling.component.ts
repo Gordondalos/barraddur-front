@@ -13,7 +13,7 @@ import { SidenavService } from '../../services/sidenav.service';
   selector: 'app-history-triling',
   templateUrl: './history-triling.component.html',
   styleUrls: ['./history-triling.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HistoryTrilingComponent implements OnInit, OnDestroy {
   @Input() figi: string;
@@ -59,7 +59,16 @@ export class HistoryTrilingComponent implements OnInit, OnDestroy {
     //     }
     //
     //   });
+    this.getCandlesHistory();
     this.getHistory();
+  }
+
+  async getCandlesHistory() {
+    const candles = await this.portfolioService.getLastCandlesByPeriod({ figi: this.figi });
+    if (!this.price && candles) {
+      this.price = candles[ candles.length - 1 ].c;
+      this.socketService.eventSocketUpdate.next({ payload: candles[ candles.length - 1 ] });
+    }
   }
 
   async getHistory() {
@@ -67,9 +76,6 @@ export class HistoryTrilingComponent implements OnInit, OnDestroy {
       this.sidenavService.showSpiner.next(true);
     }, 10);
     this.operations = await this.portfolioService.getInstrumentOperations({ figi: this.figi });
-    console.log('-------------operations--------------');
-    console.log('operations', this.operations);
-    console.log('-------------operations--------------');
 
     this.total = 0;
     if (this.operations) {

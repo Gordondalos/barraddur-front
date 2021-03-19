@@ -3,6 +3,7 @@ import { FatherService } from './father.service';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { OperationsInterface } from '../interfaces/operations.interface';
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root',
@@ -39,6 +40,19 @@ export class PortfolioService extends FatherService {
     const res = await this.post('/api/instrumentOperations', { figi: params.figi, from: params.from, to: params.to });
     if (res) {
       return res.operations;
+    }
+    return [];
+  }
+
+  async getLastCandlesByPeriod(params: { figi: string, from?: string, to?: string , interval?: string}){
+    const res = await this.post('/api/market/candles', {
+      figi: params.figi,
+      from: params.from ? params.from : moment().subtract(1, 'day').toISOString(),
+      to: params.to ? params.to : moment().toISOString(),
+      interval: params.interval ? params.interval : '1min',
+    });
+    if (res) {
+      return res.candles;
     }
     return [];
   }
