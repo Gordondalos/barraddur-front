@@ -28,7 +28,7 @@ export class PortfolioService extends FatherService {
   }
 
   async instrumentPortfolio(params): Promise<any> {
-    const res = await this.post('/api/instrumentPortfolio', {figi: params.figi});
+    const res = await this.post('/api/instrumentPortfolio', { figi: params.figi });
     if (res) {
       return res;
     }
@@ -52,7 +52,7 @@ export class PortfolioService extends FatherService {
     return [];
   }
 
-  async getLastCandlesByPeriod(params: { figi: string, from?: string, to?: string , interval?: string}){
+  async getLastCandlesByPeriod(params: { figi: string, from?: string, to?: string, interval?: string }) {
     const res = await this.post('/api/market/candles', {
       figi: params.figi,
       from: params.from ? params.from : moment().subtract(1, 'day').toISOString(),
@@ -90,8 +90,14 @@ export class PortfolioService extends FatherService {
   }
 
   async getCandleFigiPeriod(figi, from, to, interval): Promise<any> {
-    const data = await this.get(`/api/get-candle-by-period/${ figi }/${ from }/${ to }/${ interval }`);
-    return data;
+    return await this.post(`/api/get-candle-by-period`,
+      {
+        figi,
+        from,
+        to,
+        interval,
+      },
+    );
   }
 
   async getInfoByFigi(figi): Promise<any> {

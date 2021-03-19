@@ -117,88 +117,88 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
       case '1min': {
         fr = moment().subtract(1, 'day');
         toe = moment();
-        from = fr.format('DD-MM-YYYY');
-        to = toe.format('DD-MM-YYYY');
+        from = fr.format('DD-MM-YYYY HH:mm');
+        to = toe.format('DD-MM-YYYY HH:mm');
         this.min = new Date(moment().subtract(1, 'day').toISOString()).getTime();
         break;
       }
       case '2min': {
         fr = moment().subtract(1, 'day');
         toe = moment();
-        from = fr.format('DD-MM-YYYY');
-        to = toe.format('DD-MM-YYYY');
+        from = fr.format('DD-MM-YYYY HH:mm');
+        to = toe.format('DD-MM-YYYY HH:mm');
         this.min = new Date(moment().subtract(1, 'day').toISOString()).getTime();
         break;
       }
       case '3min': {
         fr = moment().subtract(1, 'day');
         toe = moment();
-        from = fr.format('DD-MM-YYYY');
-        to = toe.format('DD-MM-YYYY');
+        from = fr.format('DD-MM-YYYY HH:mm');
+        to = toe.format('DD-MM-YYYY HH:mm');
         this.min = new Date(moment().subtract(1, 'day').toISOString()).getTime();
         break;
       }
       case '5min': {
         fr = moment().subtract(1, 'day');
         toe = moment();
-        from = fr.format('DD-MM-YYYY');
-        to = toe.format('DD-MM-YYYY');
+        from = fr.format('DD-MM-YYYY HH:mm');
+        to = toe.format('DD-MM-YYYY HH:mm');
         this.min = new Date(moment().subtract(1, 'day').toISOString()).getTime();
         break;
       }
       case '10min': {
         fr = moment().subtract(1, 'day');
         toe = moment();
-        from = fr.format('DD-MM-YYYY');
-        to = toe.format('DD-MM-YYYY');
+        from = fr.format('DD-MM-YYYY HH:mm');
+        to = toe.format('DD-MM-YYYY HH:mm');
         this.min = new Date(moment().subtract(1, 'day').toISOString()).getTime();
         break;
       }
       case '15min': {
         fr = moment().subtract(1, 'day');
         toe = moment();
-        from = fr.format('DD-MM-YYYY');
-        to = toe.format('DD-MM-YYYY');
+        from = fr.format('DD-MM-YYYY HH:mm');
+        to = toe.format('DD-MM-YYYY HH:mm');
         this.min = new Date(moment().subtract(1, 'day').toISOString()).getTime();
         break;
       }
       case '30min': {
         fr = moment().subtract(1, 'day');
         toe = moment();
-        from = fr.format('DD-MM-YYYY');
-        to = toe.format('DD-MM-YYYY');
+        from = fr.format('DD-MM-YYYY HH:mm');
+        to = toe.format('DD-MM-YYYY HH:mm');
         this.min = new Date(moment().subtract(2, 'day').toISOString()).getTime();
         break;
       }
       case 'hour': {
         fr = moment().subtract(7, 'day');
         toe = moment();
-        from = fr.format('DD-MM-YYYY');
-        to = toe.format('DD-MM-YYYY');
+        from = fr.format('DD-MM-YYYY HH:mm');
+        to = toe.format('DD-MM-YYYY HH:mm');
         this.min = new Date(moment().subtract(2, 'day').toISOString()).getTime();
         break;
       }
       case 'day': {
         fr = moment().subtract(365, 'day');
         toe = moment();
-        from = fr.format('DD-MM-YYYY');
-        to = toe.format('DD-MM-YYYY');
+        from = fr.format('DD-MM-YYYY HH:mm');
+        to = toe.format('DD-MM-YYYY HH:mm');
         this.min = new Date(moment().subtract(40, 'day').toISOString()).getTime();
         break;
       }
       case 'week': {
         fr = moment().subtract(720, 'day');
         toe = moment();
-        from = fr.format('DD-MM-YYYY');
-        to = toe.format('DD-MM-YYYY');
+        from = fr.format('DD-MM-YYYY HH:mm');
+        to = toe.format('DD-MM-YYYY HH:mm');
         this.min = new Date(moment().subtract(6, 'month').toISOString()).getTime();
         break;
       }
       case 'month': {
         fr = moment().subtract(36, 'month');
         toe = moment();
-        from = fr.format('DD-MM-YYYY');
-        to = toe.format('DD-MM-YYYY');
+        from = fr.format('DD-MM-YYYY HH:mm');
+        to = toe.format('DD-MM-YYYY HH:mm');
         this.min = new Date(moment().subtract(10, 'month').toISOString()).getTime();
         break;
       }
@@ -292,21 +292,21 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
             formatter: (val) => {
               switch (this.interval) {
                 case '1min':
-                  return moment(val).format('hh:mm');
+                  return moment(val).format('DD.MM.YYYY HH:mm');
                 case '2min':
-                  return moment(val).format('hh:mm');
+                  return moment(val).format('DD.MM.YYYY HH:mm');
                 case '3min':
-                  return moment(val).format('hh:mm');
+                  return moment(val).format('DD.MM.YYYY HH:mm');
                 case '5min':
-                  return moment(val).format('hh:mm');
+                  return moment(val).format('DD.MM.YYYY HH:mm');
                 case '10min':
-                  return moment(val).format('hh:mm');
+                  return moment(val).format('DD.MM.YYYY HH:mm');
                 case '15min':
-                  return moment(val).format('hh:mm');
+                  return moment(val).format('DD.MM.YYYY HH:mm');
                 case '30min':
-                  return moment(val).format('hh:mm');
+                  return moment(val).format('DD.MM.YYYY HH:mm');
                 case 'hour':
-                  return moment(val).format('hh:mm');
+                  return moment(val).format('DD.MM.YYYY HH:mm');
                 case 'day':
                   return moment(val).format('DD.MM.YYYY');
                 case 'week':
