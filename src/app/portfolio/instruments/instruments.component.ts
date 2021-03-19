@@ -55,6 +55,7 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
     private router: Router,
     private localstorageService: LocalstorageService,
   ) {
+
     this.portfolioService.updateBalanceEvent.subscribe((res) => {
       this.getBalance().then();
     });

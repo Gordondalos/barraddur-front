@@ -26,7 +26,10 @@
           <div class="bold f12">
             {{item.name}}
           </div>
-          <div class="d-block text-gray f10">{{item.lots}} шт.</div>
+          <div class="d-block text-gray f10">
+            <span>{{item.lots}} шт.,</span>
+            <span class="pl8">на сумму {{(item.price * item.lots).toFixed(2)}}</span>
+          </div>
         </div>
 
         <div class="price f12">

@@ -64,6 +64,8 @@ export class CountInfoComponent implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
+    console.log(this.currentInstrument);
+    console.log(this.info);
 
   }
 
