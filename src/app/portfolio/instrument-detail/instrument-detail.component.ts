@@ -28,7 +28,8 @@ import { Moment } from 'moment';
 })
 export class InstrumentDetailComponent implements OnInit, OnDestroy {
 
-  @ViewChild('chart') chart: ChartComponent;
+  @ViewChild('chartCandle') chartCandle: ChartComponent;
+  @ViewChild('chartBar') chartBar: ChartComponent;
   public chartCandleOptions: Partial<ChartOptions>;
   public chartBarOptions: Partial<ChartOptions>;
 
@@ -41,6 +42,9 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
   private unsubscribeAll: Subject<any> = new Subject<any>();
   private min: any;
   chartType: ChartType = 'line';
+  lastCandles: any;
+  lastAllData: any;
+  lastAllDataValue: any;
 
 
   constructor(
@@ -51,12 +55,13 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
     public sidenavService: SidenavService,
   ) {
     this.figi = route.snapshot.params.figi;
-
     this.socketService.eventSocketUpdate
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((event: SocketEventInterface) => {
         if (event.payload.figi === this.figi) {
           this.price = event.payload.c;
+          this.lastCandles = event.payload;
+          this.addCandleToChart(this.lastCandles);
         }
       });
 
@@ -73,6 +78,18 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
     this.socketService.unSubscribeInstrument(this.info).then();
   }
 
+  addCandleToChart(candle) {
+    if (this.chartCandle) {
+      const result = this.drawCandleData([candle]);
+      this.lastAllData = this.lastAllData ? this.lastAllData : [];
+      this.lastAllDataValue = this.lastAllDataValue ? this.lastAllDataValue : [];
+      this.lastAllData = [...this.lastAllData, ...result.data];
+      this.lastAllDataValue = [...this.lastAllDataValue, ...result.val];
+      (this.chartCandle.series[0] as any).data = this.lastAllData;
+      (this.chartBar.series[0] as any).data = this.lastAllDataValue;
+    }
+  }
+
   async ngOnInit(): Promise<any> {
     this.info = await this.portfolioService.getInfoByFigi(this.figi);
     this.socketService.subscribeInstrument(this.info).then();
@@ -80,15 +97,6 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
     this.init();
     const portfolio = await this.portfolioService.getPortfolio();
     this.currentInstrument = _.find(portfolio, (item) => item.figi === this.figi);
-    if (this.currentInstrument) {
-      const instrumentPortfolio = await this.portfolioService.instrumentPortfolio(this.currentInstrument);
-
-      console.log('-------------instrumentPortfolio--------------');
-      console.log('instrumentPortfolio', instrumentPortfolio);
-      console.log('-------------instrumentPortfolio--------------');
-
-
-    }
   }
 
   loadInterval(interval: CandleResolution) {
@@ -200,11 +208,17 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
     if (res) {
       const result = this.reformatCandles(res.candles);
 
+      this.lastAllData = result.data;
+      if (this.lastCandles) {
+        const last = this.drawCandleData([this.lastCandles]);
+        this.lastAllData = [...result.data, ...last.data];
+      }
+
       this.chartCandleOptions = {
         series: [
           {
             name: `${ this.info.name }`,
-            data: result.data,
+            data: this.lastAllData,
           },
         ],
         title: {
@@ -311,11 +325,12 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
         },
       };
 
+      this.lastAllDataValue = result.val;
       this.chartBarOptions = {
         series: [
           {
             name: 'volume',
-            data: result.val,
+            data: this.lastAllDataValue,
           },
         ],
         chart: {
@@ -387,15 +402,17 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
   }
 
   reformatCandles(candles: Array<CandleInterfase>) {
-    const data = [];
-    const val = [];
     this.price = candles[ candles.length - 1 ].c;
     const last = { payload: candles[ candles.length - 1 ] };
     this.socketService.eventSocketUpdate.next(last);
-    for (const item of candles) {
-      // const date = new Date(+moment(item.time).format('YYYY'), +moment(item.time).format('M'), +moment(item.time).format('DD'));
-      const date = new Date(moment(item.time).toISOString());
+    return this.drawCandleData(candles);
+  }
 
+  drawCandleData(candles) {
+    const data = [];
+    const val = [];
+    for (const item of candles) {
+      const date = new Date(moment(item.time).toISOString());
       data.push({
         x: date,
         // open, high, low, close
@@ -413,7 +430,6 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
       });
     }
     return { data, val };
-
   }
 
 
