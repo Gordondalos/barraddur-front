@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ChartComponent, ChartType } from 'ng-apexcharts';
@@ -20,13 +20,18 @@ import { SidenavService } from '../../services/sidenav.service';
 import { CandleResolution } from '../../auth/interfaces/candle-resolution';
 import { Moment } from 'moment';
 
+import * as am4core from '@amcharts/amcharts4/core';
+import * as am4charts from '@amcharts/amcharts4/charts';
+import am4themes_animated from '@amcharts/amcharts4/themes/animated';
+
+am4core.useTheme(am4themes_animated);
 
 @Component({
   selector: 'app-instrument-detail',
   templateUrl: './instrument-detail.component.html',
   styleUrls: ['./instrument-detail.component.scss'],
 })
-export class InstrumentDetailComponent implements OnInit, OnDestroy {
+export class InstrumentDetailComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('chartCandle') chartCandle: ChartComponent;
   @ViewChild('chartBar') chartBar: ChartComponent;
@@ -45,6 +50,8 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
   lastCandles: any;
   lastAllData: any;
   lastAllDataValue: any;
+  private allData: any;
+  private chart: any;
 
 
   constructor(
@@ -72,6 +79,67 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
       });
   }
 
+  drawChart(){
+
+    /* Chart code */
+// Themes begin
+    am4core.useTheme(am4themes_animated);
+// Themes end
+
+    this.chart = am4core.create('chartdiv', am4charts.XYChart);
+    this.chart.paddingRight = 20;
+
+    this.chart.dateFormatter.inputDateFormat = 'yyyy-MM-dd';
+
+    const dateAxis = this.chart.xAxes.push(new am4charts.DateAxis());
+    dateAxis.renderer.grid.template.location = 0;
+
+    const valueAxis = this.chart.yAxes.push(new am4charts.ValueAxis());
+    valueAxis.tooltip.disabled = true;
+
+    const series = this.chart.series.push(new am4charts.CandlestickSeries());
+    series.dataFields.dateX = 'time';
+    series.dataFields.valueY = 'c';
+    series.dataFields.openValueY = 'o';
+    series.dataFields.lowValueY = 'l';
+    series.dataFields.highValueY = 'h';
+    series.tooltipText = 'Open:${openValueY.value}\nLow:${lowValueY.value}\nHigh:${highValueY.value}\nClose:${valueY.value}';
+
+// important!
+// candlestick series colors are set in states.
+// series.riseFromOpenState.properties.fill = am4core.color("#00ff00");
+// series.dropFromOpenState.properties.fill = am4core.color("#FF0000");
+// series.riseFromOpenState.properties.stroke = am4core.color("#00ff00");
+// series.dropFromOpenState.properties.stroke = am4core.color("#FF0000");
+
+    series.riseFromPreviousState.properties.fillOpacity = 1;
+    series.dropFromPreviousState.properties.fillOpacity = 0;
+
+    this.chart.cursor = new am4charts.XYCursor();
+
+// a separate series for scrollbar
+    const lineSeries = this.chart.series.push(new am4charts.LineSeries());
+    lineSeries.dataFields.dateX = 'time';
+    lineSeries.dataFields.valueY = 'c';
+// need to set on default state, as initially series is "show"
+    lineSeries.defaultState.properties.visible = false;
+
+// hide from legend too (in case there is one)
+    lineSeries.hiddenInLegend = true;
+    lineSeries.fillOpacity = 0.5;
+    lineSeries.strokeOpacity = 0.5;
+
+    const scrollbarX = new am4charts.XYChartScrollbar();
+    scrollbarX.series.push(lineSeries);
+    this.chart.scrollbarX = scrollbarX;
+
+  }
+
+  ngAfterViewInit() {
+
+    this.drawChart();
+  }
+
   ngOnDestroy(): void {
     this.unsubscribeAll.next();
     this.unsubscribeAll.complete();
@@ -85,9 +153,9 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
       this.lastAllDataValue = this.lastAllDataValue ? this.lastAllDataValue : [];
       this.lastAllData = [...this.lastAllData, ...result.data];
       this.lastAllDataValue = [...this.lastAllDataValue, ...result.val];
-      (this.chartCandle.series[0] as any).data = this.lastAllData;
+      (this.chartCandle.series[ 0 ] as any).data = this.lastAllData;
       // console.log(this.chartCandle);
-      (this.chartBar.series[0] as any).data = this.lastAllDataValue;
+      (this.chartBar.series[ 0 ] as any).data = this.lastAllDataValue;
     }
   }
 
@@ -103,6 +171,10 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
   loadInterval(interval: CandleResolution) {
     this.interval = interval;
     this.init();
+  }
+
+  reformat(){
+
   }
 
 
@@ -207,196 +279,200 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
 
     const res = await this.portfolioService.getCandleFigiPeriod(this.figi, from, to, this.interval);
     if (res) {
-      const result = this.reformatCandles(res.candles);
+      this.allData = res;
+      console.log(this.allData);
 
-      this.lastAllData = result.data;
-      if (this.lastCandles) {
-        const last = this.drawCandleData([this.lastCandles]);
-        this.lastAllData = [...result.data, ...last.data];
-      }
+      this.chart.data = this.allData.candles;
+      // const result = this.reformatCandles(res.candles);
 
-      this.chartCandleOptions = {
-        series: [
-          {
-            name: `${ this.info.name }`,
-            data: this.lastAllData,
-          },
-        ],
-        title: {
-          text: this.info.name,
-          align: 'left',
-        },
+      // this.lastAllData = result.data;
+      // if (this.lastCandles) {
+      //   const last = this.drawCandleData([this.lastCandles]);
+      //   this.lastAllData = [...result.data, ...last.data];
+      // }
 
-        stroke: {
-          curve: 'smooth',
-          width: 2,
-        },
-
-        chart: {
-          type: this.chartType,
-
-          height: 250,
-          id: 'candles',
-          stacked: false,
-          toolbar: {
-            show: true,
-            offsetX: 0,
-            offsetY: 0,
-            tools: {
-              download: true,
-              selection: true,
-              zoom: true,
-              zoomin: true,
-              zoomout: true,
-              pan: false,
-              reset: false,
-            },
-          },
-
-          events: {
-            updated: (event) => {
-              // console.log(event);
-            },
-          },
-        },
-
-        plotOptions: {
-
-          candlestick: {
-            colors: {
-              upward: '#379903',
-              downward: '#e9032d',
-            },
-          },
-        },
-        yaxis: {
-          // max: 53,
-          // min: 50,
-          // forceNiceScale: false,
-          tickAmount: 4,
-          floating: false,
-          showForNullSeries: true,
-          logarithmic: false,
-          tooltip: {
-            enabled: true,
-          },
-          opposite: true,
-          labels: {
-            show: true,
-            align: 'right',
-          },
-        },
-        xaxis: {
-          type: 'datetime',
-          tickAmount: 10,
-          labels: {
-            formatter: (val) => {
-              switch (this.interval) {
-                case '1min':
-                  return moment(val).format('DD.MM.YYYY HH:mm');
-                case '2min':
-                  return moment(val).format('DD.MM.YYYY HH:mm');
-                case '3min':
-                  return moment(val).format('DD.MM.YYYY HH:mm');
-                case '5min':
-                  return moment(val).format('DD.MM.YYYY HH:mm');
-                case '10min':
-                  return moment(val).format('DD.MM.YYYY HH:mm');
-                case '15min':
-                  return moment(val).format('DD.MM.YYYY HH:mm');
-                case '30min':
-                  return moment(val).format('DD.MM.YYYY HH:mm');
-                case 'hour':
-                  return moment(val).format('DD.MM.YYYY HH:mm');
-                case 'day':
-                  return moment(val).format('DD.MM.YYYY');
-                case 'week':
-                  return moment(val).format('DD.MM.YYYY');
-                case 'month':
-                  return moment(val).format('DD.MM.YYYY');
-              }
-              return moment(val).format('DD.MM.YYYY');
-            },
-          },
-        },
-
-        tooltip: {
-          enabled: true,
-        },
-      };
-
-      this.lastAllDataValue = result.val;
-      this.chartBarOptions = {
-        series: [
-          {
-            name: 'volume',
-            data: this.lastAllDataValue,
-          },
-        ],
-        chart: {
-          height: 150,
-          type: 'bar',
-          brush: {
-            enabled: true,
-            target: 'candles',
-          },
-          selection: {
-            enabled: true,
-            xaxis: {
-              // этот параметр показывает сколько дней захватить в отображении
-              min: this.min,
-              max: new Date(toe.toISOString()).getTime(),
-            },
-            fill: {
-              color: '#ccc',
-              opacity: 0.4,
-            },
-            stroke: {
-              color: '#0D47A1',
-            },
-          },
-        },
-        dataLabels: {
-          enabled: false,
-        },
-        title: {
-          text: 'Объем торгов',
-          align: 'left',
-        },
-        plotOptions: {
-          bar: {
-            columnWidth: '80%',
-            colors: {
-              ranges: [
-                {
-                  from: -1000,
-                  to: 0,
-                  color: '#eab616',
-                },
-                {
-                  from: 1,
-                  to: 10000,
-                  color: '#04c4e1',
-                },
-              ],
-            },
-          },
-        },
-        stroke: {
-          width: 0,
-        },
-        xaxis: {
-          type: 'datetime',
-          axisBorder: {
-            offsetX: 13,
-          },
-        },
-        yaxis: {
-          labels: {
-            show: false,
-          },
-        },
-      };
+      // this.chartCandleOptions = {
+      //   series: [
+      //     {
+      //       name: `${ this.info.name }`,
+      //       data: this.lastAllData,
+      //     },
+      //   ],
+      //   title: {
+      //     text: this.info.name,
+      //     align: 'left',
+      //   },
+      //
+      //   stroke: {
+      //     curve: 'smooth',
+      //     width: 2,
+      //   },
+      //
+      //   chart: {
+      //     type: this.chartType,
+      //
+      //     height: 250,
+      //     id: 'candles',
+      //     stacked: false,
+      //     toolbar: {
+      //       show: true,
+      //       offsetX: 0,
+      //       offsetY: 0,
+      //       tools: {
+      //         download: true,
+      //         selection: true,
+      //         zoom: true,
+      //         zoomin: true,
+      //         zoomout: true,
+      //         pan: false,
+      //         reset: false,
+      //       },
+      //     },
+      //
+      //     events: {
+      //       updated: (event) => {
+      //         // console.log(event);
+      //       },
+      //     },
+      //   },
+      //
+      //   plotOptions: {
+      //
+      //     candlestick: {
+      //       colors: {
+      //         upward: '#379903',
+      //         downward: '#e9032d',
+      //       },
+      //     },
+      //   },
+      //   yaxis: {
+      //     // max: 53,
+      //     // min: 50,
+      //     // forceNiceScale: false,
+      //     tickAmount: 4,
+      //     floating: false,
+      //     showForNullSeries: true,
+      //     logarithmic: false,
+      //     tooltip: {
+      //       enabled: true,
+      //     },
+      //     opposite: true,
+      //     labels: {
+      //       show: true,
+      //       align: 'right',
+      //     },
+      //   },
+      //   xaxis: {
+      //     type: 'datetime',
+      //     tickAmount: 10,
+      //     labels: {
+      //       formatter: (val) => {
+      //         switch (this.interval) {
+      //           case '1min':
+      //             return moment(val).format('DD.MM.YYYY HH:mm');
+      //           case '2min':
+      //             return moment(val).format('DD.MM.YYYY HH:mm');
+      //           case '3min':
+      //             return moment(val).format('DD.MM.YYYY HH:mm');
+      //           case '5min':
+      //             return moment(val).format('DD.MM.YYYY HH:mm');
+      //           case '10min':
+      //             return moment(val).format('DD.MM.YYYY HH:mm');
+      //           case '15min':
+      //             return moment(val).format('DD.MM.YYYY HH:mm');
+      //           case '30min':
+      //             return moment(val).format('DD.MM.YYYY HH:mm');
+      //           case 'hour':
+      //             return moment(val).format('DD.MM.YYYY HH:mm');
+      //           case 'day':
+      //             return moment(val).format('DD.MM.YYYY');
+      //           case 'week':
+      //             return moment(val).format('DD.MM.YYYY');
+      //           case 'month':
+      //             return moment(val).format('DD.MM.YYYY');
+      //         }
+      //         return moment(val).format('DD.MM.YYYY');
+      //       },
+      //     },
+      //   },
+      //
+      //   tooltip: {
+      //     enabled: true,
+      //   },
+      // };
+      //
+      // this.lastAllDataValue = result.val;
+      // this.chartBarOptions = {
+      //   series: [
+      //     {
+      //       name: 'volume',
+      //       data: this.lastAllDataValue,
+      //     },
+      //   ],
+      //   chart: {
+      //     height: 150,
+      //     type: 'bar',
+      //     brush: {
+      //       enabled: true,
+      //       target: 'candles',
+      //     },
+      //     selection: {
+      //       enabled: true,
+      //       xaxis: {
+      //         // этот параметр показывает сколько дней захватить в отображении
+      //         min: this.min,
+      //         max: new Date(toe.toISOString()).getTime(),
+      //       },
+      //       fill: {
+      //         color: '#ccc',
+      //         opacity: 0.4,
+      //       },
+      //       stroke: {
+      //         color: '#0D47A1',
+      //       },
+      //     },
+      //   },
+      //   dataLabels: {
+      //     enabled: false,
+      //   },
+      //   title: {
+      //     text: 'Объем торгов',
+      //     align: 'left',
+      //   },
+      //   plotOptions: {
+      //     bar: {
+      //       columnWidth: '80%',
+      //       colors: {
+      //         ranges: [
+      //           {
+      //             from: -1000,
+      //             to: 0,
+      //             color: '#eab616',
+      //           },
+      //           {
+      //             from: 1,
+      //             to: 10000,
+      //             color: '#04c4e1',
+      //           },
+      //         ],
+      //       },
+      //     },
+      //   },
+      //   stroke: {
+      //     width: 0,
+      //   },
+      //   xaxis: {
+      //     type: 'datetime',
+      //     axisBorder: {
+      //       offsetX: 13,
+      //     },
+      //   },
+      //   yaxis: {
+      //     labels: {
+      //       show: false,
+      //     },
+      //   },
+      // };
     }
     this.sidenavService.showSpiner.next(false);
   }
