@@ -12,40 +12,43 @@
     </ng-container>
   </div>
 
-<ng-container *ngIf="portfolio && portfolio.length > 0">
-  <mat-list role="list">
-    <ng-container *ngFor="let item of portfolio">
-      <mat-list-item (click)="openDetail(item)" class="list-item pointer" role="listitem">
-        <div class="ticker mr16">
-          <ng-container *ngIf="item.ticker.length <= 5">
-            <span>{{item.ticker}}</span>
-          </ng-container>
+  <ng-container *ngIf="portfolio && portfolio.length > 0">
+    <mat-list role="list">
+      <ng-container *ngFor="let item of portfolio">
+        <mat-list-item (click)="openDetail(item)" class="list-item pointer" role="listitem">
+          <div class="ticker mr16">
+            <ng-container *ngIf="item.ticker.length <= 5">
+              <span>{{item.ticker}}</span>
+            </ng-container>
 
-        </div>
-        <div class="f-gr-1">
-          <div class="bold f12">
-            {{item.name}}
           </div>
-          <div class="d-block text-gray f10">
-            <span>{{item.lots}} шт.,</span>
-            <span class="pl8">на сумму {{(item.price * item.lots).toFixed(2)}}</span>
+          <div class="f-gr-1">
+            <div class="bold f12">
+              {{item.name}}
+            </div>
+            <div class="d-block text-gray f10">
+              <span>{{item.lots}} шт.,</span>
+              <span class="pl8">на сумму {{(item.price * item.lots).toFixed(2)}}</span>
+            </div>
           </div>
-        </div>
 
-        <div class="price f12">
+          <div class="price f12">
 
-          {{item?.price?.toFixed(2)}}
+            <ng-container *ngIf="item && item.price">
+              {{(+item.price).toFixed(2)}}
+            </ng-container>
 
-          <ng-container *ngIf="item.trailingStop">
-            <mat-icon matTooltip="трейлингстоп" class="f16 trailing">directions_run</mat-icon>
-          </ng-container>
 
-        </div>
+            <ng-container *ngIf="item.trailingStop">
+              <mat-icon matTooltip="трейлингстоп" class="f16 trailing">directions_run</mat-icon>
+            </ng-container>
 
-      </mat-list-item>
-    </ng-container>
-  </mat-list>
-</ng-container>
+          </div>
+
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </ng-container>
 
   <ng-container *ngIf="portfolio && portfolio.length === 0">
     <h3>Или у вас нет инструментов, или что то сломалось.</h3>

@@ -45,6 +45,7 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
   ];
 
   private unsubscribeAll: Subject<any> = new Subject<any>();
+  private orders: any;
 
 
   constructor(
@@ -95,6 +96,12 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
     if (user) {
       this.getBalance().then();
     }
+    this.getActiveOrders();
+  }
+
+  async getActiveOrders(){
+    this.orders = await this.portfolioService.getActiveOrders();
+    console.log('Активные заявки', this.orders);
   }
 
   ngOnDestroy(): void {

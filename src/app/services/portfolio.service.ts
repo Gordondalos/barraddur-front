@@ -35,6 +35,14 @@ export class PortfolioService extends FatherService {
     return {};
   }
 
+  async getActiveOrders(): Promise<any> {
+    const res = await this.get('/api/get-orders');
+    if (res) {
+      return res;
+    }
+    return {};
+  }
+
   async getInstrumentOperations(params: { figi: string, from?: string, to?: string }): Promise<OperationsInterface | any> {
     // from и  to должны быть в формате 'DD-MM-YYYY'
     const res = await this.post('/api/instrumentOperations', { figi: params.figi, from: params.from, to: params.to });
