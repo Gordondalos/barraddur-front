@@ -11,9 +11,13 @@
           <span class="price">{{price?.toFixed(3)}} {{info.currency}}</span>
           <mat-icon *ngIf="currentInstrument?.trailingStop">directions_run</mat-icon>
           <div class="f-gr-1"></div>
-          <button class="mr16" mat-raised-button color="primary" (click)="opensideNav(true)">Трейлинг Стоп</button>
-          <button mat-raised-button color="primary" (click)="opensideNav(false)">Купить / Продать</button>
+          <button class="mr16" mat-raised-button color="primary" (click)="opensideNav(true)">
+            <mat-icon>directions_run</mat-icon>
+          </button>
+
+          <button class="f12" mat-raised-button color="primary" (click)="opensideNav(false)">Купить / Продать</button>
         </div>
+
       </ng-container>
 
       <ng-container *ngIf="info && currentInstrument">

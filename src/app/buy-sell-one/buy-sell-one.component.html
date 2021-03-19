@@ -76,15 +76,15 @@
 
 
 <ng-template #trailing>
-  <div class=" mt24 w100">
+  <div class=" mt24 w100 px16">
     <h2 class="bold f24">Настройки Трейлинг Стоп</h2>
     <h4>Стартовая цена {{price}}</h4>
     <div class="d-flex w100">
-      <mat-form-field appearance="outline" class="f-gr-1 w-50">
+      <mat-form-field appearance="outline" class="f-gr-1 w40">
         <mat-label>Процент отставания %</mat-label>
         <input [(ngModel)]="buySell.lags" type="number" matInput>
       </mat-form-field>
-      <mat-form-field appearance="outline" class="ml16 f-gr-1 w-50">
+      <mat-form-field appearance="outline" class="ml16 f-gr-1 w40">
         <mat-label>Стартовый риск %</mat-label>
         <input [(ngModel)]="buySell.startLags" type="number" matInput>
       </mat-form-field>
