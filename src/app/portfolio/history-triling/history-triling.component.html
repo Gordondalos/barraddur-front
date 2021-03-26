@@ -25,16 +25,16 @@
 <ng-container *ngIf="currentInstrument && price">
   <div class="d-flex w100">
     <div class="bold w-50 buy px16">
-      {{totalBuy?.toFixed(2)}} {{operations[0].currency}}
+      {{totalBuy?.toFixed(2)}} {{operations[0]?.currency}}
     </div>
     <div class="bold w-50 sell px16">
-      {{totalSell?.toFixed(2)}} {{operations[0].currency}}
+      {{totalSell?.toFixed(2)}} {{operations[0]?.currency}}
     </div>
   </div>
   <hr>
 
   <div class="bold text-right">
-    Портфель: {{total?.toFixed(2)}} {{operations[0].currency}}
+    Портфель: {{total?.toFixed(2)}} {{operations[0]?.currency}}
   </div>
   <hr>
   <div class="text-right">
@@ -47,7 +47,7 @@
     class="text-right mt16 bold"
     [ngClass]="{'text-success': (price * currentInstrument.lots + total) > 0,
      'text-danger': (price * currentInstrument.lots + total) < 0 }">
-    Баланс (прибыль/убыток): {{(price * currentInstrument.lots + total).toFixed(2)}} {{operations[0].currency}}
+    Баланс (прибыль/убыток): {{(price * currentInstrument.lots + total).toFixed(2)}} {{operations[0]?.currency}}
   </div>
   <hr>
 </ng-container>
@@ -57,7 +57,7 @@
   <div class="w-50 px16" [ngClass]="{'buy': item.operationType === 'Buy', 'sell': item.operationType === 'Sell'}">
     <div>Дата: {{item.date| date: 'dd-MM-YYYY: HH:mm'}}</div>
     <div>Комиссия: {{item.commission}}</div>
-    <div>Валюта: {{item.currency}}</div>
+    <div>Валюта: {{item?.currency}}</div>
     <div>Цена: {{item.price.toFixed(3)}}</div>
     <div>Оплата: {{item.payment.toFixed(3)}}</div>
     <div>Количество: {{item.quantity}}</div>

@@ -8,7 +8,7 @@
 
       <ng-container *ngIf="info && info.currency && price">
         <div class="d-flex p16 align-items-center">
-          <span class="price">{{price?.toFixed(3)}} {{info.currency}}</span>
+          <span class="price">{{price?.toFixed(3)}} {{info?.currency}}</span>
           <mat-icon *ngIf="currentInstrument?.trailingStop">directions_run</mat-icon>
           <div class="f-gr-1"></div>
           <button class="mr16" mat-raised-button color="primary" (click)="opensideNav(true)">
@@ -107,7 +107,7 @@
     <ng-template mat-tab-label>
       Стакан
     </ng-template>
-    <div class="p16" *ngIf="info">
+    <div class="p16" *ngIf="info && info.currency">
       <app-orderbook
         [info]="info"
         [figi]="figi"

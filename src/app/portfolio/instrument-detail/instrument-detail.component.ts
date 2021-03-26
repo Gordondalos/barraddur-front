@@ -61,7 +61,8 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
         if (event.payload.figi === this.figi) {
           this.price = event.payload.c;
           this.lastCandles = event.payload;
-          this.addCandleToChart(this.lastCandles);
+          // эта строка добавляет последние данные но как то не адекватно график чертится назад
+          // this.addCandleToChart(this.lastCandles);
         }
       });
 
@@ -213,6 +214,7 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
       if (this.lastCandles) {
         const last = this.drawCandleData([this.lastCandles]);
         this.lastAllData = [...result.data, ...last.data];
+        this.lastAllData = [...result.data];
       }
 
       this.chartCandleOptions = {

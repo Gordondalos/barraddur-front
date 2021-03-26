@@ -32,7 +32,7 @@ export class BySearchComponent implements OnInit, AfterViewInit {
 
   async init() {
     const res = await this.groupService.getData(this.type);
-    if (res) {
+    if (res && res.result) {
       this.instruments = res.result.instruments;
     }
   }

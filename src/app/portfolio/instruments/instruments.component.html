@@ -8,7 +8,7 @@
 
   <div class="d-flex align-items-center my16 px16 f12">
     <ng-container *ngFor="let item of balance">
-      <span class="d-block mr8">{{item.currency}}: {{item.balance.toFixed(2)}}</span>
+      <span class="d-block mr8">{{item?.currency}}: {{item.balance.toFixed(2)}}</span>
     </ng-container>
   </div>
 
