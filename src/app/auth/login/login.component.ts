@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/');
     } else {
       // this.router.navigateByUrl('/');
+      localStorage.clear();
       alert('Авторизация не прошла!');
     }
 

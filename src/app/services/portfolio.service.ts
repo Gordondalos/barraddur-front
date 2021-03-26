@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { OperationsInterface } from '../interfaces/operations.interface';
 import * as moment from 'moment';
+import { Router } from '@angular/router';
+import { LocalstorageService } from './localstorage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,14 +17,24 @@ export class PortfolioService extends FatherService {
   portfolioUpdateEvent = new Subject();
   searchEvent = new Subject();
 
-  constructor(public httpClient: HttpClient) {
+  constructor(
+    public httpClient: HttpClient,
+    private router: Router,
+    private localstorageService: LocalstorageService,
+  ) {
     super(httpClient);
   }
 
   async getPortfolio(): Promise<any> {
     const data = await this.get('/api/portfolio');
-    if (data) {
+    if (data && !data.error) {
       return data.positions;
+    }
+    if (data.error && data.message === 'token blocked') {
+
+      localStorage.clear();
+      this.router.navigateByUrl('/auth/login');
+      // window.location.href = '/#/auth/login';
     }
     return [];
   }

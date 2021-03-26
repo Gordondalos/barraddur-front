@@ -31,9 +31,11 @@ export class FatherService {
         const token = error.headers.get('token');
         if (token) {
           localStorage.setItem('token', JSON.stringify(token));
+        } else {
+          return {error: true, message: 'token blocked'};
         }
 
-        console.log(error);
+        console.log('Ошибка на сервере', error);
       });
   }
 
