@@ -56,7 +56,7 @@
 <ng-template #info let-item="item">
   <div class="w-50 px16" [ngClass]="{'buy': item.operationType === 'Buy', 'sell': item.operationType === 'Sell'}">
     <div>Дата: {{item.date| date: 'dd-MM-YYYY: HH:mm'}}</div>
-    <div>Комиссия: {{item.commission}}</div>
+    <div>Комиссия: {{item.commission?.value}}</div>
     <div>Валюта: {{item?.currency}}</div>
     <div>Цена: {{item.price.toFixed(3)}}</div>
     <div>Оплата: {{item.payment.toFixed(3)}}</div>
