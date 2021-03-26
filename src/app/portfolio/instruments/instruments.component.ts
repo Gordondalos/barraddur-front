@@ -5,7 +5,6 @@ import { PortfolioService } from '../../services/portfolio.service';
 import { StockService } from '../../services/stock.service';
 import { SocketService } from '../../services/socket.service';
 import { SocketEventInterface } from '../../interfaces/socketEvent.interface';
-import * as _ from 'lodash';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -97,11 +96,19 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
       this.getBalance().then();
     }
     this.getActiveOrders();
+    this.getPriceFromPortfolio();
   }
 
-  async getActiveOrders(){
+  async getActiveOrders() {
     this.orders = await this.portfolioService.getActiveOrders();
     console.log('Активные заявки', this.orders);
+  }
+
+  async getPriceFromPortfolio() {
+    const res: any = await this.portfolioService.getPortfolioWithPrice(this.portfolio);
+    if (res && res.length) {
+      this.portfolio = res;
+    }
   }
 
   ngOnDestroy(): void {

@@ -11,9 +11,12 @@
           <span class="price">{{price?.toFixed(3)}} {{info?.currency}}</span>
           <mat-icon *ngIf="currentInstrument?.trailingStop">directions_run</mat-icon>
           <div class="f-gr-1"></div>
-          <button class="mr16" mat-raised-button color="primary" (click)="opensideNav(true)">
-            <mat-icon>directions_run</mat-icon>
-          </button>
+          <ng-container *ngIf="currentInstrument">
+            <button class="mr16" mat-raised-button color="primary" (click)="opensideNav(true)">
+              <mat-icon>directions_run</mat-icon>
+            </button>
+          </ng-container>
+
 
           <button class="f12" mat-raised-button color="primary" (click)="opensideNav(false)">Купить / Продать</button>
         </div>
@@ -134,15 +137,15 @@
   <!--    </div>-->
   <!--  </mat-tab>-->
 
-    <mat-tab>
-      <ng-template mat-tab-label>
-        События
-      </ng-template>
-      <div class="p16">
-        <app-history-triling
-          [info]="info"
-          [currentInstrument]="currentInstrument"
-          [figi]="figi"></app-history-triling>
-      </div>
-    </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      События
+    </ng-template>
+    <div class="p16">
+      <app-history-triling
+        [info]="info"
+        [currentInstrument]="currentInstrument"
+        [figi]="figi"></app-history-triling>
+    </div>
+  </mat-tab>
 </mat-tab-group>

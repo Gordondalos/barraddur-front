@@ -6,6 +6,7 @@ import { OperationsInterface } from '../interfaces/operations.interface';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { LocalstorageService } from './localstorage.service';
+import { InstrumentInterface } from '../interfaces/instrumentInterface';
 
 @Injectable({
   providedIn: 'root',
@@ -118,4 +119,11 @@ export class PortfolioService extends FatherService {
   }
 
 
+  async getPortfolioWithPrice(portfolio: Array<InstrumentInterface>) {
+    const data = await this.post('/api/portfolio-price', portfolio);
+    if (data && !data.error) {
+      return data;
+    }
+    return [];
+  }
 }

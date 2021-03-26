@@ -95,9 +95,8 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
   async ngOnInit(): Promise<any> {
     this.info = await this.portfolioService.getInfoByFigi(this.figi);
     this.socketService.subscribeInstrument(this.info).then();
-
-    this.init();
     const portfolio = await this.portfolioService.getPortfolio();
+    this.init();
     this.currentInstrument = _.find(portfolio, (item) => item.figi === this.figi);
   }
 
