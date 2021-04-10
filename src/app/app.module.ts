@@ -25,7 +25,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const config: SocketIoConfig = { url: environment.SOCKET_URL, options: {
   secure: true,
-  origin: '*'
+  rejectUnauthorized: false,
 } };
 
 
