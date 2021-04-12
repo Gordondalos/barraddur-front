@@ -30,6 +30,8 @@ export class SocketService extends FatherService {
     super(httpClient);
     this.socket = io(environment.SOCKET_URL, {
       withCredentials: true,
+      secure: true,
+      rejectUnauthorized: false
     });
   }
 
