@@ -16,7 +16,6 @@ export class SocketService extends FatherService {
 
   eventSocketUpdate: Subject<any> = new Subject();
   eventSocketUpdateOrderBook: Subject<any> = new Subject();
-  ws: WebSocket;
 
   constructor(
     public httpClient: HttpClient,
