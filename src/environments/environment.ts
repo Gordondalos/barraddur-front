@@ -6,9 +6,9 @@ export const environment = {
   production: false,
   hmr: false,
   baseHref: '/',
-  API_REST_URL: '',
-  API_REST_PORT: '',
-  SOCKET_URL: 'http://localhost:5000'
+  API_REST_URL: 'https://localhost',
+  API_REST_PORT: '3000',
+  SOCKET_URL: 'https://localhost:5000'
 };
 /*
  * For easier debugging in development mode, you can import the following file
