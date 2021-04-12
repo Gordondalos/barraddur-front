@@ -3,11 +3,13 @@ import { FatherService } from './father.service';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { StockService } from './stock.service';
-import { Socket } from 'ngx-socket-io';
+// import { Socket } from 'ngx-socket-io';
 import { map } from 'rxjs/operators';
 import { LocalstorageService } from './localstorage.service';
 import { InstrumentInfoInterface } from '../interfaces/instrument-info.interface';
 import { InstrumentInterface } from '../interfaces/instrumentInterface';
+import { io } from 'socket.io-client';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -16,15 +18,19 @@ export class SocketService extends FatherService {
 
   eventSocketUpdate: Subject<any> = new Subject();
   eventSocketUpdateOrderBook: Subject<any> = new Subject();
-  ws: WebSocket;
+
+  socket: any;
 
   constructor(
     public httpClient: HttpClient,
     public stockService: StockService,
-    private socket: Socket,
+    // private socket: Socket,
     public localstorageService: LocalstorageService,
   ) {
     super(httpClient);
+    this.socket = io(environment.SOCKET_URL, {
+      withCredentials: true,
+    });
   }
 
   sendMessage(msg: string) {
@@ -34,12 +40,11 @@ export class SocketService extends FatherService {
   connect() {
     this.sendMessage('getId');
 
-    this.socket
-      .fromEvent('message')
-      .pipe(map((data: any) => {
-        return data;
-      })).subscribe((message) => {
+    this.socket.on('connect', (data) => {
+      console.log(data);
+    });
 
+    this.socket.on('message', (message) => {
       try {
         let m: any = message;
         let id = '';
@@ -72,6 +77,50 @@ export class SocketService extends FatherService {
         console.log(message.data);
       }
     });
+
+
+    this.socket.on('disconnect', (reason) => {
+      console.log('disconnect', reason);
+    });
+
+    // this.socket
+    //   .fromEvent('message')
+    //   .pipe(map((data: any) => {
+    //     return data;
+    //   })).subscribe((message) => {
+    //
+    //   try {
+    //     let m: any = message;
+    //     let id = '';
+    //     if (typeof m === 'object' && m.clientId) {
+    //       id = m.clientId;
+    //       m = 'clientId';
+    //     }
+    //
+    //     switch (m) {
+    //       case 'clientId':
+    //         console.log('socketClientId --->', id);
+    //         this.localstorageService.set('socketId', id);
+    //         break;
+    //       case 'updatePortfolio':
+    //         console.log('updatePortfolio');
+    //         this.stockService.updateInstrumentsList.next();
+    //         break;
+    //       default:
+    //         const mes = JSON.parse(m);
+    //         if (mes.event === 'candle') {
+    //           this.eventSocketUpdate.next(mes);
+    //         }
+    //         if (mes.event === 'orderbook') {
+    //           this.eventSocketUpdateOrderBook.next(mes.payload);
+    //         }
+    //     }
+    //
+    //   } catch (e) {
+    //     console.log(e);
+    //     console.log(message.data);
+    //   }
+    // });
   }
 
   subscribeInstrument(data: InstrumentInterface | InstrumentInfoInterface) {
