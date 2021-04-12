@@ -23,7 +23,10 @@ import { DinamicLoaderModule } from './dinamic-loader/dinamic-loader.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-const config: SocketIoConfig = { url: environment.SOCKET_URL, options: {} };
+// const config: SocketIoConfig = { url: environment.SOCKET_URL, options: {
+//   secure: true,
+//   rejectUnauthorized: false,
+// } };
 
 
 @NgModule({
@@ -42,7 +45,7 @@ const config: SocketIoConfig = { url: environment.SOCKET_URL, options: {} };
     CommonComponentModule,
     MatDialogModule,
     LockScreenModule,
-    SocketIoModule.forRoot(config),
+    // SocketIoModule.forRoot(config),
     PortfolioModule,
     ReactiveFormsModule,
     DinamicLoaderModule,
