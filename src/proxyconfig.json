@@ -1,12 +1,12 @@
 {
   "/api": {
     "target": "https://localhost:3000",
-    "secure": true,
+    "secure": false,
     "changeOrigin": true
   },
   "/socket": {
     "target": "https://localhost:5000",
-    "secure": true,
+    "secure": false,
     "changeOrigin": true
   }
 }
