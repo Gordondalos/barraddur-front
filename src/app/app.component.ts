@@ -34,6 +34,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, AfterCont
     public localstorageService: LocalstorageService,
     public router: Router,
     private socketService: SocketService,
+    // private websocketService: WebsocketService,
     private cdr: ChangeDetectorRef,
   ) {
     this.sidenavService.showSpiner.subscribe((res) => {
