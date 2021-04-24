@@ -80,6 +80,101 @@
   border-radius: 8px;
 }
 
+@media all and (max-width: 992px) {
+  .main-text {
+    margin-top: 16px !important;
+
+    .f50 {
+      font-size: 32px !important;
+      text-align: center;
+      display: block;
+      margin-bottom: 32px;
+      font-weight: bold;
+    }
+  }
+  .base-info {
+    margin-top: 16px !important;
+  }
+
+  .reg-button {
+    display: none;
+  }
+
+  .first-container {
+    margin-bottom: 32px !important;
+  }
+
+  #login-form-wrapper {
+    margin: 32px auto;
+  }
+
+  .tariff {
+    flex-direction: column;
+
+    .w-30 {
+      width: 100% !important;
+      margin-bottom: 16px;
+    }
+  }
+
+  .f40.uppercase {
+    font-size: 24px !important;
+    margin-bottom: 32px !important;
+    font-weight: bold;
+  }
+}
+
+@media all and (max-width: 600px) {
+  ul {
+    font-size: 14px !important;
+  }
+
+  .f24.uppercase {
+    font-size: 18px !important;
+  }
+
+  button.f24 {
+    font-size: 16px !important;
+  }
+
+  .container.mb100.px16 {
+    margin-bottom: 32px !important;
+  }
+
+  .uppercase.text-center.f18.lh26.mb50, .uppercase.text-center.f18.lh26.mb50 {
+    font-size: 14px !important;
+  }
+
+  .info {
+    flex-direction: column;
+    .w-50 {
+      width: 100% !important;
+    }
+    &.mt50 {
+      margin-top: 0 !important;
+    }
+  }
+}
+
+@media all and (max-width: 450px) {
+
+  h1.ml16.mb0.uppercase {
+    font-size: 14px;
+  }
+  .main-text {
+    .f50 {
+      font-size: 18px !important;
+    }
+  }
+
+  button.f24 {
+    font-size: 14px !important;
+    padding: 8px 16px;
+    text-transform: lowercase;
+  }
+
+
+}
 
 
 
