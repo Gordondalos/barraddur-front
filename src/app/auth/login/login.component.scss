@@ -4,6 +4,10 @@
   width: 32px;
 }
 
+a {
+  color: black;
+}
+
 .clearfix {
   width: 100%;
   display: block;
@@ -133,7 +137,7 @@
     font-size: 18px !important;
   }
 
-  button.f24 {
+  .button.f24 {
     font-size: 16px !important;
   }
 
@@ -167,7 +171,7 @@
     }
   }
 
-  button.f24 {
+  .button.f24 {
     font-size: 14px !important;
     padding: 8px 16px;
     text-transform: lowercase;

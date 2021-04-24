@@ -1,4 +1,5 @@
-<div class="container mt60 mb150 px16 first-container">
+<div class="container mt60 px16 first-container">
+  <div id="head6"></div>
   <div class="d-flex w100 flex-wrap align-items-start">
     <div class="f-gr-1">
       <div class="mt32">
@@ -10,10 +11,10 @@
 
       <div class="mt32">
         <div class="d-flex uppercase">
-          <span class="mr16">Почему мы</span>|<span class="mx16">О Сервисe</span> | <span class="ml16">Контакты</span>
+          <a href="#head1" class="mr16">Почему мы</a>|<a href="#head2" class="mx16">О Сервисe</a> | <a href="#head3" class="ml16">Контакты</a>
         </div>
         <div class="d-flex uppercase mt16">
-          <span class="mr8">Каталог</span> <span class="ml8">Тарифы</span>
+          <a href="#head4" class="mr8">Каталог</a> <a href="#head5" class="ml8">Тарифы</a>
         </div>
       </div>
 
@@ -132,9 +133,11 @@
     </div>
   </div>
   <div class="mt60 reg-button">
-    <button mat-raised-button class="f24 ml60 p16 d-block" color="warn">Регистрация</button>
+    <a href="#head6" mat-raised-button class="f24 ml60 p16 d-block d-inline-block button" color="warn">Регистрация</a>
   </div>
 </div>
+
+<div id="head1" class="mb150"></div>
 
 <div class="container mb100 px16">
 
@@ -176,11 +179,13 @@
 <div class="clearfix"></div>
 <div class="container px16">
   <div class="d-block text-center">
-    <button mat-raised-button class="f24 p16 d-inline-block" color="warn">Регистрация здесь</button>
+    <a href="#head6" mat-raised-button class="f24 p16 d-inline-block button" color="warn">Регистрация здесь</a>
   </div>
 </div>
 
-<div class="container px16 mt100">
+<div id="head2" class="pt100"></div>
+
+<div class="container px16">
   <div class="f40 text-center uppercase mb50">О Сервисe</div>
   <p class="uppercase text-center f18 lh26 mb50">BARADDUR - ИНВЕСТИЦИОННАЯ ПЛАТФОРМА, СОЗДАНАЯ ПРИ ПОДДЕРЖКЕ БАНКА
     ТИНЬКОФФ.
@@ -209,7 +214,9 @@
   </ul>
 </div>
 
-<div class="container px16 mt100 mb100">
+<div id="head4" class="pt100"></div>
+
+<div class="container px16">
   <div class="f40 text-center uppercase mb50">КАТАЛОГ</div>
 
   <owl-carousel-o [options]="customOptions">
@@ -229,11 +236,13 @@
 
 <div class="container px16 mb100">
   <div class="d-block text-center">
-    <button mat-raised-button class="f24 p16 d-inline-block" color="warn">НЕ ЗАБУДЬТЕ ЗАРЕГИСТРИРОВАТЬСЯ</button>
+    <a href="#head6" mat-raised-button class="f24 p16 d-inline-block button mt100" color="warn">НЕ ЗАБУДЬТЕ ЗАРЕГИСТРИРОВАТЬСЯ</a>
   </div>
 </div>
 
-<div class="container px16 mb100">
+<div id="head5" class="pb100"></div>
+
+<div class="container px16">
   <div class="f40 text-center uppercase mb50">Тарифы</div>
 
   <div class="d-flex tariff">
@@ -253,7 +262,7 @@
     </div>
     <div class="f-gr-1"></div>
     <div class="w-30 border">
-      <div class="text-center f24 bold">Голд</div>
+      <div class="text-center f24 bold">GOLD</div>
       <p class="text-center mb20">скоро</p>
       <ul class="pl16 ml0 f18">
         <li class="mb16">ТОРГОВЛЯ НА ПЛАТФОРМЕ ВСЕМИ ВИДАМИ ДОСТУПНЫХ ИНСТРУМЕНТОВ</li>
@@ -274,13 +283,13 @@
     </div>
     <div class="f-gr-1"></div>
     <div class="w-30 border">
-      <div class="text-center uppercase f24 bold">Премиум</div>
+      <div class="text-center uppercase f24 bold">PREMIUM</div>
       <p class="text-center mb20">скоро</p>
       <ul class="pl16 ml0 f18">
         <li class="mb16">ТОРГОВЛЯ НА ПЛАТФОРМЕ ВСЕМИ ВИДАМИ ДОСТУПНЫХ ИНСТРУМЕНТОВ</li>
         <li class="mb16">РАСШИРЕННАЯ ФИНАНССОВАЯ ИНФОРМАЦИЯ</li>
         <li class="mb16">БАЗОВАЯ АНАЛИТИКА</li>
-        <li class="mb16">НЕУПРАВЛЯЕМАЯ НОВОСТНАЯ ЛЕНТА</li>
+        <li class="mb16">УПРАВЛЯЕМАЯ НОВОСТНАЯ ЛЕНТА</li>
         <li class="mb16">РОБОТ ТРЕЙЛИНГ СТОП</li>
         <li class="mb16">АНАЛИТИЧЕСКАЯ СИСТЕМА НА ОСНОВЕ ИСКУСТВЕННОГО ИНТЕЛЕКТА БАЗИРУЮЩАЯСЯ НА ТЕХНИЧЕСКИХ
           ПОКАЗАТЕЛЯХ
@@ -301,6 +310,8 @@
 
   </div>
 </div>
+
+<div id="head3" class="mb100"></div>
 
 <div class="container px16 mb100">
   <div class="f40 text-center uppercase mb50">Контакты</div>

@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/services/auth.service';
 import { images } from './images.config';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { delay } from 'utils-decorators';
 
 
 @Component({
@@ -13,14 +14,14 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./login.component.scss'],
   // encapsulation: ViewEncapsulation.None,
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
   loginForm: FormGroup;
 
   reg = false;
   visibility = false;
   type = 'password';
   checkedBtn = true;
-  images: Array<{label: string, url: string}> = images;
+  images: Array<{ label: string, url: string }> = images;
 
   customOptions: OwlOptions = {
     loop: true,
@@ -34,19 +35,19 @@ export class LoginComponent implements OnInit {
     navText: ['предыдущий', 'следующий'],
     responsive: {
       0: {
-        items: 1
+        items: 1,
       },
       400: {
-        items: 2
+        items: 2,
       },
       740: {
-        items: 3
+        items: 3,
       },
       940: {
-        items: 5
-      }
+        items: 5,
+      },
     },
-    nav: true
+    nav: true,
   };
 
   constructor(
@@ -67,6 +68,25 @@ export class LoginComponent implements OnInit {
       tToken: [''],
       is_demo: [''],
     });
+
+  }
+
+  @delay(1000)
+  ngAfterViewInit() {
+    const anchors: any = document.querySelectorAll('a[href*="#"]');
+
+    for (const anchor of anchors) {
+      anchor.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        const blockID = anchor.getAttribute('href').substr(1);
+
+        document.getElementById(blockID).scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      });
+    }
   }
 
   async login() {
