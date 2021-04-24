@@ -2,6 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/services/auth.service';
+import { images } from './images.config';
+import { OwlOptions } from 'ngx-owl-carousel-o';
 
 
 @Component({
@@ -9,7 +11,7 @@ import { AuthService } from '../../auth/services/auth.service';
   selector: 'login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  // encapsulation: ViewEncapsulation.None,
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
@@ -18,6 +20,34 @@ export class LoginComponent implements OnInit {
   visibility = false;
   type = 'password';
   checkedBtn = true;
+  images: Array<{label: string, url: string}> = images;
+
+  customOptions: OwlOptions = {
+    loop: true,
+    autoplay: true,
+    center: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: false,
+    navSpeed: 700,
+    navText: ['предыдущий', 'следующий'],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 3
+      },
+      940: {
+        items: 5
+      }
+    },
+    nav: true
+  };
 
   constructor(
     private formBuilder: FormBuilder,
@@ -81,4 +111,5 @@ export class LoginComponent implements OnInit {
 
 
   }
+
 }

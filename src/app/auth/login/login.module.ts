@@ -9,6 +9,8 @@ import { LoginComponent } from './login.component';
 import { FlexModule } from '@angular/flex-layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+
 
 
 const routes = [
@@ -39,6 +41,7 @@ const routes = [
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
+    CarouselModule
   ],
 })
 export class LoginModule {

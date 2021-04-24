@@ -174,7 +174,7 @@
       </ul>
     </div>
   </div>
-<div class="clearfix"></div>
+  <div class="clearfix"></div>
 </div>
 <div class="clearfix"></div>
 
@@ -186,7 +186,135 @@
 
 <div class="container mt100">
   <div class="f40 text-center uppercase mb50">О Сервисe</div>
+  <p class="uppercase text-center f18 lh26 mb50">BARADDUR - ИНВЕСТИЦИОННАЯ ПЛАТФОРМА, СОЗДАНАЯ ПРИ ПОДДЕРЖКЕ БАНКА
+    ТИНЬКОФФ.
+    В РАМКАХ ПРОЕКТА ПРОАНАЛИЗИРОВАННЫ И УЧТЕНЫ МНЕНИЯ СОТЕН ПОТЕНЦИАЛЬНЫХ ПОЛЬЗОВАТЕЛЕЙ.
+  </p>
+
+  <p class="uppercase text-center f18 lh26 mb50">
+    BARADDUR - ТЕПЕРЬ ТОРГОВЛЯ НЕ ТОЛЬКО ВЫГОДНО, НО И ИНТЕРЕСНО.
+    СОЗДАН ПРИ ПОДДЕРЖКЕ БАНКА ТИНЬКОФФ.
+    В РАМКАХ РЕАЛИЗАЦИИ ПРОЕКТА ПРОАНАЛИЗИРОВАННЫ И УЧТЕНЫ МНЕНИЯ ДЕСЯТКОВ СПЕЦИАЛИСТОВ В СФЕРЕ БИРЖЕВОЙ ТОРГОВОЛИ.
+    ПО РЕЗУЛЬТАТАМ ИССЛЕДОВАНИЙ СОЗДАНА УНИКАЛЬНАЯ ПЛАТФОРМА.
+  </p>
+
+  <ul class="f16">
+    <li class="mb16">ОГРОМНЫЙ ОБЪЕМ ФИНАНСОВОЙ ИНФОРМАЦИИ И ОТЧЕТНОСТИ СОБРАНЫ В ОДНОМ МЕСТЕ</li>
+    <li class="mb16">ЭЛЕКТРОННЫЙ АССИСТЕНТ ТРЕЙЛИНГ СТОП - АВТОМАТИЗИРУЕТ УТОМИТЕЛЬНЫЕ И КРОПОТЛИВЫЕ
+      ОПЕРАЦИИ СОВЕРШЕНИЯ СДЕЛОК
+    </li>
+    <li class="mb16">
+      ИНФОРМАЦИЯ, ПРЕДСТАВЛЕННАЯ ПО ВСЕМ БИРЖЕВЫМ ПОКАЗАТЕЛЯМ, СУЩЕСТВЕННО ПОМОЖЕТ
+      НОВИЧКАМ ОРИЕНТИРОВАТЬСЯ НА РЫНКЕ ЦЕННЫХ БУМАГ
+    </li>
+    <li class="mb16">
+      КОЛИЧЕСТВО СЕРВИСОВ ПОСТОЯННО РАСТЕТ
+    </li>
+  </ul>
 </div>
+
+<div class="container mt100 mb100">
+  <div class="f40 text-center uppercase mb50">КАТАЛОГ</div>
+
+  <owl-carousel-o [options]="customOptions">
+
+    <ng-container *ngFor="let slide of images">
+      <ng-template carouselSlide>
+       <div class="px30">
+         <img [src]="slide.url" [alt]="slide.label">
+         <div class="text-center mt16">{{slide.label}}</div>
+       </div>
+      </ng-template>
+    </ng-container>
+
+  </owl-carousel-o>
+
+</div>
+
+<div class="container mb100">
+  <div class="d-block text-center">
+    <button mat-raised-button class="f24 p16 d-inline-block" color="warn">НЕ ЗАБУДЬТЕ ЗАРЕГИСТРИРОВАТЬСЯ</button>
+  </div>
+</div>
+
+<div class="container mb100">
+  <div class="f40 text-center uppercase mb50">Тарифы</div>
+
+  <div class="d-flex">
+    <div class="w-30 border">
+      <div class="text-center f24 mb20 bold">Бесплатно</div>
+      <ul class="pl16 ml0 f18">
+        <li class="mb16">ТОРГОВЛЯ НА ПЛАТФОРМЕ ВСЕМИ ВИДАМИ ДОСТУПНЫХ ИНСТРУМЕНТОВ</li>
+        <li class="mb16">РАСШИРЕННАЯ ФИНАНССОВАЯ ИНФОРМАЦИЯ</li>
+        <li class="mb16">БАЗОВАЯ АНАЛИТИКА</li>
+        <li class="mb16">НЕУПРАВЛЯЕМАЯ НОВОСТНАЯ ЛЕНТА</li>
+      </ul>
+      <div class="price">
+        <div class="f24 uppercase text-center bold mb16">0</div>
+        <div class="f24 uppercase text-center bold">Рублей в месяц</div>
+      </div>
+
+    </div>
+    <div class="f-gr-1"></div>
+    <div class="w-30 border">
+      <div class="text-center f24 bold">Голд</div>
+      <p class="text-center mb20">скоро</p>
+      <ul class="pl16 ml0 f18">
+        <li class="mb16">ТОРГОВЛЯ НА ПЛАТФОРМЕ ВСЕМИ ВИДАМИ ДОСТУПНЫХ ИНСТРУМЕНТОВ</li>
+        <li class="mb16">РАСШИРЕННАЯ ФИНАНССОВАЯ ИНФОРМАЦИЯ</li>
+        <li class="mb16">БАЗОВАЯ АНАЛИТИКА</li>
+        <li class="mb16">НЕУПРАВЛЯЕМАЯ НОВОСТНАЯ ЛЕНТА</li>
+        <li class="mb16">РОБОТ ТРЕЙЛИНГ СТОП</li>
+        <li class="mb16">АНАЛИТИЧЕСКАЯ СИСТЕМА НА ОСНОВЕ ИСКУСТВЕННОГО ИНТЕЛЕКТА БАЗИРУЮЩАЯСЯ НА ТЕХНИЧЕСКИХ
+          ПОКАЗАТЕЛЯХ
+        </li>
+      </ul>
+
+      <div class="price">
+        <div class="f24 uppercase text-center bold mb16">1500</div>
+        <div class="f24 uppercase text-center bold">Рублей в месяц</div>
+      </div>
+
+    </div>
+    <div class="f-gr-1"></div>
+    <div class="w-30 border">
+      <div class="text-center uppercase f24 bold">Премиум</div>
+      <p class="text-center mb20">скоро</p>
+      <ul class="pl16 ml0 f18">
+        <li class="mb16">ТОРГОВЛЯ НА ПЛАТФОРМЕ ВСЕМИ ВИДАМИ ДОСТУПНЫХ ИНСТРУМЕНТОВ</li>
+        <li class="mb16">РАСШИРЕННАЯ ФИНАНССОВАЯ ИНФОРМАЦИЯ</li>
+        <li class="mb16">БАЗОВАЯ АНАЛИТИКА</li>
+        <li class="mb16">НЕУПРАВЛЯЕМАЯ НОВОСТНАЯ ЛЕНТА</li>
+        <li class="mb16">РОБОТ ТРЕЙЛИНГ СТОП</li>
+        <li class="mb16">АНАЛИТИЧЕСКАЯ СИСТЕМА НА ОСНОВЕ ИСКУСТВЕННОГО ИНТЕЛЕКТА БАЗИРУЮЩАЯСЯ НА ТЕХНИЧЕСКИХ
+          ПОКАЗАТЕЛЯХ
+        </li>
+        <li class="mb16">АНАЛИТИЧЕСКАЯ СИСТЕМА НА ОСНОВЕ ИСКУСТВЕННОГО ИНТЕЛЕКТА, БАЗИРУЮЩАЯСЯ НА ФУНДАМЕНТАЛЬНЫХ
+          ПОКАЗАТЕЛЯХ
+        </li>
+        <li class="mb16">АНАЛЕТИЧЕСКАЯ РЕКОМЕНДАТЕЛЬНАЯ СИСТЕМА НА ОСНОВЕ ИИ</li>
+        <li class="mb16">АНАЛИТИЧЕСКАЯ НОВОСТНАЯ СИСТЕМА НА ОСНОВЕ ИИ</li>
+      </ul>
+
+      <div class="price">
+        <div class="f24 uppercase text-center bold mb16">3000</div>
+        <div class="f24 uppercase text-center bold">Рублей в месяц</div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="container mb100">
+  <div class="f40 text-center uppercase mb50">Контакты</div>
+  <p>напишите нам на почту: info@baraddur.ru</p>
+  <p>skype: gordondalos.kg</p>
+  <p>телеграмм: baraddur</p>
+
+</div>
+
+<div class="clearfix"></div>
 
 
 
