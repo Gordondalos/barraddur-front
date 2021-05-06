@@ -8,7 +8,7 @@ export const environment = {
   baseHref: '/',
   API_REST_URL: 'https://localhost',
   API_REST_PORT: '3000',
-  SOCKET_URL: 'ws://localhost:5000'
+  SOCKET_URL: 'wss://localhost:5000'
 };
 /*
  * For easier debugging in development mode, you can import the following file
