@@ -24,12 +24,13 @@ export class PersonalAreaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.user = this.localStorageService.get('user');
+    if (!this.user) {
+      this.user = {};
+    }
   }
 
   save(): void {
-    console.log(this.user);
     this.userService.saveUser(this.user);
   }
 
