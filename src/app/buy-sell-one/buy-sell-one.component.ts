@@ -1,5 +1,4 @@
 import { Component, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
-import { InstrumentInfoInterface } from '../interfaces/instrument-info.interface';
 import { InstrumentInterface } from '../interfaces/instrumentInterface';
 import { takeUntil } from 'rxjs/operators';
 import { SocketEventInterface } from '../interfaces/socketEvent.interface';
@@ -8,6 +7,7 @@ import { PortfolioService } from '../services/portfolio.service';
 import { Subject } from 'rxjs';
 import { StockService } from '../services/stock.service';
 import { SidenavService } from '../services/sidenav.service';
+import { MarketInstrument } from '../interfaces/marketInstrument.interface';
 
 @Component({
   selector: 'app-buy-sell-one',
@@ -16,14 +16,14 @@ import { SidenavService } from '../services/sidenav.service';
 })
 export class BuySellOneComponent implements OnInit, OnDestroy {
 
-  _currentInstrument: InstrumentInterface | InstrumentInfoInterface;
+  _currentInstrument: InstrumentInterface | MarketInstrument;
   buySell: any = {};
   lags = false;
   type = 'market';
 
   @Input() data: any;
   @Input() currentInstrument: InstrumentInterface;
-  @Input() info: InstrumentInfoInterface;
+  @Input() info: MarketInstrument;
   @Input() figi: string;
   @Input() price: number;
 
@@ -87,7 +87,8 @@ export class BuySellOneComponent implements OnInit, OnDestroy {
   }
 
 
-  async deal(operation: string) {
+  async deal(operation: string, type: string) {
+    this.type = type;
     this.buySell.operation = operation;
     this.buySell.count = this.count;
     this.buySell.price = this.type === 'market' ? this.price : this.customPrice;

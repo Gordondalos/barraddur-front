@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { GroupService } from '../../services/group.service';
-import { Stock } from '../../interfaces/stock.interface';
+import { MarketInstrument } from '../../interfaces/marketInstrument.interface';
 import * as _ from 'lodash';
 
 @Component({
@@ -9,12 +9,12 @@ import * as _ from 'lodash';
   styleUrls: ['./group-kreator.component.scss'],
 })
 export class GroupKreatorComponent implements OnInit {
-  @Input() instruments: Stock[];
+  @Input() instruments: MarketInstrument[];
 
-  group: Stock[] = [];
-  groupSelecyted: Stock | any;
-  options: Stock[] = [];
-  copyOptions: Stock[] = [];
+  group: MarketInstrument[] = [];
+  groupSelecyted: MarketInstrument | any;
+  options: MarketInstrument[] = [];
+  copyOptions: MarketInstrument[] = [];
   groupName: string;
   currentGroup: any;
 
@@ -48,11 +48,11 @@ export class GroupKreatorComponent implements OnInit {
     this.createCurrentGroup();
   }
 
-  displayFn(stock: Stock): string {
+  displayFn(stock: MarketInstrument): string {
     return stock && stock.name ? stock.name : '';
   }
 
-  delete(item: Stock, index) {
+  delete(item: MarketInstrument, index) {
     // this.group.splice(index, 1);
     this.group.forEach((it, ind) => {
       if (it.figi === item.figi) {

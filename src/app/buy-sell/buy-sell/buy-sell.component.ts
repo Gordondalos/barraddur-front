@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Stock } from '../../interfaces/stock.interface';
+import { MarketInstrument } from '../../interfaces/marketInstrument.interface';
 import * as _ from 'lodash';
 import { StockService } from '../../services/stock.service';
 
@@ -10,11 +10,11 @@ import { StockService } from '../../services/stock.service';
 })
 export class BuySellComponent implements OnInit {
 
-  @Input() instruments: Stock[];
-  group: Stock[] = [];
-  itemSelecyted: Stock | any;
-  options: Stock[] = [];
-  copyOptions: Stock[] = [];
+  @Input() instruments: MarketInstrument[];
+  group: MarketInstrument[] = [];
+  itemSelecyted: MarketInstrument | any;
+  options: MarketInstrument[] = [];
+  copyOptions: MarketInstrument[] = [];
   groupName: string;
   currentGroup: any;
 
@@ -33,7 +33,7 @@ export class BuySellComponent implements OnInit {
     this.copyOptions = _.cloneDeep(this.options);
   }
 
-  displayFn(stock: Stock): string {
+  displayFn(stock: MarketInstrument): string {
     return stock && stock.name ? stock.name : '';
   }
 

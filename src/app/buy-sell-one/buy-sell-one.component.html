@@ -18,10 +18,10 @@
 
 
         <div class="d-flex my16">
-          <button [disabled]="!price || lags" (click)="deal('Sell')" mat-raised-button color="accent" class="f-gr-1 mr8 w-50">
+          <button [disabled]="!price || lags" (click)="deal('Sell', 'market')" mat-raised-button color="accent" class="f-gr-1 mr8 w-50">
             Продать
           </button>
-          <button [disabled]="!price" (click)="deal('Buy')" mat-raised-button color="primary" class="f-gr-1 ml8 w-50">
+          <button [disabled]="!price" (click)="deal('Buy', 'market')" mat-raised-button color="primary" class="f-gr-1 ml8 w-50">
             Купить
           </button>
         </div>
@@ -30,7 +30,7 @@
       </div>
     </mat-tab>
     <mat-tab #elem1 (click)="selectTab('limit', elem1)" label="По лимитной" class="w-50">
-      <div class="p16" *ngIf="price">
+      <div  class="p16" *ngIf="price">
         <div class="d-flex mt16">
           <mat-form-field appearance="outline" class="mw49 mr8 f-gr-1">
             <mat-label>Цена {{price?.toFixed(2) ? price?.toFixed(2) : ''}}</mat-label>
@@ -56,10 +56,10 @@
         </ng-container>
 
         <div class="d-flex my16">
-          <button [disabled]="!customPrice" (click)="deal('Sell')" mat-raised-button color="accent"
+          <button [disabled]="!customPrice" (click)="deal('Sell', 'limit')" mat-raised-button color="accent"
                   class="f-gr-1 mr8 w-50">Продать
           </button>
-          <button [disabled]="!customPrice" (click)="deal('Buy')" mat-raised-button color="primary"
+          <button [disabled]="!customPrice" (click)="deal('Buy', 'limit')" mat-raised-button color="primary"
                   class="f-gr-1 ml8 w-50">Купить
           </button>
         </div>

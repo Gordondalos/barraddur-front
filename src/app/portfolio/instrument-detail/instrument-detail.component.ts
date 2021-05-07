@@ -7,7 +7,6 @@ import { PortfolioService } from '../../services/portfolio.service';
 import * as moment from 'moment';
 import { CandleInterfase } from '../../interfaces/candle.interfase';
 import { ChartOptions } from '../../interfaces/chart-options.interface';
-import { InstrumentInfoInterface } from '../../interfaces/instrument-info.interface';
 import { takeUntil } from 'rxjs/operators';
 import { SocketEventInterface } from '../../interfaces/socketEvent.interface';
 import { SocketService } from '../../services/socket.service';
@@ -19,6 +18,7 @@ import { DinamicLoaderService } from '../../services/dinamic-loader.service';
 import { SidenavService } from '../../services/sidenav.service';
 import { CandleResolution } from '../../auth/interfaces/candle-resolution';
 import { Moment } from 'moment';
+import { MarketInstrument } from '../../interfaces/marketInstrument.interface';
 
 
 @Component({
@@ -34,7 +34,7 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
   public chartBarOptions: Partial<ChartOptions>;
 
   figi: string;
-  info: InstrumentInfoInterface;
+  info: MarketInstrument;
   price: number;
   currentInstrument: InstrumentInterface;
   interval: CandleResolution = 'day';

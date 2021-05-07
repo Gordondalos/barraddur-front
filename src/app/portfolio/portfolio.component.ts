@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { PortfolioService } from '../services/portfolio.service';
 import { InstrumentInterface } from '../interfaces/instrumentInterface';
 import { GroupService } from '../services/group.service';
-import { Stock } from '../interfaces/stock.interface';
+import { MarketInstrument } from '../interfaces/marketInstrument.interface';
 import { SocketService } from '../services/socket.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { SidenavService } from '../services/sidenav.service';
@@ -15,7 +15,7 @@ import { SidenavService } from '../services/sidenav.service';
 export class PortfolioComponent implements OnInit, AfterViewInit {
 
   portfolio: Array<InstrumentInterface>;
-  instruments: Stock[];
+  instruments: MarketInstrument[];
 
   balance: Array<{ currency: string, balance: number }>;
 

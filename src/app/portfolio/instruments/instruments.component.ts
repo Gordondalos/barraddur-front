@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { InstrumentInterface } from '../../interfaces/instrumentInterface';
+import { InstrumentInterface, Order } from '../../interfaces/instrumentInterface';
 import { LocalstorageService } from '../../services/localstorage.service';
 import { PortfolioService } from '../../services/portfolio.service';
 import { StockService } from '../../services/stock.service';
@@ -8,6 +8,7 @@ import { SocketEventInterface } from '../../interfaces/socketEvent.interface';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { OrderInfoInterface } from '../../interfaces/order-info.interface';
 
 @Component({
   selector: 'app-instruments',
@@ -26,6 +27,8 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
 
   settings: any;
   show = true;
+  orders: Array<Order>;
+  orderInfo: Array<OrderInfoInterface> = [];
 
 
   columnDefs = [
@@ -43,8 +46,8 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
     // { headerName: 'Inc day %', field: 'income-day_percent', sortable: true, filter: true, resizable: true },
   ];
 
+
   private unsubscribeAll: Subject<any> = new Subject<any>();
-  private orders: any;
 
 
   constructor(
@@ -101,7 +104,22 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
 
   async getActiveOrders() {
     this.orders = await this.portfolioService.getActiveOrders();
-    console.log('Активные заявки', this.orders);
+    if (this.orders && this.orders.length) {
+      this.stockService.getInfoAboutOrders(this.orders)
+        .then((res) => {
+          if (res) {
+            this.orderInfo = [];
+            for (const item of this.orders) {
+              let it = res.find((iter) => iter.figi === item.figi);
+              it = { ...it, ...item };
+              this.orderInfo.push(it);
+            }
+          }
+        });
+    } else {
+      this.orderInfo = [];
+    }
+
   }
 
   async getPriceFromPortfolio() {
@@ -174,7 +192,7 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
     this.portfolio = portfolio;
   }
 
-  openDetail(item: InstrumentInterface) {
+  openDetail(item: InstrumentInterface | Order) {
     this.router.navigateByUrl(`/portfolio/detail/${ item.figi }`);
     setTimeout(() => {
       this.portfolioService.instrumentEvent.next(item);
@@ -183,6 +201,18 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
 
   async getBalance(): Promise<void> {
     this.balance = await this.portfolioService.getBalance();
+  }
+
+  cancelOrder(item: Order, $event) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    this.stockService.cancelOrder(item)
+      .then((res) => {
+        if (res) {
+          this.getActiveOrders();
+        }
+
+      });
   }
 }
 

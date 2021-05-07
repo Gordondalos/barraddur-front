@@ -65,7 +65,8 @@ export class AuthService {
 
   async tryLogin(authData: any): Promise<Auth | boolean> {
     const headers = new HttpHeaders();
-    headers[ 'disableCache' ] = 'true';
+    // @ts-ignore
+    headers.disableCache = 'true';
 
     const url = `${ this.host }/api/auth/login`;
 
@@ -83,7 +84,6 @@ export class AuthService {
 
         this.localstorageService.set('user', response.user);
         this.localstorageService.set('token', response.token);
-        this.localstorageService.set('filialId', response.filialId);
         return this.getAuth(response);
       })
       .catch((response) => {

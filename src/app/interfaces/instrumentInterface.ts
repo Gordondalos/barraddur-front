@@ -11,3 +11,16 @@ export interface InstrumentInterface {
   price: number;
   trailingStop?: boolean;
 }
+
+export interface Order {
+  figi: string;
+  price: number;
+  requestedLots: number;
+  executedLots: number;
+  operation: string;
+  orderId: string;
+  status: string;
+  type: string;
+  ticker: string;
+  name: string;
+}

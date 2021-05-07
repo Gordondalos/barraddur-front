@@ -4,11 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { StockService } from './stock.service';
 import { LocalstorageService } from './localstorage.service';
-import { InstrumentInfoInterface } from '../interfaces/instrument-info.interface';
 import { InstrumentInterface } from '../interfaces/instrumentInterface';
 import { WebSocketSubject } from 'rxjs/internal-compatibility';
 import { webSocket } from 'rxjs/webSocket';
 import { environment } from '../../environments/environment';
+import { MarketInstrument } from '../interfaces/marketInstrument.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -127,18 +127,18 @@ export class SocketService extends FatherService {
     this.sendMessage('Hello');
   }
 
-  subscribeInstrument(data: InstrumentInterface | InstrumentInfoInterface) {
+  subscribeInstrument(data: InstrumentInterface | MarketInstrument) {
     // TODO период задан жестко, нужно как то его хранить и обрабатывать
     return this.post('/api/subscribeInstrument', { instrument: data, period: 'hour' });
   }
 
-  unSubscribeInstrument(data: InstrumentInterface | InstrumentInfoInterface) {
+  unSubscribeInstrument(data: InstrumentInterface | MarketInstrument) {
     // TODO период задан жестко, нужно как то его хранить и обрабатывать
     return this.post('/api/unSubscribeInstrument', { instrument: data, period: 'hour' });
   }
 
 
-  startSubscribtion(data: InstrumentInterface[] | InstrumentInfoInterface[]) {
+  startSubscribtion(data: InstrumentInterface[] | MarketInstrument[]) {
     return this.post('/api/socketFire', { data });
   }
 

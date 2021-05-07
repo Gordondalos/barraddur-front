@@ -18,6 +18,14 @@ table {
   left: 10px;
 }
 
+.stop-order {
+  position: relative;
+  top: 8px;
+  color: $danger;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
 
 .ticker {
   width: 40px;
@@ -29,6 +37,12 @@ table {
   display: flex;
   align-items: center;
   justify-content: center;
+  &.buy {
+    background-color: $success;
+  }
+  &.sell {
+    background-color: $danger;
+  }
 }
 
 .list-item {

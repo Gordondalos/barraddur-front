@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Stock} from '../../interfaces/stock.interface';
+import {MarketInstrument} from '../../interfaces/marketInstrument.interface';
 import {StockService} from '../../services/stock.service';
 import {Observable} from 'rxjs';
 import {FormControl} from '@angular/forms';
@@ -12,11 +12,11 @@ import {map, startWith} from 'rxjs/operators';
   styleUrls: ['./share-list.component.scss']
 })
 export class ShareListComponent implements OnInit {
-  currentValue: Stock;
-  stocks: Stock [] = [];
+  currentValue: MarketInstrument;
+  stocks: MarketInstrument [] = [];
   myControl = new FormControl();
-  options: Stock [] = [];
-  filteredOptions: Observable<Stock[]>;
+  options: MarketInstrument [] = [];
+  filteredOptions: Observable<MarketInstrument[]>;
 
   constructor(
     private stockService: StockService
@@ -45,7 +45,7 @@ export class ShareListComponent implements OnInit {
     this.options = this.stocks;
   }
 
-  private _filter(value: any): Stock[] {
+  private _filter(value: any): MarketInstrument[] {
     let filterValue = '';
     if (typeof value === 'string') {
       filterValue = value.toLowerCase();
@@ -57,7 +57,7 @@ export class ShareListComponent implements OnInit {
     return this.options.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  displayFn(stock: Stock): string {
+  displayFn(stock: MarketInstrument): string {
     return stock && stock.name ? stock.name : '';
   }
 

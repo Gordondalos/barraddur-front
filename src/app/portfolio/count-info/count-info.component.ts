@@ -1,12 +1,11 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { InstrumentInfoInterface } from '../../interfaces/instrument-info.interface';
 import { takeUntil } from 'rxjs/operators';
 import { SocketEventInterface } from '../../interfaces/socketEvent.interface';
 import { SocketService } from '../../services/socket.service';
 import { Subject } from 'rxjs';
 import { PortfolioService } from '../../services/portfolio.service';
-import * as _ from 'lodash';
 import { InstrumentInterface } from '../../interfaces/instrumentInterface';
+import { MarketInstrument } from '../../interfaces/marketInstrument.interface';
 
 @Component({
   selector: 'app-count-info',
@@ -15,12 +14,12 @@ import { InstrumentInterface } from '../../interfaces/instrumentInterface';
 })
 export class CountInfoComponent implements OnInit, OnDestroy {
 
-  _info: InstrumentInfoInterface;
+  _info: MarketInstrument;
   price: number;
 
   @Input() figi: string;
 
- _currentInstrument: InstrumentInterface;
+  _currentInstrument: InstrumentInterface;
 
   @Input()
   get currentInstrument(): InstrumentInterface {
@@ -32,13 +31,12 @@ export class CountInfoComponent implements OnInit, OnDestroy {
   }
 
 
-
   @Input()
-  get info(): InstrumentInfoInterface {
+  get info(): MarketInstrument {
     return this._info;
   }
 
-  set info(info: InstrumentInfoInterface) {
+  set info(info: MarketInstrument) {
     this._info = info;
   }
 
