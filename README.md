@@ -3,7 +3,7 @@
     "target": "localhost",
     "secure": false,
     "port": 3000,
-    "protocol": "https",
+    "protocol": "http",
     "changeOrigin": true
   }
 }
