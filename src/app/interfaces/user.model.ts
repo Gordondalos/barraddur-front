@@ -5,6 +5,7 @@ export class User {
   name?: string;
   mainRoleCode?: string;
   tToken?: string;
+  t_prod_token?: string;
   phone?: string;
   email?: string;
   surename?: string;

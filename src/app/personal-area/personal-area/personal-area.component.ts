@@ -3,6 +3,7 @@ import { User } from '../../interfaces/user.model';
 import { LocalstorageService } from '../../services/localstorage.service';
 import { UserService } from '../../services/user.service';
 import { PortfolioService } from '../../services/portfolio.service';
+import { delay } from 'utils-decorators';
 
 
 @Component({
@@ -15,6 +16,8 @@ export class PersonalAreaComponent implements OnInit {
   user: User;
   currency: any;
   sum: any;
+  mode: boolean;
+  showSaveLoader: boolean;
 
   constructor(
     private localStorageService: LocalstorageService,
@@ -31,7 +34,14 @@ export class PersonalAreaComponent implements OnInit {
   }
 
   save(): void {
-    this.userService.saveUser(this.user);
+    this.showSaveLoader = true;
+    this.userService.saveUser(this.user)
+      .then((res) => {
+        console.log(res);
+        setTimeout(() => {
+          this.showSaveLoader = false;
+        }, 1000);
+      });
   }
 
   addSumToSandbox() {
@@ -39,5 +49,10 @@ export class PersonalAreaComponent implements OnInit {
     if (res) {
       this.portfolioService.updateBalanceEvent.next();
     }
+  }
+
+  @delay(100)
+  modeChange() {
+    this.userService.changeMode(this.mode);
   }
 }

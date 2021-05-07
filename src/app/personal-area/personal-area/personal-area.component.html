@@ -40,18 +40,41 @@
 
     <p>Введите сюда токен доступа к Тинькофф банку</p>
     <mat-form-field class="w100" appearance="outline">
-      <mat-label>Токен доступа</mat-label>
+      <mat-label>Токен доступа в Песочницу</mat-label>
       <input matInput placeholder="tToken" [(ngModel)]="user.tToken">
     </mat-form-field>
-    <button mat-raised-button color="primary" (click)="save()">Сохранить</button>
+
+    <mat-form-field class="w100" appearance="outline">
+      <mat-label>Токен доступа боевой режим</mat-label>
+      <input matInput placeholder="t_prod_token" [(ngModel)]="user.t_prod_token">
+    </mat-form-field>
+
+    <mat-slide-toggle (ngModelChange)="modeChange()" [(ngModel)]="mode">
+      <ng-container *ngIf="mode">
+        Включен боевой режим
+      </ng-container>
+      <ng-container *ngIf="!mode">
+        Включен режим песочницы
+      </ng-container>
+    </mat-slide-toggle>
+    <div class="clearfix"></div>
+
+    <button class="mt16" mat-raised-button color="primary" (click)="save()">
+      <mat-spinner *ngIf="showSaveLoader"
+                   class="posa left16 white-icon-stroke"
+                   [diameter]="18"
+                   [strokeWidth]="3"
+                   >
+      </mat-spinner>
+      <mat-icon *ngIf="!showSaveLoader" class="save-icon">save</mat-icon>
+
+      <span [ngClass]="{'ml16': showSaveLoader}"> Сохранить</span>
+    </button>
+
 
   </section>
   <section class="my16">
-    <h1 class="bold">Добавить деньги в песочницу</h1>
-    <!--    <mat-form-field class="w100" appearance="outline">-->
-    <!--      <mat-label>Валюта</mat-label>-->
-    <!--      <input matInput placeholder="USD" [(ngModel)]="currency">-->
-    <!--    </mat-form-field>-->
+    <h1 class="bold">Установить сумму в песочнице</h1>
 
     <mat-form-field class="w100" appearance="outline">
       <mat-label>Валюта</mat-label>
@@ -67,12 +90,12 @@
       <input matInput placeholder="50000" [(ngModel)]="sum">
     </mat-form-field>
 
-    <button (click)="addSumToSandbox()"  mat-raised-button color="primary">Добавить</button>
+    <button (click)="addSumToSandbox()" mat-raised-button color="primary">Добавить</button>
 
-    <p class="py16">
-      Примечание - валюта может быть только одна из этих
-      "RUB" | "USD" | "EUR" | "GBP" | "HKD" | "CHF" | "JPY" | "CNY" | "TRY"
-    </p>
+    <!--    <p class="py16">-->
+    <!--      Примечание - валюта может быть только одна из этих-->
+    <!--      "RUB" | "USD" | "EUR" | "GBP" | "HKD" | "CHF" | "JPY" | "CNY" | "TRY"-->
+    <!--    </p>-->
 
   </section>
 </div>

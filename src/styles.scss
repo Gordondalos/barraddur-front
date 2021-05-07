@@ -17,6 +17,14 @@ html, body {
   height: 100%;
 }
 
+.posr {
+  position: relative !important;
+}
+
+.posa {
+  position: absolute !important;
+}
+
 .mat-drawer-container {
   background-color: transparent;
 }
@@ -120,6 +128,11 @@ p {
 
 button {
   min-width: auto !important;
+}
+
+.white-icon-stroke * {
+  //fill: white !important;
+  stroke: white !important;
 }
 
 

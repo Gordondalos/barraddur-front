@@ -12,8 +12,12 @@ export class UserService extends FatherService {
     super(httpClient);
   }
 
-  saveUser(user: User): void {
-    this.post('/api/update/user', { data: user });
+  changeMode(mode) {
+    this.post('/api/update/mode', { mode });
+  }
+
+  saveUser(user: User): Promise<any> {
+    return this.post('/api/update/user', { data: user });
   }
 
   async addSumToSandbox(sum, currency) {
