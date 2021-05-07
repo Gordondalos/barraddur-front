@@ -67,4 +67,12 @@ export class CountInfoComponent implements OnInit, OnDestroy {
 
   }
 
+  stopTrailing() {
+    this.portfolioService.stopTrailing(this.info)
+      .then((res) => {
+        if (res) {
+          this.currentInstrument.trailingStop = undefined;
+        }
+      });
+  }
 }

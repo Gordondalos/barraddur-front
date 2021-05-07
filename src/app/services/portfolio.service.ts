@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { LocalstorageService } from './localstorage.service';
 import { InstrumentInterface } from '../interfaces/instrumentInterface';
+import { MarketInstrument } from '../interfaces/marketInstrument.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +27,9 @@ export class PortfolioService extends FatherService {
     super(httpClient);
   }
 
+  stopTrailing(info: MarketInstrument): Promise<any> {
+    return this.post('/api/stop-trailing', info);
+  }
 
 
   async getPortfolio(): Promise<any> {

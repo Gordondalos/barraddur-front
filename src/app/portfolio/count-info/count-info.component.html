@@ -3,18 +3,19 @@
   <ng-container *ngIf="_info && _info.currency && price && currentInstrument">
     <div class="mat-elevation-z4 p16 ">
 
-      <div class="d-flex mb16">
-        <span>В портфеле</span>
-        <div class="bold f18 mx16">
-          {{currentInstrument.lots}}
-          <ng-container *ngIf="currentInstrument.trailingStop">
-           <span class="ml16">Трейлинг стоп запущен</span>
-          </ng-container>
-        </div>
-        <span>
-<!--            {{currentInstrument.instrumentType}}-->
-      </span>
+
+      <div class="d-flex align-items-center w100 mb16">
+        <span class="bold f18 mr8">В портфеле</span>
+        <span class="bold f18">{{currentInstrument.lots}}</span>
+        <ng-container *ngIf="currentInstrument.trailingStop">
+          <span class="mx16 f-gr-1">Трейлинг стоп запущен</span>
+          <button (click)="stopTrailing()" color="primary" mat-raised-button class="f12">Остановить ТС</button>
+        </ng-container>
       </div>
+<!--      <span>-->
+<!--            {{currentInstrument.instrumentType}}-->
+<!--      </span>-->
+
       <span class="mr16">На сумму</span>
       <span class="bold f16">{{(price * currentInstrument.lots * info.lot).toFixed(2)}}</span> {{_info?.currency}}
 
