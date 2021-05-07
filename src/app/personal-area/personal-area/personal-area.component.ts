@@ -31,6 +31,7 @@ export class PersonalAreaComponent implements OnInit {
     if (!this.user) {
       this.user = {};
     }
+    this.mode = +this.user.is_demo === 2;
   }
 
   save(): void {
