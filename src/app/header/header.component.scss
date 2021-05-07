@@ -33,6 +33,13 @@
   z-index: 10;
   background: black;
   width: 100%;
+  .wrap-input {
+    max-width: 600px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+  }
 }
 
 

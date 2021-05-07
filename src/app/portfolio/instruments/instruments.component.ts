@@ -200,7 +200,8 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
   }
 
   async getBalance(): Promise<void> {
-    this.balance = await this.portfolioService.getBalance();
+    this.balance = (await this.portfolioService.getBalance()).filter((item) => item.balance > 0);
+    console.log('balance', this.balance);
   }
 
   cancelOrder(item: Order, $event) {

@@ -4,51 +4,26 @@
     <button [routerLink]="['/portfolio/buy']" mat-raised-button color="primary">Что купить</button>
   </div>
 
-  <ng-container *ngIf="orders && orderInfo?.length > 0">
-    <h3 class="bold mb0 px16">Заявки</h3>
-    <mat-list role="list">
-      <ng-container *ngFor="let item of orderInfo">
-        <mat-list-item (click)="openDetail(item)" class="list-item pointer" role="listitem">
-          <div class="ticker mr16" [ngClass]="{'buy': item.operation === 'Buy', 'sell': item.operation === 'Sell' }">
-            <ng-container *ngIf="item?.ticker?.length <= 5">
-              <span>{{item.ticker}}</span>
-            </ng-container>
 
+  <div class="my16">
+    <h3 class="bold mb0 mt16 px16">Валюта</h3>
+    <mat-list role="list">
+      <ng-container *ngFor="let item of balance">
+        <mat-list-item class="list-item pointer" role="listitem">
+          <div class="ticker mr16">
+            <span>{{item.currency}}</span>
           </div>
           <div class="f-gr-1">
             <div class="bold f12">
-              {{item.operation === 'Buy' ? 'Покупка' : 'Продажа'}}
-              {{item.name}}
-            </div>
-            <div class="d-block text-gray f10">
-              <span>{{item.requestedLots}} шт.,</span>
-              <span class="pl8">на сумму {{(item.price * item.requestedLots).toFixed(2)}}</span>
-              <ng-container *ngIf="item.executedLots > 0">
-                <span>выполнено: item.executedLots</span>
-              </ng-container>
+              {{item.currency}}
             </div>
           </div>
-
           <div class="price f12">
-            <ng-container *ngIf="item && item.price">
-              {{(+item.price).toFixed(2)}}
-            </ng-container>
-
-            <mat-icon (click)="cancelOrder(item, $event)" class="stop-order">
-              close
-            </mat-icon>
-
+            {{(+item.balance).toFixed(2)}}
           </div>
         </mat-list-item>
       </ng-container>
     </mat-list>
-  </ng-container>
-
-
-  <div class="d-flex align-items-center my16 px16 f12">
-    <ng-container *ngFor="let item of balance">
-      <span class="d-block mr8">{{item?.currency}}: {{item.balance.toFixed(2)}}</span>
-    </ng-container>
   </div>
 
   <ng-container *ngIf="portfolio && portfolio.length > 0">
@@ -84,6 +59,47 @@
 
           </div>
 
+        </mat-list-item>
+      </ng-container>
+    </mat-list>
+  </ng-container>
+
+
+  <ng-container *ngIf="orders && orderInfo?.length > 0">
+    <h3 class="bold mb0 mt16 px16">Заявки</h3>
+    <mat-list class="mb50" role="list">
+      <ng-container *ngFor="let item of orderInfo">
+        <mat-list-item (click)="openDetail(item)" class="list-item pointer" role="listitem">
+          <div class="ticker mr16" [ngClass]="{'buy': item.operation === 'Buy', 'sell': item.operation === 'Sell' }">
+            <ng-container *ngIf="item?.ticker?.length <= 5">
+              <span>{{item.ticker}}</span>
+            </ng-container>
+
+          </div>
+          <div class="f-gr-1">
+            <div class="bold f12">
+              {{item.operation === 'Buy' ? 'Покупка' : 'Продажа'}}
+              {{item.name}}
+            </div>
+            <div class="d-block text-gray f10">
+              <span>{{item.requestedLots}} шт.,</span>
+              <span class="pl8">на сумму {{(item.price * item.requestedLots).toFixed(2)}}</span>
+              <ng-container *ngIf="item.executedLots > 0">
+                <span>выполнено: item.executedLots</span>
+              </ng-container>
+            </div>
+          </div>
+
+          <div class="price f12">
+            <ng-container *ngIf="item && item.price">
+              {{(+item.price).toFixed(2)}}
+            </ng-container>
+
+            <mat-icon (click)="cancelOrder(item, $event)" class="stop-order">
+              close
+            </mat-icon>
+
+          </div>
         </mat-list-item>
       </ng-container>
     </mat-list>
