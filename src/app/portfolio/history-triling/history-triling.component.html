@@ -22,7 +22,7 @@
 
 
 <hr>
-<ng-container *ngIf="currentInstrument && price">
+<ng-container *ngIf="currentInstrument && price && operations">
   <div class="d-flex w100">
     <div class="bold w-50 buy px16">
       {{totalBuy?.toFixed(2)}} {{operations[0]?.currency}}

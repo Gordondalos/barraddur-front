@@ -30,21 +30,21 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
   orders: Array<Order>;
   orderInfo: Array<OrderInfoInterface> = [];
 
-
-  columnDefs = [
-    { headerName: 'id', field: 'figi', sortable: true, filter: true, resizable: true },
-    { headerName: 'name', field: 'name', sortable: true, filter: true, resizable: true },
-    // { headerName: 'balance', field: 'balance', sortable: true, filter: true, resizable: true },
-    { headerName: 'ticker', field: 'ticker', sortable: true, filter: true, resizable: true },
-    { headerName: 'lots', field: 'lots', sortable: true, filter: true, resizable: true },
-    { headerName: 'price', field: 'price', sortable: true, filter: true, resizable: true },
-    { headerName: 'blocked', field: 'blocked', sortable: true, filter: true, resizable: true },
-    // { headerName: 'average', field: 'average', sortable: true, filter: true, resizable: true },
-    // { headerName: 'Income', field: 'income_total', sortable: true, filter: true, resizable: true },
-    // { headerName: 'Inc %', field: 'income_percent_total', sortable: true, filter: true, resizable: true },
-    // { headerName: 'Inc day', field: 'income_day', sortable: true, filter: true, resizable: true },
-    // { headerName: 'Inc day %', field: 'income-day_percent', sortable: true, filter: true, resizable: true },
-  ];
+  //
+  // columnDefs = [
+  //   { headerName: 'id', field: 'figi', sortable: true, filter: true, resizable: true },
+  //   { headerName: 'name', field: 'name', sortable: true, filter: true, resizable: true },
+  //   // { headerName: 'balance', field: 'balance', sortable: true, filter: true, resizable: true },
+  //   { headerName: 'ticker', field: 'ticker', sortable: true, filter: true, resizable: true },
+  //   { headerName: 'lots', field: 'lots', sortable: true, filter: true, resizable: true },
+  //   { headerName: 'price', field: 'price', sortable: true, filter: true, resizable: true },
+  //   { headerName: 'blocked', field: 'blocked', sortable: true, filter: true, resizable: true },
+  //   // { headerName: 'average', field: 'average', sortable: true, filter: true, resizable: true },
+  //   // { headerName: 'Income', field: 'income_total', sortable: true, filter: true, resizable: true },
+  //   // { headerName: 'Inc %', field: 'income_percent_total', sortable: true, filter: true, resizable: true },
+  //   // { headerName: 'Inc day', field: 'income_day', sortable: true, filter: true, resizable: true },
+  //   // { headerName: 'Inc day %', field: 'income-day_percent', sortable: true, filter: true, resizable: true },
+  // ];
 
 
   private unsubscribeAll: Subject<any> = new Subject<any>();
@@ -100,7 +100,17 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
     }
     this.getActiveOrders();
     this.getPriceFromPortfolio();
+
   }
+
+  getUserAccounts() {
+    this.portfolioService.getUserAccounts()
+      .then((res) => {
+        console.log(res);
+      });
+  }
+
+
 
   async getActiveOrders() {
     this.orders = await this.portfolioService.getActiveOrders();
@@ -143,26 +153,25 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
     }
   }
 
-  onFirstDataRendered(params) {
-    params.api.sizeColumnsToFit();
-  }
+  // onFirstDataRendered(params) {
+  //   params.api.sizeColumnsToFit();
+  // }
 
-  onGridReady(params) {
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
-    this.gridOptionsApi = this.gridApi.gridCore.gridOptions.api;
-
-    this.gridApi.forEachNode((rowNode, index) => {
-      rowNode.id = this.portfolio[ index ].figi;
-      // this.gridApi.redrawRows({rowNode});
-    });
-    // this.gridApi.redrawRows({rowNode})
-
-    // debugger
-    if (this.settings) {
-      this.gridColumnApi.setColumnState(this.settings);
-    }
-  }
+  // onGridReady(params) {
+  //   this.gridApi = params.api;
+  //   this.gridColumnApi = params.columnApi;
+  //   this.gridOptionsApi = this.gridApi.gridCore.gridOptions.api;
+  //
+  //   this.gridApi.forEachNode((rowNode, index) => {
+  //     rowNode.id = this.portfolio[ index ].figi;
+  //     // this.gridApi.redrawRows({rowNode});
+  //   });
+  //   // this.gridApi.redrawRows({rowNode})
+  //
+  //   if (this.settings) {
+  //     this.gridColumnApi.setColumnState(this.settings);
+  //   }
+  // }
 
 
   saveSettings() {
@@ -170,19 +179,19 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
     this.localStorageService.set('gridPortfoloSettings', this.settings);
   }
 
-  columnMoved() {
-    setTimeout(() => {
-      this.saveSettings();
-    }, 1000);
-  }
+  // columnMoved() {
+  //   setTimeout(() => {
+  //     this.saveSettings();
+  //   }, 1000);
+  // }
 
-  rowClick($event: any) {
-    console.log($event);
-  }
+  // rowClick($event: any) {
+  //   console.log($event);
+  // }
 
-  updateData() {
-    this.portfolioService.updateData(365);
-  }
+  // updateData() {
+  //   this.portfolioService.updateData(365);
+  // }
 
   async uploadPortfolio() {
     const portfolio = await this.portfolioService.getPortfolio();
@@ -201,7 +210,6 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
 
   async getBalance(): Promise<void> {
     this.balance = (await this.portfolioService.getBalance()).filter((item) => item.balance > 0);
-    console.log('balance', this.balance);
   }
 
   cancelOrder(item: Order, $event) {

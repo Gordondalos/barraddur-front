@@ -26,6 +26,8 @@ export class PortfolioService extends FatherService {
     super(httpClient);
   }
 
+
+
   async getPortfolio(): Promise<any> {
     const data = await this.get('/api/portfolio');
     if (data && !data.error) {
@@ -42,6 +44,15 @@ export class PortfolioService extends FatherService {
 
   async instrumentPortfolio(params): Promise<any> {
     const res = await this.post('/api/instrumentPortfolio', { figi: params.figi });
+    if (res) {
+      return res;
+    }
+    return {};
+  }
+
+// /user/accounts метод не работает на беке нет его в апи
+  async getUserAccounts(): Promise<any> {
+    const res = await this.get('/api/user-accounts');
     if (res) {
       return res;
     }
