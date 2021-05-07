@@ -32,6 +32,7 @@ import { OrderbookComponent } from './orderbook/orderbook.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { HistoryTrilingComponent } from './history-triling/history-triling.component';
+import { StoreModule } from '../store/store.module';
 
 
 const routes: Routes = [
@@ -88,6 +89,7 @@ const routes: Routes = [
         MatDatepickerModule,
         MatProgressSpinnerModule,
         MatTooltipModule,
+        StoreModule,
     ],
   exports: [
     PortfolioComponent,
