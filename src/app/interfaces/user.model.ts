@@ -12,6 +12,7 @@ export class User {
   fathers_name?: string;
   passport?: string;
   is_demo?: number;
+  password?: number;
 
   constructor(code: string, login: string, name: string, mainRoleCode: string) {
     this.code = code;

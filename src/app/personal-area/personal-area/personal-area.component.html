@@ -59,6 +59,20 @@
     </mat-slide-toggle>
     <div class="clearfix"></div>
 
+    <h3 class="mt16 bold">Сменить пароль</h3>
+
+    <mat-form-field class="w100" appearance="outline">
+      <mat-label>Новый Пароль</mat-label>
+      <input [type]="show ? 'text' : 'password'" matInput placeholder="Пароль" [(ngModel)]="user.password">
+      <button *ngIf="!show" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="show = !show">
+        <mat-icon>visibility_off</mat-icon>
+      </button>
+      <button *ngIf="show" mat-button matSuffix mat-icon-button aria-label="Clear" (click)="show = !show">
+        <mat-icon>visibility</mat-icon>
+      </button>
+    </mat-form-field>
+
+
     <button class="mt16" mat-raised-button color="primary" (click)="save()">
       <mat-spinner *ngIf="showSaveLoader"
                    class="posa left16 white-icon-stroke"
@@ -91,12 +105,6 @@
     </mat-form-field>
 
     <button (click)="addSumToSandbox()" mat-raised-button color="primary">Добавить</button>
-
-    <!--    <p class="py16">-->
-    <!--      Примечание - валюта может быть только одна из этих-->
-    <!--      "RUB" | "USD" | "EUR" | "GBP" | "HKD" | "CHF" | "JPY" | "CNY" | "TRY"-->
-    <!--    </p>-->
-
   </section>
 </div>
 

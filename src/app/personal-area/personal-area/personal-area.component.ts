@@ -18,6 +18,7 @@ export class PersonalAreaComponent implements OnInit {
   sum: any;
   mode: boolean;
   showSaveLoader: boolean;
+  show = false;
 
   constructor(
     private localStorageService: LocalstorageService,
