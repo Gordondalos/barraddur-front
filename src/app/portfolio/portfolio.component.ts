@@ -40,14 +40,14 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
           case 'news':
             this.openTab(1);
             break;
-          case 'chat':
+          // case 'chat':
+          //   this.openTab(2);
+          //   break;
+          case 'store':
             this.openTab(2);
             break;
-          case 'store':
-            this.openTab(3);
-            break;
           case 'person':
-            this.openTab(4);
+            this.openTab(3);
             break;
 
           default:
