@@ -104,11 +104,9 @@ body {
   margin-bottom: 16px;
 }
 
-
-.mat-row:nth-child(odd) {
-  background-color: var(--bg-secondary);
+.text-dark-gray {
+  color: $gray-dark;
 }
-
 
 p {
   font-family: Lato, sans-serif;

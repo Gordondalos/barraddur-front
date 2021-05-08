@@ -122,9 +122,11 @@
     <ng-template mat-tab-label>
       Обзор
     </ng-template>
-
-    <div class="p16">
-
+    <div class="p16" *ngIf="info && figi">
+      <app-statistic
+        [info]="info"
+        [figi]="figi"
+      ></app-statistic>
     </div>
   </mat-tab>
 

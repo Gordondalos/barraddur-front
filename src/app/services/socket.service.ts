@@ -81,50 +81,7 @@ export class SocketService extends FatherService {
           console.log('complete');
         },
       );
-
-
-    // this.sendMessage('getId');
-    //
-    // this.socket
-    //   .fromEvent('message')
-    //   .pipe(map((data: any) => {
-    //     return data;
-    //   })).subscribe((message) => {
-    //
-    //   try {
-    //     let m: any = message;
-    //     let id = '';
-    //     if (typeof m === 'object' && m.clientId) {
-    //       id = m.clientId;
-    //       m = 'clientId';
-    //     }
-    //
-    //     switch (m) {
-    //       case 'clientId':
-    //         console.log('socketClientId --->', id);
-    //         this.localstorageService.set('socketId', id);
-    //         break;
-    //       case 'updatePortfolio':
-    //         console.log('updatePortfolio');
-    //         this.stockService.updateInstrumentsList.next();
-    //         break;
-    //       default:
-    //         const mes = JSON.parse(m);
-    //         if (mes.event === 'candle') {
-    //           this.eventSocketUpdate.next(mes);
-    //         }
-    //         if (mes.event === 'orderbook') {
-    //           this.eventSocketUpdateOrderBook.next(mes.payload);
-    //         }
-    //     }
-    //
-    //   } catch (e) {
-    //     console.log(e);
-    //     console.log(message.data);
-    //   }
-    // });
-
-    this.sendMessage('Hello');
+    // this.sendMessage('Hello');
   }
 
   subscribeInstrument(data: InstrumentInterface | MarketInstrument) {

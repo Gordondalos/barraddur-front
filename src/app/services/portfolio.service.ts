@@ -31,6 +31,10 @@ export class PortfolioService extends FatherService {
     return this.post('/api/stop-trailing', info);
   }
 
+  getStatisticInfo(ticker: string) {
+    return this.get(`/api/getStatistic/${ticker}`);
+  }
+
 
   async getPortfolio(): Promise<any> {
     const data = await this.get('/api/portfolio');

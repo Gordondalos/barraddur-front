@@ -33,10 +33,6 @@ const routes: Routes = [
     loadChildren: () => import('./favorites/favorites.module').then(m => m.FavoritesModule),
   },
   {
-    path: 'statistics',
-    loadChildren: () => import('./statistics/statistics.module').then(m => m.StatisticsModule),
-  },
-  {
     path: 'news',
     loadChildren: () => import('./news/news.module').then(m => m.NewsModule),
   },

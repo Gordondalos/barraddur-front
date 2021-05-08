@@ -33,6 +33,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { HistoryTrilingComponent } from './history-triling/history-triling.component';
 import { StoreModule } from '../store/store.module';
+import { StatisticComponent } from './statistic/statistic.component';
 
 
 const routes: Routes = [
@@ -64,6 +65,7 @@ const routes: Routes = [
     NewsBarComponent,
     OrderbookComponent,
     HistoryTrilingComponent,
+    StatisticComponent,
 
   ],
     imports: [
