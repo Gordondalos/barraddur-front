@@ -18,13 +18,13 @@
     <!-- Name Column -->
     <ng-container matColumnDef="value">
       <th  mat-header-cell *matHeaderCellDef>Значение</th>
-      <td class="f18 bold px16 b-l text-center" mat-cell *matCellDef="let element"> {{element.value}} </td>
+      <td class="f18 bold px8 b-l text-center" mat-cell *matCellDef="let element"> {{element.value}} </td>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="consensus">
       <th mat-header-cell *matHeaderCellDef>Консенсус</th>
-      <td class="b-l text-center" mat-cell *matCellDef="let element"> {{element.consensus}} </td>
+      <td class="b-l text-center px8" mat-cell *matCellDef="let element"> {{element.consensus}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
