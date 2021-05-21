@@ -21,7 +21,7 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, AfterCont
   @ViewChild('leftSidenav') leftSidenav: MatSidenav;
 
   onSideNavChange = false;
-  isWelcome = false;
+  isWelcome = true;
   userName = '';
   portfolio: any;
 
@@ -57,7 +57,9 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, AfterCont
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((event) => {
         if (event instanceof NavigationEnd) {
-          this.isWelcome = window.location.hash === '#/auth/login';
+          this.isWelcome = window.location.hash === '#/auth/login' || window.location.hash === '#/how-get-token';
+          console.log(this.isWelcome);
+
           this.getUserName();
         }
       });

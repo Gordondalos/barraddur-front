@@ -122,6 +122,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
       });
       if (res) {
         this.reg = false;
+        this.login();
       } else {
         alert('что то пошло не так');
       }
@@ -132,4 +133,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   }
 
+  openInfo() {
+    window.location.href = '#/how-get-token';
+    window.location.reload();
+  }
 }

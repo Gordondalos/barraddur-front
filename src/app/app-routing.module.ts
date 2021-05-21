@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HowGetTokenComponent } from './how-get-tocken/how-get-token.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'portfolio',
     pathMatch: 'full',
+  },
+  {
+    path: 'how-get-token',
+    component: HowGetTokenComponent,
   },
   {
     path: 'store',

@@ -22,16 +22,16 @@ const routes = [
     path: 'login',
     component: LoginComponent,
   },
-  {
-    path: 'registration',
-    component: RegistrationComponent,
-  },
+  // {
+  //   path: 'registration',
+  //   component: RegistrationComponent,
+  // }
 ];
 
 @NgModule({
   declarations: [
     RegistrationComponent,
-    UserAuthDirective
+    UserAuthDirective,
   ],
   imports: [
     CommonModule,
@@ -41,7 +41,7 @@ const routes = [
     MatInputModule,
     ReactiveFormsModule,
     MatButtonModule,
-    LoginModule
+    LoginModule,
   ],
 })
 export class AuthModule {

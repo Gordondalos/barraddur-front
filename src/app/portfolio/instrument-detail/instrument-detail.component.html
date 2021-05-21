@@ -6,7 +6,7 @@
 
     <div class="wrapper">
 
-      <div class="bold f16 px16 mt16">{{info?.name}} ({{info?.ticker}})</div>
+      <div class="bold f16 px16 mt16">{{info?.name}} <ng-container *ngIf="info">({{info?.ticker}})</ng-container></div>
 
       <ng-container *ngIf="info && info.currency && price">
         <div class="d-flex p16 align-items-center">

@@ -14,16 +14,18 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { LockScreenModule } from './auth/lock-screen/lock-screen.module';
 import { PortfolioModule } from './portfolio/portfolio.module';
-import { environment } from '../environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DinamicLoaderModule } from './dinamic-loader/dinamic-loader.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { HowGetTokenComponent } from './how-get-tocken/how-get-token.component';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    HowGetTokenComponent,
   ],
   imports: [
     HttpClientModule,
@@ -42,6 +44,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     DinamicLoaderModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    MatButtonModule,
   ],
   providers: [
     HttpClient,
