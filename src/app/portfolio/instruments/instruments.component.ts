@@ -111,7 +111,6 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
   }
 
 
-
   async getActiveOrders() {
     this.orders = await this.portfolioService.getActiveOrders();
     if (this.orders && this.orders.length) {
@@ -209,7 +208,11 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
   }
 
   async getBalance(): Promise<void> {
-    this.balance = (await this.portfolioService.getBalance()).filter((item) => item.balance > 0);
+    const info = await this.portfolioService.getBalance();
+    if (info) {
+      this.balance = info.filter((item) => item.balance > 0);
+    }
+
   }
 
   cancelOrder(item: Order, $event) {

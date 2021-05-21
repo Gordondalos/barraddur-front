@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { LocalstorageService } from './localstorage.service';
 import { InstrumentInterface } from '../interfaces/instrumentInterface';
 import { MarketInstrument } from '../interfaces/marketInstrument.interface';
+import { ErrorService } from './error.service';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +23,7 @@ export class PortfolioService extends FatherService {
   constructor(
     public httpClient: HttpClient,
     private router: Router,
+    private errorService: ErrorService,
     private localstorageService: LocalstorageService,
   ) {
     super(httpClient);
@@ -32,7 +34,7 @@ export class PortfolioService extends FatherService {
   }
 
   getStatisticInfo(ticker: string) {
-    return this.get(`/api/getStatistic/${ticker}`);
+    return this.get(`/api/getStatistic/${ ticker }`);
   }
 
 
@@ -107,7 +109,11 @@ export class PortfolioService extends FatherService {
 
   async getBalance(): Promise<any> {
     const data: any = await this.get('/api/portfolioCurrencies');
-    return data ? data.currencies : '';
+    if (data && data.currencies) {
+      return  data.currencies;
+    }
+    this.errorService.showErrorMessage(data);
+    return '';
   }
 
   async checkApi(): Promise<any> {

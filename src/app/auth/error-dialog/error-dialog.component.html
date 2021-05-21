@@ -5,15 +5,15 @@
     <div class="fuse-card">
 
       <div class="p-16">
-        <div class="h1" i18n="error dialog, title">Error</div>
+        <div class="f18 bold text-danger mb16" i18n="error dialog, title">Ошибка</div>
       </div>
 
       <div class="p-16 pt-0 line-height-1.75">
         {{data}}
       </div>
 
-      <div class="p-8 pt-0" fxLayout="row" fxLayoutAlign="start center">
-        <button mat-button i18n="error dialog, text on button" color="primary" (click)="onNoClick()">Close</button>
+      <div class="pt16" fxLayout="row" fxLayoutAlign="start center">
+        <button mat-raised-button i18n="error dialog, text on button" color="warn" (click)="onNoClick()">Закрыть</button>
       </div>
     </div>
   </div>
