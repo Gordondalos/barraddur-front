@@ -22,6 +22,6 @@ export class DescriptionComponent implements OnInit {
   }
 
   openStore() {
-    this.router.navigateByUrl('/portfolio?open=store');
+    this.router.navigateByUrl('/store/store');
   }
 }

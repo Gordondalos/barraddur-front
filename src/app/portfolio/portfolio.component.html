@@ -13,6 +13,16 @@
           </ng-template>
           <app-instruments [portfolio]="portfolio"></app-instruments>
         </mat-tab>
+
+        <mat-tab class="py8">
+          <ng-template mat-tab-label class="d-flex flex-column">
+            <div class="d-flex flex-column align-items-center" (click)="openBy()">
+              <mat-icon class="example-tab-icon">store</mat-icon>
+              <span class="f10">Магазин</span>
+            </div>
+          </ng-template>
+        </mat-tab>
+
         <mat-tab>
           <ng-template mat-tab-label>
             <div class="d-flex flex-column align-items-center" (click)="setTabs('news')">
@@ -32,20 +42,12 @@
 <!--          </ng-template>-->
 <!--          Тут чат между пользователями и поддержка с ними-->
 <!--        </mat-tab>-->
-        <mat-tab class="py8">
-          <ng-template mat-tab-label class="d-flex flex-column">
-            <div class="d-flex flex-column align-items-center" (click)="setTabs('store')">
-              <mat-icon class="example-tab-icon">store</mat-icon>
-              <span class="f10">Магазин</span>
-            </div>
-          </ng-template>
-          <app-store></app-store>
-        </mat-tab>
+
 
         <mat-tab>
           <ng-template mat-tab-label>
             <div class="d-flex flex-column align-items-center" (click)="setTabs('person')">
-              <mat-icon class="example-tab-icon">settings</mat-icon>
+              <mat-icon class="example-tab-icon">manage_accounts</mat-icon>
               Настройки
             </div>
           </ng-template>

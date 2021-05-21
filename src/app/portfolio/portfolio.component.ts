@@ -37,15 +37,15 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
           case 'portfolio':
             this.openTab(0);
             break;
-          case 'news':
+          case 'store':
             this.openTab(1);
+            break;
+          case 'news':
+            this.openTab(2);
             break;
           // case 'chat':
           //   this.openTab(2);
           //   break;
-          case 'store':
-            this.openTab(2);
-            break;
           case 'person':
             this.openTab(3);
             break;
@@ -93,5 +93,9 @@ export class PortfolioComponent implements OnInit, AfterViewInit {
   setTabs(tabsName: string) {
     const queryParams = { open: tabsName };
     this.router.navigate(['.'], { relativeTo: this.activatedRoute, queryParams });
+  }
+
+  openBy() {
+    this.router.navigateByUrl('/portfolio/buy');
   }
 }

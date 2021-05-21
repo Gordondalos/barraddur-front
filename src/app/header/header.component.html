@@ -52,10 +52,10 @@
           <img class="logo" src="assets/images/logos/logo.png" alt="logo">
         </button>
         <mat-icon class="f24 mr16 pointer" (click)="goBack()">keyboard_backspace</mat-icon>
-        <div class="d-flex py16">
-          <div>{{currentInstrument.name}}</div>
-          <div>&nbsp;({{currentInstrument.ticker}})</div>
-        </div>
+<!--        <div class="d-flex py16">-->
+<!--          <div>{{currentInstrument.name}}</div>-->
+<!--          <div>&nbsp;({{currentInstrument.ticker}})</div>-->
+<!--        </div>-->
       </ng-container>
     </div>
 
@@ -69,6 +69,7 @@
       <!--            <mat-option value="light">Светлая</mat-option>-->
       <!--            <mat-option value="dark">темная</mat-option>-->
       <!--          </mat-select>-->
+      <mat-icon class="f24 my6 pointer mx16" (click)="openStore()">electrical_services</mat-icon>
       <mat-icon class="f24 my6 pointer" (click)="logout()">exit_to_app</mat-icon>
 
 

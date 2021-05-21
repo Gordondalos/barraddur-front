@@ -36,7 +36,7 @@ export class StatisticComponent implements OnInit {
 
   async init() {
     this.statistic = await this.portfolioService.getStatisticInfo(this.info.ticker);
-    console.log(this.statistic);
+    // console.log(this.statistic);
     let data: any = Object.keys(this.statistic).map(key => ({ key, value: this.statistic[ key ] }))
       .filter((item) => {
         return item.key !== 'id'
@@ -51,7 +51,7 @@ export class StatisticComponent implements OnInit {
       item.description = this.getDescription(item.key);
       item.title = this.getTitle(item.key).replace('percent', '%');
     });
-    console.log(data);
+    // console.log(data);
     this.dataSource = new MatTableDataSource(data);
     // console.log(this.dataSource);
   }

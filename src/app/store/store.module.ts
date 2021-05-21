@@ -11,6 +11,10 @@ const route = [
     path: 'description',
     component: DescriptionComponent,
   },
+  {
+    path: 'store',
+    component: StoreComponent,
+  },
 ];
 
 @NgModule({

@@ -96,11 +96,16 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   goBack() {
-    this._location.back();
+    // this._location.back();
+    this.router.navigateByUrl('/portfolio?open=portfolio');
   }
 
 
   searchChange(event: string) {
     this.portfolioService.searchEvent.next(event);
+  }
+
+  openStore() {
+    this.router.navigateByUrl('/store/store');
   }
 }
