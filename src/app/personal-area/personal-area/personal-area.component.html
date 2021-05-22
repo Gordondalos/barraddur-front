@@ -48,7 +48,7 @@
       <mat-label>Токен доступа боевой режим</mat-label>
       <input matInput placeholder="t_prod_token" [(ngModel)]="user.t_prod_token">
     </mat-form-field>
-
+    <a class="text-info text-underline mb16 d-block pointer">Как перейти в режим реальной торговли ?</a>
     <mat-slide-toggle (ngModelChange)="modeChange()" [(ngModel)]="mode">
       <ng-container *ngIf="mode">
         Включен боевой режим
