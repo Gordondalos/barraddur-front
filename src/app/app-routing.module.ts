@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HowGetTokenComponent } from './how-get-tocken/how-get-token.component';
+import { InstructionActivateProdComponent } from './instuction-activate-prod/instruction-activate-prod.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'how-get-token',
     component: HowGetTokenComponent,
+  },
+  {
+    path: 'instruction-activate-prod',
+    component: InstructionActivateProdComponent,
   },
   {
     path: 'store',

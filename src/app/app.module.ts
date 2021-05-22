@@ -20,12 +20,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HowGetTokenComponent } from './how-get-tocken/how-get-token.component';
 import { MatButtonModule } from '@angular/material/button';
+import { InstructionActivateProdComponent } from './instuction-activate-prod/instruction-activate-prod.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HowGetTokenComponent,
+    InstructionActivateProdComponent,
   ],
   imports: [
     HttpClientModule,

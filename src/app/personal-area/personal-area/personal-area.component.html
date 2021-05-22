@@ -40,18 +40,18 @@
 
     <p>Введите сюда токен доступа к Тинькофф банку</p>
     <mat-form-field class="w100" appearance="outline">
-      <mat-label>Токен доступа в Песочницу</mat-label>
+      <mat-label>Токен для песочницы</mat-label>
       <input matInput placeholder="tToken" [(ngModel)]="user.tToken">
     </mat-form-field>
 
     <mat-form-field class="w100" appearance="outline">
-      <mat-label>Токен доступа боевой режим</mat-label>
+      <mat-label>Токен для торговли</mat-label>
       <input matInput placeholder="t_prod_token" [(ngModel)]="user.t_prod_token">
     </mat-form-field>
     <a class="text-info text-underline mb16 d-block pointer">Как перейти в режим реальной торговли ?</a>
     <mat-slide-toggle (ngModelChange)="modeChange()" [(ngModel)]="mode">
       <ng-container *ngIf="mode">
-        Включен боевой режим
+        Включен режим торговли
       </ng-container>
       <ng-container *ngIf="!mode">
         Включен режим песочницы

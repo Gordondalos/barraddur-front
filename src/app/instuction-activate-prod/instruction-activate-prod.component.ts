@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-how-get-token',
-  templateUrl: './how-get-token.component.html',
-  styleUrls: ['./how-get-token.component.scss'],
+  selector: 'app-instruction-activate-prod',
+  templateUrl: './instruction-activate-prod.component.html',
+  styleUrls: ['./instruction-activate-prod.component.scss'],
 })
-export class HowGetTokenComponent implements OnInit {
+export class InstructionActivateProdComponent implements OnInit {
 
   constructor() {
   }
@@ -24,4 +24,5 @@ export class HowGetTokenComponent implements OnInit {
       document.getElementById('show-registration').click();
     }, 500);
   }
+
 }
