@@ -11,7 +11,7 @@
       <th mat-header-cell *matHeaderCellDef>Название</th>
       <td mat-cell *matCellDef="let element">
         <div class="bold my8">{{element.title}}</div>
-        <div class="f12 text-dark-gray pr8">{{element.description}}</div>
+        <div class="f12 text-dark-gray pr8">{{element.info.description}}</div>
       </td>
     </ng-container>
 
@@ -24,7 +24,7 @@
     <!-- Weight Column -->
     <ng-container matColumnDef="consensus">
       <th mat-header-cell *matHeaderCellDef>Консенсус</th>
-      <td class="b-l text-center px8" mat-cell *matCellDef="let element"> {{element.consensus}} </td>
+      <td class="b-l text-center px8" mat-cell *matCellDef="let element"> {{element.info.interpretation}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
