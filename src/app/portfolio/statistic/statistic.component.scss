@@ -1,5 +1,31 @@
 @import "~iiko-styles/style/variables";
 
+.w10 {
+  width: 10%;
+}
+
+.w45 {
+  width: 45%;
+}
+
+th.mat-header-cell {
+  align-items: center !important;
+}
+
+table td, table td * {
+  vertical-align: top;
+}
+
+.pl0 {
+  padding-left: 0 !important;
+}
+
+td {
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+
+}
+
 table {
   width: 100%;
 }
