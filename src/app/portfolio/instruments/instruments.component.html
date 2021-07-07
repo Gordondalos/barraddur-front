@@ -1,9 +1,13 @@
 <ng-container *ngIf="!show && balance">
-<!--  <div class="d-flex align-items-center mt16 px16">-->
-<!--    <div class="f-gr-1"></div>-->
-<!--    <button [routerLink]="['/portfolio/buy']" mat-raised-button color="primary">Что купить</button>-->
-<!--  </div>-->
 
+  <mat-card class="m16 mat-elevation-z2">
+    <div>Изменения за все время в рублях</div>
+    <div class="f32 py16" [ngClass]="{'text-success': total > 0, 'text-danger': total < 0}">
+      <mat-icon *ngIf=" total > 0">arrow_upward</mat-icon>
+      <mat-icon *ngIf="total < 0">arrow_downward</mat-icon>
+      {{total.toFixed(2)}} ₽
+    </div>
+  </mat-card>
 
   <div class="my16">
     <h3 class="bold mb0 mt16 px16">Валюта</h3>
@@ -39,18 +43,29 @@
           </div>
           <div class="f-gr-1">
             <div class="bold f12">
-              {{item.name}}
+              {{item.name}} ({{item.averagePositionPrice.value}} {{item.averagePositionPrice.currency}})
             </div>
-            <div class="d-block text-gray f10">
-              <span>{{item.lots}} шт.,</span>
-              <span class="pl8">на сумму {{(item.price * item.lots).toFixed(2)}}</span>
+            <div class="d-block text-primary f10">
+              <span>{{item.balance}} шт.,</span>
+              <span class="pl8">на сумму&nbsp;{{(+item.price * item.balance).toFixed(2)}}
+              {{item.averagePositionPrice.currency}}
+              </span>
             </div>
           </div>
 
-          <div class="price f12">
+          <div class="price f12 d-flex align-items-center">
 
             <ng-container *ngIf="item && item.price">
-              {{(+item.price).toFixed(2)}}
+              <div class="f-gr-1">
+                <div class="f16">{{(+item.price).toFixed(2)}}</div>
+                <div [ngClass]="{'text-success': item.expectedYield.value > 0, 'text-danger': item.expectedYield.value < 0}">
+                  {{item.expectedYield.value}} ({{((+item.price - item.averagePositionPrice.value)/item.averagePositionPrice.value * 100).toFixed(2)}}%)
+                </div>
+              </div>
+              <div class="ml16">
+                {{item.averagePositionPrice.currency}}
+              </div>
+
             </ng-container>
 
             <ng-container *ngIf="item.trailingStop">

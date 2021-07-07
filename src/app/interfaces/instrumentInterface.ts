@@ -1,4 +1,6 @@
 export interface InstrumentInterface {
+  averagePositionPrice: { currency: string, value: number };
+  expectedYield: { currency: string, value: number };
   balance: number;
   blocked: number;
   figi: string;

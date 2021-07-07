@@ -1,6 +1,10 @@
 @import "~iiko-styles/style/variables";
 @import "../../styles/variables";
 
+.price {
+  width: 160px;
+  text-align: right;
+}
 
 ::ng-deep {
   .mat-tooltip {

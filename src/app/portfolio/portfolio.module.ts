@@ -34,6 +34,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { HistoryTrilingComponent } from './history-triling/history-triling.component';
 import { StoreModule } from '../store/store.module';
 import { StatisticComponent } from './statistic/statistic.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 const routes: Routes = [
@@ -92,6 +93,7 @@ const routes: Routes = [
         MatProgressSpinnerModule,
         MatTooltipModule,
         StoreModule,
+        MatCardModule,
     ],
   exports: [
     PortfolioComponent,

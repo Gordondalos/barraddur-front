@@ -30,24 +30,8 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
   orders: Array<Order>;
   orderInfo: Array<OrderInfoInterface> = [];
 
-  //
-  // columnDefs = [
-  //   { headerName: 'id', field: 'figi', sortable: true, filter: true, resizable: true },
-  //   { headerName: 'name', field: 'name', sortable: true, filter: true, resizable: true },
-  //   // { headerName: 'balance', field: 'balance', sortable: true, filter: true, resizable: true },
-  //   { headerName: 'ticker', field: 'ticker', sortable: true, filter: true, resizable: true },
-  //   { headerName: 'lots', field: 'lots', sortable: true, filter: true, resizable: true },
-  //   { headerName: 'price', field: 'price', sortable: true, filter: true, resizable: true },
-  //   { headerName: 'blocked', field: 'blocked', sortable: true, filter: true, resizable: true },
-  //   // { headerName: 'average', field: 'average', sortable: true, filter: true, resizable: true },
-  //   // { headerName: 'Income', field: 'income_total', sortable: true, filter: true, resizable: true },
-  //   // { headerName: 'Inc %', field: 'income_percent_total', sortable: true, filter: true, resizable: true },
-  //   // { headerName: 'Inc day', field: 'income_day', sortable: true, filter: true, resizable: true },
-  //   // { headerName: 'Inc day %', field: 'income-day_percent', sortable: true, filter: true, resizable: true },
-  // ];
-
-
   private unsubscribeAll: Subject<any> = new Subject<any>();
+  total: number;
 
 
   constructor(
@@ -135,6 +119,27 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
     const res: any = await this.portfolioService.getPortfolioWithPrice(this.portfolio);
     if (res && res.length) {
       this.portfolio = res;
+      this.updateTotal();
+    }
+  }
+
+  updateTotal() {
+    const usd = this.portfolio.find((item) => {
+      return item.ticker === 'USD000UTSTOM';
+    });
+
+    this.total = 0;
+    for (const item of this.portfolio) {
+      if (item.expectedYield.currency === 'RUB') {
+        this.total += item.expectedYield.value;
+      } else if (item.expectedYield.currency === 'USD') {
+        if (usd) {
+          this.total += item.expectedYield.value * usd.price;
+        }
+      } else {
+        console.log('Ошибка валюта не найдена');
+      }
+
     }
   }
 
@@ -144,33 +149,13 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
   }
 
   updateDataInPortfolio(event: SocketEventInterface) {
-    // console.log(event);
     for (const item of this.portfolio) {
       if (item.figi === event.payload.figi) {
         item.price = event.payload.c;
       }
     }
+    this.updateTotal();
   }
-
-  // onFirstDataRendered(params) {
-  //   params.api.sizeColumnsToFit();
-  // }
-
-  // onGridReady(params) {
-  //   this.gridApi = params.api;
-  //   this.gridColumnApi = params.columnApi;
-  //   this.gridOptionsApi = this.gridApi.gridCore.gridOptions.api;
-  //
-  //   this.gridApi.forEachNode((rowNode, index) => {
-  //     rowNode.id = this.portfolio[ index ].figi;
-  //     // this.gridApi.redrawRows({rowNode});
-  //   });
-  //   // this.gridApi.redrawRows({rowNode})
-  //
-  //   if (this.settings) {
-  //     this.gridColumnApi.setColumnState(this.settings);
-  //   }
-  // }
 
 
   saveSettings() {
@@ -178,26 +163,13 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
     this.localStorageService.set('gridPortfoloSettings', this.settings);
   }
 
-  // columnMoved() {
-  //   setTimeout(() => {
-  //     this.saveSettings();
-  //   }, 1000);
-  // }
-
-  // rowClick($event: any) {
-  //   console.log($event);
-  // }
-
-  // updateData() {
-  //   this.portfolioService.updateData(365);
-  // }
-
   async uploadPortfolio() {
     const portfolio = await this.portfolioService.getPortfolio();
     for (const item of portfolio) {
       item.id = item.figi;
     }
     this.portfolio = portfolio;
+    console.log('portfolio', portfolio);
   }
 
   openDetail(item: InstrumentInterface | Order) {

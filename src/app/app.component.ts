@@ -59,8 +59,6 @@ export class AppComponent implements OnInit, OnDestroy, AfterViewInit, AfterCont
         if (event instanceof NavigationEnd) {
           this.isWelcome = window.location.hash === '#/auth/login' ||
             window.location.hash === '#/how-get-token' || window.location.hash === '#/instruction-activate-prod';
-          console.log(this.isWelcome);
-
           this.getUserName();
         }
       });
