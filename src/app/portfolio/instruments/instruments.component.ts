@@ -32,6 +32,7 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
 
   private unsubscribeAll: Subject<any> = new Subject<any>();
   total: number;
+  groupObj: any = {};
 
 
   constructor(
@@ -120,6 +121,30 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
     if (res && res.length) {
       this.portfolio = res;
       this.updateTotal();
+      this.createGroupPortfolio(this.portfolio);
+    }
+  }
+
+  createGroupPortfolio(portfolio) {
+    const groupObj = {};
+    for (const item of portfolio) {
+      if (!groupObj[ item.instrumentType ]) {
+        groupObj[ item.instrumentType ] = [];
+      }
+      item.label = this.getLabel(item);
+      groupObj[ item.instrumentType ].push(item);
+      console.log(item);
+    }
+    console.log(groupObj);
+    this.groupObj = groupObj;
+  }
+
+  getLabel(item) {
+    switch (item.instrumentType) {
+      case 'Bond': return 'Bond';
+      case 'Currency': return '¤';
+      case 'Stock': return item.ticker;
+
     }
   }
 
@@ -169,7 +194,6 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
       item.id = item.figi;
     }
     this.portfolio = portfolio;
-    console.log('portfolio', portfolio);
   }
 
   openDetail(item: InstrumentInterface | Order) {

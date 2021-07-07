@@ -10,6 +10,9 @@
   .mat-tooltip {
     font-size: 14px !important;
   }
+  .mat-list-item {
+    height: 70px !important;
+  }
 }
 
 table {
@@ -32,7 +35,7 @@ table {
 
 
 .ticker {
-  width: 40px;
+  min-width: 40px;
   height: 40px;
   background-color: $primary;
   border-radius: 100%;

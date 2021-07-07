@@ -35,6 +35,7 @@ import { HistoryTrilingComponent } from './history-triling/history-triling.compo
 import { StoreModule } from '../store/store.module';
 import { StatisticComponent } from './statistic/statistic.component';
 import { MatCardModule } from '@angular/material/card';
+import { TransPipe } from './instruments/trans.pipe';
 
 
 const routes: Routes = [
@@ -67,6 +68,7 @@ const routes: Routes = [
     OrderbookComponent,
     HistoryTrilingComponent,
     StatisticComponent,
+    TransPipe,
 
   ],
     imports: [

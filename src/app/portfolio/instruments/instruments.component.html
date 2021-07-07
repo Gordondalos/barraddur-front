@@ -9,75 +9,153 @@
     </div>
   </mat-card>
 
-  <div class="my16">
-    <h3 class="bold mb0 mt16 px16">Валюта</h3>
-    <mat-list role="list">
-      <ng-container *ngFor="let item of balance">
-        <mat-list-item class="list-item pointer" role="listitem">
-          <div class="ticker mr16">
-            <span>{{item.currency}}</span>
-          </div>
-          <div class="f-gr-1">
-            <div class="bold f12">
-              {{item.currency}}
-            </div>
-          </div>
-          <div class="price f12">
-            {{(+item.balance).toFixed(2)}}
-          </div>
-        </mat-list-item>
-      </ng-container>
-    </mat-list>
-  </div>
+  <!--  <div class="my16">-->
+  <!--    <h3 class="bold mb0 mt16 px16">Валюта</h3>-->
+  <!--    <mat-list role="list">-->
+  <!--      <ng-container *ngFor="let item of balance">-->
+  <!--        <mat-list-item class="list-item pointer" role="listitem">-->
+  <!--          <div class="ticker mr16">-->
+  <!--            <span>{{item.currency}}</span>-->
+  <!--          </div>-->
+  <!--          <div class="f-gr-1">-->
+  <!--            <div class="bold f12">-->
+  <!--              {{item.currency}}-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--          <div class="price f12">-->
+  <!--            {{(+item.balance).toFixed(2)}}-->
+  <!--          </div>-->
+  <!--        </mat-list-item>-->
+  <!--      </ng-container>-->
+  <!--    </mat-list>-->
+  <!--  </div>-->
 
   <ng-container *ngIf="portfolio && portfolio.length > 0">
-    <h3 class="bold mb0 px16">Портфель</h3>
-    <mat-list role="list">
-      <ng-container *ngFor="let item of portfolio">
-        <mat-list-item (click)="openDetail(item)" class="list-item pointer" role="listitem">
-          <div class="ticker mr16">
-            <ng-container *ngIf="item.ticker.length <= 5">
-              <span>{{item.ticker}}</span>
-            </ng-container>
+    <ng-container *ngFor="let group of groupObj | keyvalue">
+      <h3 class="bold mb0 px16 mt24">{{group.key | trans}}</h3>
+      <mat-list role="list">
 
-          </div>
-          <div class="f-gr-1">
-            <div class="bold f12">
-              {{item.name}} ({{item.averagePositionPrice.value}} {{item.averagePositionPrice.currency}})
-            </div>
-            <div class="d-block text-primary f10">
-              <span>{{item.balance}} шт.,</span>
-              <span class="pl8">на сумму&nbsp;{{(+item.price * item.balance).toFixed(2)}}
-              {{item.averagePositionPrice.currency}}
-              </span>
-            </div>
-          </div>
-
-          <div class="price f12 d-flex align-items-center">
-
-            <ng-container *ngIf="item && item.price">
+        <ng-container *ngIf="group.key === 'Currency'">
+          <ng-container *ngFor="let item of balance">
+            <mat-list-item class="list-item pointer" role="listitem" *ngIf="item.currency === 'RUB'">
+              <div class="ticker mr16">
+                <span>{{item.currency}}</span>
+              </div>
               <div class="f-gr-1">
-                <div class="f16">{{(+item.price).toFixed(2)}}</div>
-                <div [ngClass]="{'text-success': item.expectedYield.value > 0, 'text-danger': item.expectedYield.value < 0}">
-                  {{item.expectedYield.value}} ({{((+item.price - item.averagePositionPrice.value)/item.averagePositionPrice.value * 100).toFixed(2)}}%)
+                <div class="bold f12">
+                  {{item.currency}}
                 </div>
               </div>
-              <div class="ml16">
-                {{item.averagePositionPrice.currency}}
+              <div class="price d-flex">
+                <div class="f-gr-1 f16">{{(+item.balance).toFixed(2)}}</div>
+                <div class="ml16 f12">
+                  {{item.currency}}
+                </div>
               </div>
+            </mat-list-item>
+          </ng-container>
+        </ng-container>
 
-            </ng-container>
+        <ng-container *ngFor="let item of group.value">
+          <mat-list-item (click)="openDetail(item)" class="list-item pointer" role="listitem">
+            <div class="ticker mr16">
+              <span [ngClass]="{'f20': item.label === '¤'}">{{item.label}}</span>
 
-            <ng-container *ngIf="item.trailingStop">
-              <mat-icon matTooltip="трейлингстоп" class="f16 trailing">directions_run</mat-icon>
-            </ng-container>
+            </div>
+            <div class="f-gr-1">
+              <div class="bold f12 no-wrap">
+                {{item.name}}
+              </div>
+              <div class="d-block text-primary f10 no-wrap">
+                <span>{{item.balance}} шт.,</span>
+                  <span class="pl8">на сумму&nbsp;{{(+item.price * item.balance).toFixed(2)}}</span>
+              </div>
+              <div class="d-block text-primary f10 no-wrap">
+                <span>
+                  (среднее: {{item.averagePositionPrice.value.toFixed(4)}})
+                </span>
+              </div>
+            </div>
 
-          </div>
+            <div class="price f12 d-flex align-items-center">
 
-        </mat-list-item>
-      </ng-container>
-    </mat-list>
+              <ng-container *ngIf="item && item.price">
+                <div class="f-gr-1">
+                  <div class="f16">{{(+item.price).toFixed(2)}}</div>
+                  <div
+                    [ngClass]="{'text-success': item.expectedYield.value > 0, 'text-danger': item.expectedYield.value < 0}">
+                    {{item.expectedYield.value}}
+                  </div>
+                  <div [ngClass]="{'text-success': item.expectedYield.value > 0, 'text-danger': item.expectedYield.value < 0}">
+                    ({{((+item.price - item.averagePositionPrice.value) / item.averagePositionPrice.value * 100).toFixed(2)}}%)
+                  </div>
+                </div>
+                <div class="ml16">
+                  {{item.averagePositionPrice.currency}}
+                </div>
+
+              </ng-container>
+
+              <ng-container *ngIf="item.trailingStop">
+                <mat-icon matTooltip="трейлингстоп" class="f16 trailing">directions_run</mat-icon>
+              </ng-container>
+
+            </div>
+
+          </mat-list-item>
+        </ng-container>
+      </mat-list>
+    </ng-container>
   </ng-container>
+
+  <!--  <ng-container *ngIf="portfolio && portfolio.length > 0">-->
+  <!--    <h3 class="bold mb0 px16">Портфель</h3>-->
+  <!--    <mat-list role="list">-->
+  <!--      <ng-container *ngFor="let item of portfolio">-->
+  <!--        <mat-list-item (click)="openDetail(item)" class="list-item pointer" role="listitem">-->
+  <!--          <div class="ticker mr16">-->
+  <!--            <ng-container *ngIf="item.ticker.length <= 5">-->
+  <!--              <span>{{item.ticker}}</span>-->
+  <!--            </ng-container>-->
+
+  <!--          </div>-->
+  <!--          <div class="f-gr-1">-->
+  <!--            <div class="bold f12">-->
+  <!--              {{item.name}} ({{item.averagePositionPrice.value}} {{item.averagePositionPrice.currency}})-->
+  <!--            </div>-->
+  <!--            <div class="d-block text-primary f10">-->
+  <!--              <span>{{item.balance}} шт.,</span>-->
+  <!--              <span class="pl8">на сумму&nbsp;{{(+item.price * item.balance).toFixed(2)}}-->
+  <!--              {{item.averagePositionPrice.currency}}-->
+  <!--              </span>-->
+  <!--            </div>-->
+  <!--          </div>-->
+
+  <!--          <div class="price f12 d-flex align-items-center">-->
+
+  <!--            <ng-container *ngIf="item && item.price">-->
+  <!--              <div class="f-gr-1">-->
+  <!--                <div class="f16">{{(+item.price).toFixed(2)}}</div>-->
+  <!--                <div [ngClass]="{'text-success': item.expectedYield.value > 0, 'text-danger': item.expectedYield.value < 0}">-->
+  <!--                  {{item.expectedYield.value}} ({{((+item.price - item.averagePositionPrice.value)/item.averagePositionPrice.value * 100).toFixed(2)}}%)-->
+  <!--                </div>-->
+  <!--              </div>-->
+  <!--              <div class="ml16">-->
+  <!--                {{item.averagePositionPrice.currency}}-->
+  <!--              </div>-->
+
+  <!--            </ng-container>-->
+
+  <!--            <ng-container *ngIf="item.trailingStop">-->
+  <!--              <mat-icon matTooltip="трейлингстоп" class="f16 trailing">directions_run</mat-icon>-->
+  <!--            </ng-container>-->
+
+  <!--          </div>-->
+
+  <!--        </mat-list-item>-->
+  <!--      </ng-container>-->
+  <!--    </mat-list>-->
+  <!--  </ng-container>-->
 
 
   <ng-container *ngIf="orders && orderInfo?.length > 0">
@@ -126,25 +204,4 @@
 
 </ng-container>
 
-
-<!--<div class="d-flex vertical-center mb16">-->
-<!--  <h2>Portfolio items</h2>-->
-<!--  <div class="f-gr-1"></div>-->
-<!--  <button mat-raised-button color="primary" (click)="updateData()">Обновить данные по акциям</button>-->
-<!--</div>-->
-
-<!--<ng-container *ngIf="show">-->
-<!--  <ag-grid-angular-->
-<!--    style="width: 100%;"-->
-<!--    domLayout='autoHeight'-->
-<!--    class="ag-theme-alpine"-->
-<!--    [rowData]="portfolio"-->
-<!--    [columnDefs]="columnDefs"-->
-<!--    (gridReady)="onGridReady($event)"-->
-<!--    (firstDataRendered)="onFirstDataRendered($event)"-->
-<!--    (columnMoved)="columnMoved()"-->
-<!--    (rowClicked)="rowClick($event)"-->
-<!--  >-->
-<!--  </ag-grid-angular>-->
-<!--</ng-container>-->
 
