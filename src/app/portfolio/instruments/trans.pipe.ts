@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TransPipe implements PipeTransform {
 
-  transform(value: string): unknown {
+  transform(value: any): string {
     switch (value) {
       case 'Bond':
         return $localize`Облигации`;

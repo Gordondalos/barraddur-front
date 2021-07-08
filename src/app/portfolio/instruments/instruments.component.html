@@ -37,19 +37,19 @@
 
         <ng-container *ngIf="group.key === 'Currency'">
           <ng-container *ngFor="let item of balance">
-            <mat-list-item class="list-item pointer" role="listitem" *ngIf="item.currency === 'RUB'">
+            <mat-list-item class="list-item pointer" role="listitem" *ngIf="item?.currency === 'RUB'">
               <div class="ticker mr16">
-                <span>{{item.currency}}</span>
+                <span>{{item?.currency}}</span>
               </div>
               <div class="f-gr-1">
                 <div class="bold f12">
-                  {{item.currency}}
+                  {{item?.currency}}
                 </div>
               </div>
               <div class="price d-flex">
                 <div class="f-gr-1 f16">{{(+item.balance).toFixed(2)}}</div>
                 <div class="ml16 f12">
-                  {{item.currency}}
+                  {{item?.currency}}
                 </div>
               </div>
             </mat-list-item>
@@ -72,7 +72,7 @@
               </div>
               <div class="d-block text-primary f10 no-wrap">
                 <span>
-                  (среднее: {{item.averagePositionPrice.value.toFixed(4)}})
+                  (среднее: {{item.averagePositionPrice?.value.toFixed(4)}})
                 </span>
               </div>
             </div>
@@ -83,15 +83,15 @@
                 <div class="f-gr-1">
                   <div class="f16">{{(+item.price).toFixed(2)}}</div>
                   <div
-                    [ngClass]="{'text-success': item.expectedYield.value > 0, 'text-danger': item.expectedYield.value < 0}">
-                    {{item.expectedYield.value}}
+                    [ngClass]="{'text-success': item.expectedYield?.value > 0, 'text-danger': item.expectedYield?.value < 0}">
+                    {{item.expectedYield?.value}}
                   </div>
-                  <div [ngClass]="{'text-success': item.expectedYield.value > 0, 'text-danger': item.expectedYield.value < 0}">
-                    ({{((+item.price - item.averagePositionPrice.value) / item.averagePositionPrice.value * 100).toFixed(2)}}%)
+                  <div [ngClass]="{'text-success': item.expectedYield?.value > 0, 'text-danger': item.expectedYield?.value < 0}">
+                    ({{((+item.price - item.averagePositionPrice?.value) / item.averagePositionPrice?.value * 100).toFixed(2)}}%)
                   </div>
                 </div>
                 <div class="ml16">
-                  {{item.averagePositionPrice.currency}}
+                  {{item?.averagePositionPrice?.currency}}
                 </div>
 
               </ng-container>

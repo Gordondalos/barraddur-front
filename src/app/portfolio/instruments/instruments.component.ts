@@ -155,9 +155,9 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
 
     this.total = 0;
     for (const item of this.portfolio) {
-      if (item.expectedYield.currency === 'RUB') {
+      if (item.expectedYield && item.expectedYield.currency === 'RUB') {
         this.total += item.expectedYield.value;
-      } else if (item.expectedYield.currency === 'USD') {
+      } else if (item.expectedYield && item.expectedYield.currency === 'USD') {
         if (usd) {
           this.total += item.expectedYield.value * usd.price;
         }
