@@ -141,9 +141,12 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
 
   getLabel(item) {
     switch (item.instrumentType) {
-      case 'Bond': return 'Bond';
-      case 'Currency': return '¤';
-      case 'Stock': return item.ticker;
+      case 'Bond':
+        return 'Bond';
+      case 'Currency':
+        return '¤';
+      case 'Stock':
+        return item.ticker;
 
     }
   }
@@ -162,7 +165,10 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
           this.total += item.expectedYield.value * usd.price;
         }
       } else {
-        console.log('Ошибка валюта не найдена');
+        if (window.location.host.indexOf('localhost') === -1) {
+          console.log('Ошибка валюта не найдена');
+        }
+
       }
 
     }

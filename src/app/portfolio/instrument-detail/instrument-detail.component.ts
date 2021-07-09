@@ -19,6 +19,7 @@ import { SidenavService } from '../../services/sidenav.service';
 import { CandleResolution } from '../../auth/interfaces/candle-resolution';
 import { Moment } from 'moment';
 import { MarketInstrument } from '../../interfaces/marketInstrument.interface';
+import { StockService } from '../../services/stock.service';
 
 
 @Component({
@@ -51,6 +52,7 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
     public route: ActivatedRoute,
     private portfolioService: PortfolioService,
     private socketService: SocketService,
+    private stockService: StockService,
     private dinamicLoaderService: DinamicLoaderService,
     public sidenavService: SidenavService,
   ) {
@@ -66,6 +68,12 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
         }
       });
 
+    this.stockService.updateInstrumentsList
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe(() => {
+        this.update();
+      });
+
     this.portfolioService.portfolioUpdateEvent
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe((portfolio) => {
@@ -76,7 +84,10 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.unsubscribeAll.next();
     this.unsubscribeAll.complete();
-    this.socketService.unSubscribeInstrument(this.info).then();
+    if (this.info && this.info.figi) {
+      this.socketService.unSubscribeInstrument(this.info).then();
+    }
+
   }
 
   addCandleToChart(candle) {
@@ -86,13 +97,17 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
       this.lastAllDataValue = this.lastAllDataValue ? this.lastAllDataValue : [];
       this.lastAllData = [...this.lastAllData, ...result.data];
       this.lastAllDataValue = [...this.lastAllDataValue, ...result.val];
-      (this.chartCandle.series[0] as any).data = this.lastAllData;
+      (this.chartCandle.series[ 0 ] as any).data = this.lastAllData;
       // console.log(this.chartCandle);
-      (this.chartBar.series[0] as any).data = this.lastAllDataValue;
+      (this.chartBar.series[ 0 ] as any).data = this.lastAllDataValue;
     }
   }
 
   async ngOnInit(): Promise<any> {
+    this.update();
+  }
+
+  async update() {
     this.info = await this.portfolioService.getInfoByFigi(this.figi);
     this.socketService.subscribeInstrument(this.info).then();
     const portfolio = await this.portfolioService.getPortfolio();

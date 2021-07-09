@@ -65,7 +65,7 @@ export class HistoryTrilingComponent implements OnInit, OnDestroy {
 
   async getCandlesHistory() {
     const candles = await this.portfolioService.getLastCandlesByPeriod({ figi: this.figi });
-    if (!this.price && candles) {
+    if (!this.price && candles && candles.length) {
       this.price = candles[ candles.length - 1 ].c;
       this.socketService.eventSocketUpdate.next({ payload: candles[ candles.length - 1 ] });
     }
