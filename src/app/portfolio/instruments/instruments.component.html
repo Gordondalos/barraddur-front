@@ -1,6 +1,7 @@
 <ng-container *ngIf="!show && balance">
 
-  <mat-card class="m16 mat-elevation-z2">
+  <mat-card class="m16 mat-elevation-z2 posr">
+    <mat-icon class="settings pointer" [routerLink]="['/settings']" >settings</mat-icon>
     <div>Изменения за все время в рублях</div>
     <div class="f32 py16" [ngClass]="{'text-success': total > 0, 'text-danger': total < 0}">
       <mat-icon *ngIf=" total > 0">arrow_upward</mat-icon>
@@ -8,27 +9,6 @@
       {{total?.toFixed(2)}} ₽
     </div>
   </mat-card>
-
-  <!--  <div class="my16">-->
-  <!--    <h3 class="bold mb0 mt16 px16">Валюта</h3>-->
-  <!--    <mat-list role="list">-->
-  <!--      <ng-container *ngFor="let item of balance">-->
-  <!--        <mat-list-item class="list-item pointer" role="listitem">-->
-  <!--          <div class="ticker mr16">-->
-  <!--            <span>{{item.currency}}</span>-->
-  <!--          </div>-->
-  <!--          <div class="f-gr-1">-->
-  <!--            <div class="bold f12">-->
-  <!--              {{item.currency}}-->
-  <!--            </div>-->
-  <!--          </div>-->
-  <!--          <div class="price f12">-->
-  <!--            {{(+item.balance).toFixed(2)}}-->
-  <!--          </div>-->
-  <!--        </mat-list-item>-->
-  <!--      </ng-container>-->
-  <!--    </mat-list>-->
-  <!--  </div>-->
 
   <ng-container *ngIf="portfolio && portfolio.length > 0">
     <ng-container *ngFor="let group of groupObj | keyvalue">

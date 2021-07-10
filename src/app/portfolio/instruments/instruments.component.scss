@@ -1,6 +1,11 @@
 @import "~iiko-styles/style/variables";
 @import "../../styles/variables";
 
+.settings {
+  position: absolute;
+  right: 16px;
+}
+
 .price {
   width: 160px;
   text-align: right;

@@ -133,9 +133,7 @@ export class InstrumentsComponent implements OnInit, OnDestroy {
       }
       item.label = this.getLabel(item);
       groupObj[ item.instrumentType ].push(item);
-      console.log(item);
     }
-    console.log(groupObj);
     this.groupObj = groupObj;
   }
 

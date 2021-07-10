@@ -9,6 +9,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule, Routes } from '@angular/router';
+
+
+const routes: Routes = [
+  {
+    path: '',
+    component: PersonalAreaComponent,
+  },
+];
+
 
 @NgModule({
   declarations: [PersonalAreaComponent],
@@ -22,6 +32,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatSlideToggleModule,
     MatProgressSpinnerModule,
     MatIconModule,
+    RouterModule.forChild(routes)
   ],
   exports: [
     PersonalAreaComponent,

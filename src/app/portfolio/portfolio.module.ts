@@ -16,7 +16,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { BuySellModule } from '../buy-sell/buy-sell.module';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
-import { PersonalAreaModule } from '../personal-area/personal-area.module';
 import { InstrumentDetailComponent } from './instrument-detail/instrument-detail.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -36,6 +35,7 @@ import { StoreModule } from '../store/store.module';
 import { StatisticComponent } from './statistic/statistic.component';
 import { MatCardModule } from '@angular/material/card';
 import { TransPipe } from './instruments/trans.pipe';
+import { IconPipe } from './buy/by-search/icon.pipe';
 
 
 const routes: Routes = [
@@ -69,6 +69,7 @@ const routes: Routes = [
     HistoryTrilingComponent,
     StatisticComponent,
     TransPipe,
+    IconPipe,
 
   ],
     imports: [
@@ -86,7 +87,6 @@ const routes: Routes = [
         BuySellModule,
         MatListModule,
         MatTabsModule,
-        PersonalAreaModule,
         NgApexchartsModule,
         MatButtonToggleModule,
         MatCheckboxModule,

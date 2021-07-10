@@ -50,6 +50,10 @@ const routes: Routes = [
     path: 'detail',
     loadChildren: () => import('./detail-info/detail-info.module').then(m => m.DetailInfoModule),
   },
+  {
+    path: 'settings',
+    loadChildren: () => import('./personal-area/personal-area.module').then(m => m.PersonalAreaModule),
+  },
 ];
 
 @NgModule({
