@@ -43,13 +43,13 @@
               </div>
               <div class="f-gr-1">
                 <div class="bold f12">
-                  {{item?.currency}}
+                  {{item?.currency|trans}}
                 </div>
               </div>
               <div class="price d-flex">
-                <div class="f-gr-1 f16">{{(+item.balance).toFixed(2)}}</div>
-                <div class="ml16 f12">
-                  {{item?.currency}}
+                <div class="f-gr-1 f16">
+                  {{(+item.balance).toFixed(2)}}
+                  {{item?.currency |trans}}
                 </div>
               </div>
             </mat-list-item>
@@ -72,7 +72,7 @@
               </div>
               <div class="d-block text-primary f10 no-wrap">
                 <span>
-                  (среднее: {{item.averagePositionPrice?.value.toFixed(4)}})
+                  (среднее: {{item.averagePositionPrice?.value.toFixed(2)}})
                 </span>
               </div>
             </div>
@@ -81,7 +81,10 @@
 
               <ng-container *ngIf="item && item.price">
                 <div class="f-gr-1">
-                  <div class="f16">{{(+item.price).toFixed(2)}}</div>
+                  <div class="f16">
+                    {{(+item.price).toFixed(2)}}
+                    {{item?.averagePositionPrice?.currency|trans}}
+                  </div>
                   <div
                     [ngClass]="{'text-success': item.expectedYield?.value > 0, 'text-danger': item.expectedYield?.value < 0}">
                     {{item.expectedYield?.value}}
@@ -90,10 +93,6 @@
                     ({{((+item.price - item.averagePositionPrice?.value) / item.averagePositionPrice?.value * 100).toFixed(2)}}%)
                   </div>
                 </div>
-                <div class="ml16">
-                  {{item?.averagePositionPrice?.currency}}
-                </div>
-
               </ng-container>
 
               <ng-container *ngIf="item.trailingStop">

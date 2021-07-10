@@ -13,6 +13,14 @@ export class TransPipe implements PipeTransform {
         return $localize`Валюта`;
       case 'Stock':
         return $localize`Акции`;
+      case 'RUB':
+        return $localize`₽`;
+      case 'USD':
+        return $localize`$`;
+      case 'EUR':
+        return $localize`€`;
+      case 'YEN':
+        return $localize`¥`;
       default:
         return value;
     }
