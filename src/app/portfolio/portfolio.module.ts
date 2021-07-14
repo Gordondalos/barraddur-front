@@ -36,6 +36,7 @@ import { StatisticComponent } from './statistic/statistic.component';
 import { MatCardModule } from '@angular/material/card';
 import { TransPipe } from './instruments/trans.pipe';
 import { IconPipe } from './buy/by-search/icon.pipe';
+import { RadarComponent } from './radar/radar.component';
 
 
 const routes: Routes = [
@@ -70,6 +71,7 @@ const routes: Routes = [
     StatisticComponent,
     TransPipe,
     IconPipe,
+    RadarComponent,
 
   ],
     imports: [

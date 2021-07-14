@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 import { MarketInstrument } from '../../interfaces/marketInstrument.interface';
 import { PortfolioService } from '../../services/portfolio.service';
 import { StatisticInterace } from '../../interfaces/statistic.interace';
@@ -36,6 +36,7 @@ export class StatisticComponent implements OnInit {
 
   async init() {
     this.statistic = await this.portfolioService.getStatisticInfo(this.info.ticker);
+    this.portfolioService.statisticChange.next(this.statistic);
 
     if (this.statistic) {
       let data: any = Object.keys(this.statistic).map(key => ({ key, value: this.statistic[ key ] }))

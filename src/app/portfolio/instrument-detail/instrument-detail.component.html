@@ -5,9 +5,8 @@
     </ng-template>
 
     <div class="wrapper">
-
       <div class="bold f16 px16 mt16">{{info?.name}} <ng-container *ngIf="info">({{info?.ticker}})</ng-container></div>
-
+<!--      <app-radar></app-radar>-->
       <ng-container *ngIf="info && info.currency && price">
         <div class="d-flex p16 align-items-center">
           <span class="price">{{price?.toFixed(3)}} {{info?.currency}}</span>
@@ -22,9 +21,7 @@
 
           <button class="f12" mat-raised-button color="primary" (click)="opensideNav(false)">Купить / Продать</button>
         </div>
-
       </ng-container>
-
       <ng-container *ngIf="info && currentInstrument">
         <app-count-info
           [info]="info"
@@ -34,7 +31,7 @@
       </ng-container>
 
       <ng-container *ngIf="chartCandleOptions">
-        <h4 class="text-center mb0">График по московскому времени</h4>
+        <h4 class="text-center mb0">График по Московскому времени</h4>
 
         <span
           class="select-chart"
@@ -112,6 +109,7 @@
     <ng-template mat-tab-label>
       Стакан
     </ng-template>
+    <div class="bold f16 px16 mt16">{{info?.name}} <ng-container *ngIf="info">({{info?.ticker}})</ng-container></div>
     <div class="p16" *ngIf="info && info.currency">
       <app-orderbook
         [info]="info"
@@ -124,6 +122,7 @@
     <ng-template mat-tab-label>
       Обзор
     </ng-template>
+    <div class="bold f16 px16 mt16">{{info?.name}} <ng-container *ngIf="info">({{info?.ticker}})</ng-container></div>
     <div class="p16" *ngIf="info && figi">
       <app-statistic
         [info]="info"
@@ -145,6 +144,7 @@
     <ng-template mat-tab-label>
       События
     </ng-template>
+    <div class="bold f16 px16 mt16">{{info?.name}} <ng-container *ngIf="info">({{info?.ticker}})</ng-container></div>
     <div class="p16">
       <app-history-triling
         [info]="info"

@@ -4,7 +4,7 @@
 
 <ng-container *ngIf="dataSource">
   <h3 class="bold mb0">Показатели</h3>
-  <table  mat-table [dataSource]="dataSource">
+  <table mat-table [dataSource]="dataSource">
 
     <!-- Position Column -->
     <ng-container matColumnDef="key">
@@ -19,7 +19,7 @@
 
     <!-- Name Column -->
     <ng-container matColumnDef="value">
-      <th class="text-center w10"  mat-header-cell *matHeaderCellDef>
+      <th class="text-center w10" mat-header-cell *matHeaderCellDef>
         <div class="text-center">
           <div class="text-center bold">Значение</div>
         </div>
@@ -32,7 +32,8 @@
       <th class="text-center w45" mat-header-cell *matHeaderCellDef>
         <div class="text-center bold">Консенсус</div>
       </th>
-      <td class="b-l f12 text-dark-gray pr8 pl8" mat-cell *matCellDef="let element"> {{element.info.interpretation}} </td>
+      <td class="b-l f12 text-dark-gray pr8 pl8" mat-cell
+          *matCellDef="let element"> {{element.info.interpretation}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -8,7 +8,7 @@ import { InstrumentInterface } from '../interfaces/instrumentInterface';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -58,10 +58,13 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       });
 
-    this.portfolioService.instrumentEvent.subscribe((instrument: InstrumentInterface) => {
-      this.currentInstrument = instrument;
-      this.localstorageService.set('currentInstrument', this.currentInstrument);
-    });
+    this.portfolioService.instrumentEvent
+      .subscribe((instrument: InstrumentInterface) => {
+        this.currentInstrument = instrument;
+        this.localstorageService.set('currentInstrument', this.currentInstrument);
+      });
+
+
   }
 
   ngOnDestroy(): void {
@@ -80,7 +83,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     // this.showTitle = window.innerWidth > 968;
     this.showTitle = true;
   }
-
 
 
   changeThemeColor(theme) {

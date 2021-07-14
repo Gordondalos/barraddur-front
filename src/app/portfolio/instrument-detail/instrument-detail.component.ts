@@ -31,21 +31,22 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
 
   @ViewChild('chartCandle') chartCandle: ChartComponent;
   @ViewChild('chartBar') chartBar: ChartComponent;
-  public chartCandleOptions: Partial<ChartOptions>;
-  public chartBarOptions: Partial<ChartOptions>;
+  chartCandleOptions: Partial<ChartOptions>;
+  chartBarOptions: Partial<ChartOptions>;
 
   figi: string;
   info: MarketInstrument;
   price: number;
   currentInstrument: InstrumentInterface;
   interval: CandleResolution = 'day';
-
-  private unsubscribeAll: Subject<any> = new Subject<any>();
-  private min: any;
   chartType: ChartType = 'line';
   lastCandles: any;
   lastAllData: any;
   lastAllDataValue: any;
+  statistic: any = {};
+
+  private unsubscribeAll: Subject<any> = new Subject<any>();
+  private min: any;
 
 
   constructor(
@@ -63,6 +64,7 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
         if (event.payload.figi === this.figi) {
           this.price = event.payload.c;
           this.lastCandles = event.payload;
+          // TODO добавлять данные на график
           // эта строка добавляет последние данные но как то не адекватно график чертится назад
           // this.addCandleToChart(this.lastCandles);
         }
@@ -255,7 +257,7 @@ export class InstrumentDetailComponent implements OnInit, OnDestroy {
           id: 'candles',
           stacked: false,
           toolbar: {
-            show: true,
+            show: false,
             offsetX: 0,
             offsetY: 0,
             tools: {

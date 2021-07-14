@@ -19,6 +19,7 @@ export class PortfolioService extends FatherService {
   instrumentEvent = new Subject();
   portfolioUpdateEvent = new Subject();
   searchEvent = new Subject();
+  statisticChange = new Subject();
 
   constructor(
     public httpClient: HttpClient,
